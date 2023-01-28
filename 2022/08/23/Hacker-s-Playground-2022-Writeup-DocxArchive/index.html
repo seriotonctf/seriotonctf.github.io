@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Hacker's Playground 2022 Writeup - DocxArchive | serioton's blog</title><meta name="author" content="serioton"><meta name="copyright" content="serioton"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Categories : Rev &#x2F; Misc   Points : 110   Solves : 101  Challenge Description123I developed a simple and useful program that attaches a file into word file. But... why I cannot open file?I though">
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Hacker's Playground 2022 Writeup - DocxArchive | serioton's blog</title><meta name="author" content="serioton"><meta name="copyright" content="serioton"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="Categories : Rev &#x2F; Misc   Points : 110   Solves : 101  Challenge Description123I developed a simple and useful program that attaches a file into word file. But... why I cannot open file?I though">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hacker&#39;s Playground 2022 Writeup - DocxArchive">
 <meta property="og:url" content="https://seriotonctf.github.io/2022/08/23/Hacker-s-Playground-2022-Writeup-DocxArchive/index.html">
@@ -7,7 +7,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://serioton.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4f3e526b-4820-4828-aa4c-c77586ab3a3d%2FUntitled.png?id=8c11b012-59e5-46dd-a8ae-4641cb11852f&table=block&spaceId=9163bddd-7f46-4e82-a292-895fe15866d3&width=1430&userId=&cache=v2">
 <meta property="article:published_time" content="2022-08-23T14:35:10.000Z">
-<meta property="article:modified_time" content="2023-01-28T17:10:22.059Z">
+<meta property="article:modified_time" content="2023-01-28T18:00:50.954Z">
 <meta property="article:author" content="serioton">
 <meta property="article:tag" content="ctf">
 <meta property="article:tag" content="misc">
@@ -58,7 +58,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2023-01-28 17:10:22'
+  postUpdate: '2023-01-28 18:00:50'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -167,7 +167,6 @@
 </blockquote>
 <h3 id="Challenge-Description"><a href="#Challenge-Description" class="headerlink" title="Challenge Description"></a>Challenge Description</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">I developed a simple and useful program that attaches a file into word file. But... why I cannot open file?</span><br><span class="line">I thought I developed perfect program, but it was not true. Wait, where is the source file?</span><br><span class="line">I cannot find my attachment file! I think I need to extract attachment file from word.</span><br></pre></td></tr></table></figure>
 
-<hr>
 <p>We are given a <code>RecoverMe.docx</code> file to download. It is a Microsoft Word 2007+ file. If we try to open it we get an error saying that it is corrupted. We know that a <code>docx</code> or any microsoft file are in fact zip files , they have the same header <code>PK</code> </p>
 <p><img src="https://serioton.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4f3e526b-4820-4828-aa4c-c77586ab3a3d%2FUntitled.png?id=8c11b012-59e5-46dd-a8ae-4641cb11852f&table=block&spaceId=9163bddd-7f46-4e82-a292-895fe15866d3&width=1430&userId=&cache=v2" alt="xxd"></p>
 <p>We can then unzip the file like a normal zip</p>
