@@ -97,9 +97,9 @@
             
             <tag> ctf </tag>
             
-            <tag> forensics </tag>
-            
             <tag> reversing </tag>
+            
+            <tag> forensics </tag>
             
         </tags>
       
@@ -151,15 +151,15 @@
             
             <tag> ctf </tag>
             
-            <tag> forensics </tag>
+            <tag> web </tag>
             
             <tag> reversing </tag>
-            
-            <tag> web </tag>
             
             <tag> misc </tag>
             
             <tag> cryptography </tag>
+            
+            <tag> forensics </tag>
             
             <tag> pwn </tag>
             
@@ -294,9 +294,9 @@
             
             <tag> ctf </tag>
             
-            <tag> reversing </tag>
-            
             <tag> web </tag>
+            
+            <tag> reversing </tag>
             
             <tag> misc </tag>
             
@@ -327,9 +327,9 @@
             
             <tag> ctf </tag>
             
-            <tag> forensics </tag>
-            
             <tag> reversing </tag>
+            
+            <tag> forensics </tag>
             
             <tag> HTB </tag>
             
@@ -358,11 +358,11 @@
             
             <tag> ctf </tag>
             
-            <tag> forensics </tag>
-            
             <tag> reversing </tag>
             
             <tag> cryptography </tag>
+            
+            <tag> forensics </tag>
             
             <tag> pwn </tag>
             
@@ -391,13 +391,13 @@
             
             <tag> ctf </tag>
             
-            <tag> forensics </tag>
-            
             <tag> reversing </tag>
             
             <tag> misc </tag>
             
             <tag> cryptography </tag>
+            
+            <tag> forensics </tag>
             
             <tag> pwn </tag>
             
@@ -426,11 +426,11 @@
             
             <tag> ctf </tag>
             
-            <tag> forensics </tag>
-            
             <tag> reversing </tag>
             
             <tag> cryptography </tag>
+            
+            <tag> forensics </tag>
             
         </tags>
       
