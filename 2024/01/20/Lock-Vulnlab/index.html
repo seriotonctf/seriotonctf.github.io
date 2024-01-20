@@ -7,7 +7,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://1897091482-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FI3I73FFqB6GvT8N5Mt1N%2Fuploads%2FqlrTgqfYZ2LxYiFsS7F0%2Flock_slide.png?alt=media&token=4a34abe6-3e20-4725-9334-bd39e2db903a">
 <meta property="article:published_time" content="2024-01-20T18:44:31.000Z">
-<meta property="article:modified_time" content="2024-01-20T17:45:04.600Z">
+<meta property="article:modified_time" content="2024-01-20T17:47:26.213Z">
 <meta property="article:author" content="serioton">
 <meta property="article:tag" content="vulnlab">
 <meta name="twitter:card" content="summary">
@@ -57,7 +57,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-01-20 17:45:04'
+  postUpdate: '2024-01-20 17:47:26'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -186,7 +186,7 @@ if (false) {
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➜  lock python3 repos.py &lt;http://lock.vl:3000&gt;</span><br><span class="line">Repositories:</span><br><span class="line">- ellen.freeman/dev-scripts</span><br><span class="line">- ellen.freeman/website</span><br></pre></td></tr></table></figure>
 
 <p>As you can see, there is another repo called “website”, so let’s clone it:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">➜  lock git config --<span class="built_in">local</span> http.extraHeader <span class="string">&quot;Authorization: token &lt;REDACTED&gt;&quot;</span></span><br><span class="line">➜  lock git <span class="built_in">clone</span> &lt;http://lock.vl:3000/ellen.freeman/website&gt;</span><br><span class="line">Cloning into <span class="string">&#x27;website&#x27;</span>...</span><br><span class="line">remote: Enumerating objects: 165, <span class="keyword">done</span>.</span><br><span class="line">remote: Counting objects: 100% (165/165), <span class="keyword">done</span>.</span><br><span class="line">remote: Compressing objects: 100% (128/128), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 165 (delta 35), reused 153 (delta 31), pack-reused 0</span><br><span class="line">Receiving objects: 100% (165/165), 7.16 MiB | 1.78 MiB/s, <span class="keyword">done</span>.</span><br><span class="line">Resolving deltas: 100% (35/35), <span class="keyword">done</span>.</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">➜  lock git config --global http.extraHeader <span class="string">&quot;Authorization: token &lt;REDACTED&gt;&quot;</span></span><br><span class="line">➜  lock git <span class="built_in">clone</span> &lt;http://lock.vl:3000/ellen.freeman/website&gt;</span><br><span class="line">Cloning into <span class="string">&#x27;website&#x27;</span>...</span><br><span class="line">remote: Enumerating objects: 165, <span class="keyword">done</span>.</span><br><span class="line">remote: Counting objects: 100% (165/165), <span class="keyword">done</span>.</span><br><span class="line">remote: Compressing objects: 100% (128/128), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 165 (delta 35), reused 153 (delta 31), pack-reused 0</span><br><span class="line">Receiving objects: 100% (165/165), 7.16 MiB | 1.78 MiB/s, <span class="keyword">done</span>.</span><br><span class="line">Resolving deltas: 100% (35/35), <span class="keyword">done</span>.</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  lock <span class="built_in">cd</span> website</span><br><span class="line">➜  website git:(main) <span class="built_in">ls</span></span><br><span class="line">assets  changelog.txt  index.html  readme.md</span><br></pre></td></tr></table></figure>
 
