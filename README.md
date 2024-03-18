@@ -1,2 +1,2 @@
 # serioton.github.io
-website where I publish my writeups
+A blog where I publish my writeups of machines and CTF challenges
