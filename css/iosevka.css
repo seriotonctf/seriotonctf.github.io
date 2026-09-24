@@ -1,0 +1,33 @@
+/* Iosevka from @fontsource/iosevka 5.3.0, SIL Open Font License.
+   Subset for Latin, punctuation, arrows, and characters used in the blog. */
+@font-face {
+  font-family: Iosevka;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/iosevka/iosevka-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: Iosevka;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/iosevka/iosevka-latin-700-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: Iosevka;
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/iosevka/iosevka-latin-400-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: Iosevka;
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/iosevka/iosevka-latin-700-italic.woff2') format('woff2');
+}
+body, button, input, select, textarea, code, pre, kbd, samp {
+  font-family: Iosevka, monospace;
+}
