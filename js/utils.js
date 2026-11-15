@@ -45,6 +45,17 @@
       }
     },
 
+    rafThrottle: fn => {
+      let rafId = null
+      return (...args) => {
+        if (rafId) return
+        rafId = requestAnimationFrame(() => {
+          fn(...args)
+          rafId = null
+        })
+      }
+    },
+
     overflowPaddingR: {
       add: () => {
         const paddingRight = window.innerWidth - document.body.clientWidth
@@ -52,18 +63,20 @@
         if (paddingRight > 0) {
           document.body.style.paddingRight = `${paddingRight}px`
           document.body.style.overflow = 'hidden'
-          const menuElement = document.querySelector('#page-header.nav-fixed #menus')
-          if (menuElement) {
-            menuElement.style.paddingRight = `${paddingRight}px`
+          const header = document.getElementById('page-header')
+          const menu = document.getElementById('menus')
+          if (header && menu && header.classList.contains('nav-fixed')) {
+            menu.style.paddingRight = `${paddingRight}px`
           }
         }
       },
       remove: () => {
         document.body.style.paddingRight = ''
         document.body.style.overflow = ''
-        const menuElement = document.querySelector('#page-header.nav-fixed #menus')
-        if (menuElement) {
-          menuElement.style.paddingRight = ''
+        const header = document.getElementById('page-header')
+        const menu = document.getElementById('menus')
+        if (header && menu && header.classList.contains('nav-fixed')) {
+          menu.style.paddingRight = ''
         }
       }
     },
@@ -133,7 +146,8 @@
       const animate = currentTime => {
         const timeElapsed = currentTime - startTime
         const progress = Math.min(timeElapsed / time, 1)
-        window.scrollTo(0, currentPos + (pos - currentPos) * progress)
+        const easedProgress = 1 - Math.pow(1 - progress, 4) // easeOutQuart
+        window.scrollTo(0, currentPos + (pos - currentPos) * easedProgress)
         if (progress < 1) {
           requestAnimationFrame(animate)
         }
@@ -173,7 +187,12 @@
       const service = GLOBAL_CONFIG.lightbox
 
       if (service === 'medium_zoom') {
-        mediumZoom(ele, { background: 'var(--zoom-bg)' })
+        const zoom = window.mediumZoomInstance || (window.mediumZoomInstance = mediumZoom({ background: 'var(--zoom-bg)' }))
+        zoom.attach(ele)
+
+        btf.addGlobalFn('pjaxSendOnce', () => {
+          window.mediumZoomInstance && window.mediumZoomInstance.detach()
+        }, 'mediumZoom')
         return
       }
 
@@ -216,7 +235,8 @@
                   ],
                   right: ['slideshow', 'thumbs', 'close']
                 }
-              }
+              },
+              hideScrollbar: false
             }
           } else {
             options = {
@@ -247,7 +267,8 @@
                     maxScale: 4
                   }
                 }
-              }
+              },
+              hideScrollbar: false
             }
           }
 
@@ -285,17 +306,41 @@
     },
 
     getScrollPercent: (() => {
-      let docHeight, winHeight, headerHeight, contentMath
+      let cache = new WeakMap()
 
-      return (currentTop, ele) => {
-        if (!docHeight || ele.clientHeight !== docHeight) {
-          docHeight = ele.clientHeight
-          winHeight = window.innerHeight
-          headerHeight = ele.offsetTop
-          contentMath = Math.max(docHeight - winHeight, document.documentElement.scrollHeight - winHeight)
+      window.addEventListener('resize', () => {
+        cache = new WeakMap()
+      })
+
+      return (currentTop, ele, useDocHeight = ele === document.body) => {
+        const eleHeight = ele.clientHeight
+        const winHeight = window.innerHeight
+        const cacheData = cache.get(ele)
+        let data = cacheData
+
+        if (
+          !cacheData ||
+          cacheData.docHeight !== eleHeight ||
+          cacheData.winHeight !== winHeight ||
+          cacheData.useDocHeight !== useDocHeight
+        ) {
+          const headerHeight = ele.offsetTop
+          const contentMath = useDocHeight
+            ? Math.max(eleHeight - winHeight, document.documentElement.scrollHeight - winHeight)
+            : Math.max(eleHeight - winHeight, 1)
+
+          data = {
+            docHeight: eleHeight,
+            winHeight,
+            useDocHeight,
+            headerHeight,
+            contentMath
+          }
+
+          cache.set(ele, data)
         }
 
-        const scrollPercent = (currentTop - headerHeight) / contentMath
+        const scrollPercent = (currentTop - data.headerHeight) / data.contentMath
         return Math.max(0, Math.min(100, Math.round(scrollPercent * 100)))
       }
     })(),
