@@ -1742,7 +1742,7 @@ body {
   background: var(--global-bg);
   color: var(--font-color);
   font-size: var(--global-font-size);
-  font-family: Iosevka Nerd Font, monospace;
+  font-family: Iosevka, monospace;
   line-height: 2;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   scroll-behavior: smooth;
@@ -2042,7 +2042,7 @@ figure.highlight pre .javascript .function {
 .container pre,
 .container code {
   font-size: var(--global-font-size);
-  font-family: Iosevka Nerd Font, monospace !important;
+  font-family: Iosevka, monospace !important;
   border-radius: 6px;
 }
 .container code {
