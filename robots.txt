@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://seriotonctf.github.io/sitemap.xml
