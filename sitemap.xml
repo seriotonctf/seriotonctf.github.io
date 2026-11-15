@@ -424,34 +424,6 @@
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/bloodyad/</loc>
-    <lastmod>2026-11-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/gmsa/</loc>
-    <lastmod>2026-11-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/enumeration/</loc>
-    <lastmod>2026-11-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/credential-dumping/</loc>
-    <lastmod>2026-11-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://seriotonctf.github.io/tags/windows/</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -474,6 +446,34 @@
   
   <url>
     <loc>https://seriotonctf.github.io/tags/uac-bypass/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/bloodyad/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/gmsa/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/enumeration/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/credential-dumping/</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -634,20 +634,6 @@
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/laps/</loc>
-    <lastmod>2026-11-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/esc4/</loc>
-    <lastmod>2026-11-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://seriotonctf.github.io/tags/pre-windows-2000-computers/</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -656,6 +642,20 @@
   
   <url>
     <loc>https://seriotonctf.github.io/tags/rpceptmapper/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/laps/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/esc4/</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
