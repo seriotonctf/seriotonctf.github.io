@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/AD-ACLs-Cheatsheet/</loc>
+    <loc>https://seriotonctf.github.io/ADCS-Attacks-with-Certipy/</loc>
     
     <lastmod>2026-06-23</lastmod>
     
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/ADCS-Attacks-with-Certipy/</loc>
+    <loc>https://seriotonctf.github.io/AD-ACLs-Cheatsheet/</loc>
     
     <lastmod>2026-06-23</lastmod>
     
@@ -270,6 +270,20 @@
   </url>
   
   <url>
+    <loc>https://seriotonctf.github.io/tags/adcs/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/certipy/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://seriotonctf.github.io/tags/acl-abuse/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -305,20 +319,6 @@
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/adcs/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/certipy/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://seriotonctf.github.io/tags/hack-lu-ctf/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -341,6 +341,41 @@
   
   <url>
     <loc>https://seriotonctf.github.io/tags/netexec/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/vulnlab/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/linux/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/squid-proxy/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/papercut/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/cve-2023-27350/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -389,55 +424,6 @@
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/vulnlab/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/linux/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/squid-proxy/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/papercut/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/cve-2023-27350/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/bloodyad/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/gmsa/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://seriotonctf.github.io/tags/enumeration/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -452,21 +438,14 @@
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/sliver/</loc>
+    <loc>https://seriotonctf.github.io/tags/bloodyad/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/c2/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/red-team/</loc>
+    <loc>https://seriotonctf.github.io/tags/gmsa/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -501,56 +480,21 @@
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/hackthebox/</loc>
+    <loc>https://seriotonctf.github.io/tags/sliver/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/password-spraying/</loc>
+    <loc>https://seriotonctf.github.io/tags/c2/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/backup-operators/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/libreoffice-macro/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/phishing/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/seimpersonateprivilege/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/ntlm-theft/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/symlink-abuse/</loc>
+    <loc>https://seriotonctf.github.io/tags/red-team/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -592,14 +536,35 @@
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/ntlm-reflection/</loc>
+    <loc>https://seriotonctf.github.io/tags/ntlm-theft/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/cve-2025-33073/</loc>
+    <loc>https://seriotonctf.github.io/tags/symlink-abuse/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/seimpersonateprivilege/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/password-spraying/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/veracrypt/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -613,7 +578,42 @@
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/veracrypt/</loc>
+    <loc>https://seriotonctf.github.io/tags/libreoffice-macro/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/phishing/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/hackthebox/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/backup-operators/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/ntlm-reflection/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/cve-2025-33073/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
