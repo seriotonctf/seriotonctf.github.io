@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" role="img" aria-label="A cat sitting on a table next to a mug it has just pushed off">
+  <rect width="500" height="500" fill="#1b1d2a"/>
+  <g fill="#f5d98a">
+    <circle cx="70" cy="70" r="2"/><circle cx="160" cy="40" r="1.5"/><circle cx="420" cy="80" r="2"/>
+    <circle cx="340" cy="45" r="1.5"/><circle cx="250" cy="95" r="1.5"/><circle cx="460" cy="170" r="1.5"/>
+  </g>
+  <!-- table -->
+  <rect x="40" y="300" width="330" height="16" rx="4" fill="#8a6a4f"/>
+  <rect x="70" y="316" width="14" height="150" fill="#6f543f"/>
+  <rect x="320" y="316" width="14" height="150" fill="#6f543f"/>
+  <!-- cat -->
+  <g fill="#ece6da">
+    <path d="M118 300c-14 0-18-12-14-28 8-38 44-60 96-60h20c40 0 64 24 64 60v28Z"/>
+    <path d="M196 214l7-48 34 26ZM251 190l32-24 6 48Z"/>
+    <ellipse cx="242" cy="226" rx="48" ry="41"/>
+  </g>
+  <path d="M120 296c-26 2-34-16-32-40" fill="none" stroke="#ece6da" stroke-width="13" stroke-linecap="round"/>
+  <g fill="#1b1d2a">
+    <ellipse cx="224" cy="224" rx="5" ry="7"/><ellipse cx="262" cy="224" rx="5" ry="7"/>
+  </g>
+  <path d="M239 238l4 4 4-4Z" fill="#e58aa5"/>
+  <g fill="none" stroke="#1b1d2a" stroke-width="2" stroke-linecap="round">
+    <path d="M243 242q-5 6-10 2M243 242q5 6 10 2"/>
+  </g>
+  <!-- paw that did it -->
+  <path d="M284 286h44" stroke="#ece6da" stroke-width="14" stroke-linecap="round"/>
+  <!-- falling mug -->
+  <g transform="rotate(38 410 380)">
+    <rect x="388" y="356" width="44" height="50" rx="6" fill="#8fb8f6"/>
+    <path d="M432 368h10a10 10 0 0 1 0 26h-10" fill="none" stroke="#8fb8f6" stroke-width="7"/>
+  </g>
+  <g fill="none" stroke="#8fb8f6" stroke-width="3" stroke-linecap="round" opacity=".7">
+    <path d="M392 318v18M408 310v20M424 320v14"/>
+  </g>
+  <g fill="#a8794f"><circle cx="380" cy="436" r="5"/><circle cx="398" cy="452" r="4"/><circle cx="368" cy="456" r="3"/></g>
+</svg>

