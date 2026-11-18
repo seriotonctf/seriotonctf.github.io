@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+
+<meta charset="utf-8"><script>(function(){try{var T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},here="loaf",root=T[here],L=location,p=L.pathname;var q=new URLSearchParams(L.search),want=q.get("theme"),picked=want&&T[want]!==undefined;if(picked){localStorage.setItem("blog-theme",want);q.delete("theme")}else{want=localStorage.getItem("blog-theme")}var s=q.toString();s=s?"?"+s:"";var lost=p.indexOf(root)!==0;for(var k in T){if(k!==here&&T[k].length>root.length&&p.indexOf(T[k])===0)lost=true}if(want&&want!==here&&T[want]!==undefined&&!lost){L.replace(T[want]+p.slice(root.length)+s+L.hash);return}if(picked){history.replaceState(null,"",p+s+L.hash);var st=document.createElement("style");st.textContent="@view-transition{navigation:auto}";document.head.appendChild(st)}}catch(e){}})()</script><style>.tsw{position:relative}.tsw summary{list-style:none;cursor:pointer;user-select:none}.tsw summary::-webkit-details-marker{display:none}.tsw-menu{position:absolute;right:0;top:calc(100% + .4rem);z-index:50;display:grid;min-width:9.5rem;padding:.3rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);box-shadow:0 6px 24px rgba(0,0,0,.18)}.tsw-menu a{display:block;padding:.35rem .6rem;border-radius:5px;color:var(--fg);text-decoration:none;white-space:nowrap;box-shadow:none}.tsw-menu a:hover{background:var(--surface)}.tsw-menu a[aria-current]{color:var(--accent)}.tsw-menu a[aria-current]::after{content:" ✓"}@media print{.tsw{display:none}}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>link · serioton</title>
+
+<meta name="description" content="cat">
+<meta property="og:type" content="website">
+<meta property="og:title" content="link">
+<meta property="og:url" content="https://seriotonctf.github.io/loaf/link/index.html">
+<meta property="og:site_name" content="serioton">
+<meta property="og:description" content="cat">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://seriotonctf.github.io/img/cat.webp">
+<meta property="article:published_time" content="2023-01-27T19:30:15.000Z">
+<meta property="article:modified_time" content="2023-01-27T18:30:24.000Z">
+<meta property="article:author" content="serioton">
+<meta property="article:tag" content="ctf,writeups,vulnlab,hackthebox,htb,thm,cheatsheet">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://seriotonctf.github.io/img/cat.webp">
+<link rel="canonical" href="https://seriotonctf.github.io/link/">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131214" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="/loaf/img/iconcat.png">
+
+
+<link rel="alternate" type="application/atom+xml" title="serioton" href="/loaf/atom.xml">
+
+<link rel="preload" as="font" type="font/woff2" href="/loaf/fonts/iosevka-latin-400-normal.woff2" crossorigin>
+<link rel="stylesheet" href="/loaf/css/loaf.css">
+<script>try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}</script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap">
+  <a class="brand" href="/loaf/">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.5 3.5 9 7.6c2-.5 4-.5 6 0l5.5-4.1V14c0 4-3.8 7-8.5 7s-8.5-3-8.5-7Z"/><g fill="var(--bg)"><ellipse cx="8.9" cy="13.6" rx="1.15" ry="1.5"/><ellipse cx="15.1" cy="13.6" rx="1.15" ry="1.5"/></g></svg>
+    <span>serioton</span>
+  </a>
+  <nav class="nav" aria-label="main">
+    
+    <a href="/loaf/archives/">archives</a>
+    
+    <a href="/loaf/categories/">categories</a>
+    
+    <a href="/loaf/tags/">tags</a>
+    
+    <a href="/loaf/about/">about</a>
+    
+  </nav>
+  <div class="tools">
+    <details class="tsw"><summary class="icon-btn" aria-label="switch the blog theme" title="theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5" fill="currentColor"/></svg></summary><div class="tsw-menu"><a data-switch="butterfly" href="/?theme=butterfly">Butterfly</a><a data-switch="claude" href="/claude/?theme=claude">Claude Code</a><a data-switch="loaf" href="/loaf/?theme=loaf" aria-current="true">Loaf</a></div></details>
+    
+    <button class="icon-btn" type="button" data-search aria-label="search" title="search ( / )">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5.5 5.5"/></svg>
+    </button>
+    
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="switch between light and dark" title="lights">
+      <svg class="eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M1.5 12Q12-.5 22.5 12 12 24.5 1.5 12Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><ellipse class="pupil" cx="12" cy="12" rx="4.2" ry="4.6" fill="currentColor"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+<article class="post">
+  <header class="post-head">
+    <h1>link</h1>
+  </header>
+
+  
+
+  <div class="prose">
+    
+  </div>
+</article>
+
+</main>
+<footer class="site-footer wrap">
+  <div class="site-footer-inner">
+    <a class="perch" href="#" aria-label="back to top" title="back to top"><svg class="cat" viewBox="0 0 72 36" aria-hidden="true">
+  <path class="cat-tail" d="M11 32.5C4.5 33 2.4 28.5 3 22.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+  <g fill="currentColor">
+    <path d="M9 36c-3.5 0-4.5-3-3.5-7 2-9.5 11-15 24-15h18c10 0 16 6 16 15v7Z"/>
+    <path d="M40.8 15.5 42.5 3.5l8.5 6.5ZM54.5 9.5l8-6 1.5 12Z"/>
+    <ellipse cx="52.3" cy="18.5" rx="12" ry="10.3"/>
+  </g>
+  <g class="cat-asleep" fill="none" stroke="var(--bg)" stroke-width="1.3" stroke-linecap="round">
+    <path d="M45.3 18.8q2.1 1.9 4.2 0M55.3 18.8q2.1 1.9 4.2 0"/>
+  </g>
+  <g class="cat-awake" fill="var(--bg)">
+    <ellipse cx="47.4" cy="18.6" rx="1.7" ry="2.1"/><ellipse cx="57.4" cy="18.6" rx="1.7" ry="2.1"/>
+  </g>
+  <path d="M51.3 22.3h2.2l-1.1 1.2Z" fill="#e58aa5"/>
+</svg>
+</a>
+    
+    <span>© 2023–2026 serioton</span>
+    <a href="/loaf/atom.xml">rss</a>
+  </div>
+</footer>
+
+
+<dialog class="search" data-index="/loaf/search.xml" aria-label="search">
+  <input type="search" placeholder="search posts…" autocomplete="off" spellcheck="false" aria-label="search posts">
+  <ol class="search-results"></ol>
+  <p class="search-note">type to search · ↑↓ to move · esc to close</p>
+</dialog>
+
+<script src="/loaf/js/loaf.js" defer></script>
+<script>(function(){var T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},here="loaf",root=T[here],p=location.pathname;var rel=p.indexOf(root)===0?p.slice(root.length):"";for(var k in T){if(k!==here&&T[k].length>root.length&&p.indexOf(T[k])===0)rel=""}var links=document.querySelectorAll("a[data-switch]");function place(){if(scrollY<200)return"";var h=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id]"),id="";for(var i=0;i<h.length;i++){if(h[i].getBoundingClientRect().top<160)id=h[i].id;else break}return id?"#"+encodeURIComponent(id):""}function url(a){return T[a.dataset.switch]+rel+"?theme="+a.dataset.switch}function warm(a){if(a.dataset.warm)return;a.dataset.warm=1;var l=document.createElement("link");l.rel="prefetch";l.href=url(a);document.head.appendChild(l)}links.forEach(function(a){a.href=url(a);a.addEventListener("pointerenter",function(){warm(a)});a.addEventListener("focus",function(){warm(a)});a.addEventListener("touchstart",function(){warm(a)},{passive:true});a.addEventListener("click",function(){try{localStorage.setItem("blog-theme",a.dataset.switch)}catch(e){}var st=document.createElement("style");st.textContent="@view-transition{navigation:auto}";document.head.appendChild(st);a.href=url(a)+place()})});document.querySelectorAll("details.tsw").forEach(function(d){d.addEventListener("toggle",function(){if(d.open)links.forEach(warm)});document.addEventListener("click",function(e){if(d.open&&!d.contains(e.target))d.open=false});document.addEventListener("keydown",function(e){if(e.key==="Escape")d.open=false})});})()</script></body>
+</html>

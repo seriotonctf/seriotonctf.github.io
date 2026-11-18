@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+
+<meta charset="utf-8"><script>(function(){try{var T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},here="claude",root=T[here],L=location,p=L.pathname;var q=new URLSearchParams(L.search),want=q.get("theme"),picked=want&&T[want]!==undefined;if(picked){localStorage.setItem("blog-theme",want);q.delete("theme")}else{want=localStorage.getItem("blog-theme")}var s=q.toString();s=s?"?"+s:"";var lost=p.indexOf(root)!==0;for(var k in T){if(k!==here&&T[k].length>root.length&&p.indexOf(T[k])===0)lost=true}if(want&&want!==here&&T[want]!==undefined&&!lost){L.replace(T[want]+p.slice(root.length)+s+L.hash);return}if(picked){history.replaceState(null,"",p+s+L.hash);var st=document.createElement("style");st.textContent="@view-transition{navigation:auto}";document.head.appendChild(st)}}catch(e){}})()</script><style>.tsw{position:relative}.tsw summary{list-style:none;cursor:pointer;user-select:none}.tsw summary::-webkit-details-marker{display:none}.tsw-menu{position:absolute;right:0;top:calc(100% + .4rem);z-index:50;display:grid;min-width:9.5rem;padding:.3rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);box-shadow:0 6px 24px rgba(0,0,0,.18)}.tsw-menu a{display:block;padding:.35rem .6rem;border-radius:5px;color:var(--fg);text-decoration:none;white-space:nowrap;box-shadow:none}.tsw-menu a:hover{background:var(--surface)}.tsw-menu a[aria-current]{color:var(--accent)}.tsw-menu a[aria-current]::after{content:" ✓"}@media print{.tsw{display:none}}.nav .tsw summary{color:var(--muted)}.nav .tsw summary:hover,.nav .tsw[open] summary{color:var(--accent)}.nav .tsw-menu a{color:var(--fg)}@media (max-width:40rem){.site-header{position:relative}.nav .tsw{position:static}.nav .tsw-menu{top:100%}}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reflection - Vulnlab · serioton</title>
+
+<meta name="description" content="MSSQL, NTLM relay attacks, LAPS, and RBCD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reflection - Vulnlab">
+<meta property="og:url" content="https://seriotonctf.github.io/claude/Reflection-Vulnlab/index.html">
+<meta property="og:site_name" content="serioton">
+<meta property="og:description" content="MSSQL, NTLM relay attacks, LAPS, and RBCD">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://seriotonctf.github.io/img/thumbnails/reflection-vulnlab.png">
+<meta property="article:published_time" content="2024-08-18T22:34:29.000Z">
+<meta property="article:modified_time" content="2026-05-24T17:15:14.000Z">
+<meta property="article:author" content="serioton">
+<meta property="article:tag" content="active directory">
+<meta property="article:tag" content="acl abuse">
+<meta property="article:tag" content="rbcd">
+<meta property="article:tag" content="vulnlab">
+<meta property="article:tag" content="ntlm relay">
+<meta property="article:tag" content="mssql">
+<meta property="article:tag" content="laps">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://seriotonctf.github.io/img/thumbnails/reflection-vulnlab.png">
+<link rel="canonical" href="https://seriotonctf.github.io/Reflection-Vulnlab/">
+<meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1f1e1d" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="/claude/img/favicon.png">
+
+
+<link rel="alternate" type="application/atom+xml" title="serioton" href="/claude/atom.xml">
+
+<link rel="preload" as="font" type="font/woff2" href="/claude/fonts/iosevka-latin-400-normal.woff2" crossorigin>
+<link rel="stylesheet" href="/claude/css/claude.css">
+<script>try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}</script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap">
+  <a class="brand" href="/claude/"><span class="spark" aria-hidden="true">✻</span> serioton</a>
+  <nav class="nav" aria-label="main">
+    
+    <a href="/claude/archives/">/archives</a>
+    
+    <a href="/claude/categories/">/categories</a>
+    
+    <a href="/claude/tags/">/tags</a>
+    
+    <a href="/claude/about/">/about</a>
+    
+    <details class="tsw"><summary title="switch the blog theme">/skin</summary><div class="tsw-menu"><a data-switch="butterfly" href="/?theme=butterfly">Butterfly</a><a data-switch="claude" href="/claude/?theme=claude" aria-current="true">Claude Code</a><a data-switch="loaf" href="/loaf/?theme=loaf">Loaf</a></div></details>
+    <button type="button" data-theme-toggle title="switch between light and dark">/theme</button>
+  </nav>
+</header>
+
+<main id="main" class="wrap">
+
+
+
+
+<article class="post" data-post="Reflection - Vulnlab">
+  <p class="you"><span aria-hidden="true">&gt;</span> cat posts/Reflection-Vulnlab.md</p>
+
+  <header class="tool post-head">
+    <p class="call"><b>Read</b>(posts/Reflection-Vulnlab.md)</p>
+    <p class="result">Read 225 lines</p>
+  </header>
+
+  <div class="say">
+    <h1>Reflection - Vulnlab</h1>
+    <p class="lede">MSSQL, NTLM relay attacks, LAPS, and RBCD</p>
+    <div class="meta">
+      <time datetime="2024-08-18T22:34:29.000Z">2024-08-18</time>
+      <a href="/claude/categories/writeups/">writeups</a>
+      
+      <a href="/claude/tags/active-directory/" rel="tag">#active directory</a><a href="/claude/tags/acl-abuse/" rel="tag">#acl abuse</a><a href="/claude/tags/rbcd/" rel="tag">#rbcd</a><a href="/claude/tags/vulnlab/" rel="tag">#vulnlab</a><a href="/claude/tags/ntlm-relay/" rel="tag">#ntlm relay</a><a href="/claude/tags/mssql/" rel="tag">#mssql</a><a href="/claude/tags/laps/" rel="tag">#laps</a>
+    </div>
+  </div>
+
+  
+
+  <div class="post-body">
+    
+    <nav class="todos" aria-label="table of contents">
+      <details>
+        <summary><b>Update Todos</b></summary>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NMAP"><span class="toc-text">NMAP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DC01"><span class="toc-text">DC01</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MS01"><span class="toc-text">MS01</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WS01"><span class="toc-text">WS01</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Enumeration"><span class="toc-text">Enumeration</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SMB"><span class="toc-text">SMB</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MS01-1"><span class="toc-text">MS01</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MSSQL"><span class="toc-text">MSSQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NTLMv2-Hash"><span class="toc-text">NTLMv2 Hash</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NTLM-Relaying"><span class="toc-text">NTLM Relaying</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GenericAll-1"><span class="toc-text">GenericAll - 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Credential-Dumps"><span class="toc-text">Credential Dumps</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WS01-1"><span class="toc-text">WS01</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GenericAll-2"><span class="toc-text">GenericAll - 2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Resource-Based-Constrained-Delegation-RBCD"><span class="toc-text">Resource-Based Constrained Delegation (RBCD)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Credential-Dumps-1"><span class="toc-text">Credential Dumps</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DC01-1"><span class="toc-text">DC01</span></a></li></ol>
+      </details>
+    </nav>
+    
+    
+    <label class="section-filter" hidden>
+      <span aria-hidden="true">grep</span>
+      <input type="search" placeholder="filter sections…" autocomplete="off" spellcheck="false" aria-label="filter sections">
+      <em aria-live="polite"></em>
+    </label>
+    
+    <div class="prose">
+      <p>Reflection is a medium Active Directory chain from Vulnlab, consisting of 3 machines. It involves MSSQL, NTLM relay attacks, reading LAPS password, Resource-Based Constrained Delegation (RBCD), and password reuse.</p>
+<h1 id="NMAP"><a href="#NMAP" class="headerlink" title="NMAP"></a>NMAP</h1><h2 id="DC01"><a href="#DC01" class="headerlink" title="DC01"></a>DC01</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Nmap scan report for 10.10.185.165</span><br><span class="line">Host is up (0.081s latency).</span><br><span class="line">Not shown: 987 filtered tcp ports (no-response)</span><br><span class="line">PORT     STATE SERVICE       VERSION</span><br><span class="line">53/tcp   open  domain        Simple DNS Plus</span><br><span class="line">88/tcp   open  kerberos-sec  Microsoft Windows Kerberos (server time: 2024-08-18 16:41:52Z)</span><br><span class="line">135/tcp  open  msrpc         Microsoft Windows RPC</span><br><span class="line">139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn</span><br><span class="line">389/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: reflection.vl0., Site: Default-First-Site-Name)</span><br><span class="line">445/tcp  open  microsoft-ds?</span><br><span class="line">464/tcp  open  kpasswd5?</span><br><span class="line">593/tcp  open  ncacn_http    Microsoft Windows RPC over HTTP 1.0</span><br><span class="line">636/tcp  open  tcpwrapped</span><br><span class="line">1433/tcp open  ms-sql-s      Microsoft SQL Server 2019 15.00.2000.00; RTM</span><br><span class="line">| ms-sql-info:</span><br><span class="line">|   10.10.185.165:1433:</span><br><span class="line">|     Version:</span><br><span class="line">|       name: Microsoft SQL Server 2019 RTM</span><br><span class="line">|       number: 15.00.2000.00</span><br><span class="line">|       Product: Microsoft SQL Server 2019</span><br><span class="line">|       Service pack level: RTM</span><br><span class="line">|       Post-SP patches applied: false</span><br><span class="line">|_    TCP port: 1433</span><br><span class="line">| ms-sql-ntlm-info:</span><br><span class="line">|   10.10.185.165:1433:</span><br><span class="line">|     Target_Name: REFLECTION</span><br><span class="line">|     NetBIOS_Domain_Name: REFLECTION</span><br><span class="line">|     NetBIOS_Computer_Name: DC01</span><br><span class="line">|     DNS_Domain_Name: reflection.vl</span><br><span class="line">|     DNS_Computer_Name: dc01.reflection.vl</span><br><span class="line">|     DNS_Tree_Name: reflection.vl</span><br><span class="line">|_    Product_Version: 10.0.20348</span><br><span class="line">|_ssl-date: 2024-08-18T16:42:37+00:00; -1s from scanner time.</span><br><span class="line">| ssl-cert: Subject: commonName=SSL_Self_Signed_Fallback</span><br><span class="line">| Not valid before: 2024-08-18T16:41:30</span><br><span class="line">|_Not valid after:  2054-08-18T16:41:30</span><br><span class="line">3268/tcp open  ldap          Microsoft Windows Active Directory LDAP (Domain: reflection.vl0., Site: Default-First-Site-Name)</span><br><span class="line">3269/tcp open  tcpwrapped</span><br><span class="line">3389/tcp open  ms-wbt-server Microsoft Terminal Services</span><br><span class="line">| ssl-cert: Subject: commonName=dc01.reflection.vl</span><br></pre></td></tr></table></figure>
+<p>Based on the Nmap scan results, it is evident that this machine is a domain controller, as it has DNS, LDAP, and Kerberos services running. Additionally, there is an MSSQL service running on port 1433, which is particularly noteworthy</p>
+<h2 id="MS01"><a href="#MS01" class="headerlink" title="MS01"></a>MS01</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Nmap scan report for 10.10.185.166</span><br><span class="line">Host is up (0.071s latency).</span><br><span class="line">Not shown: 996 filtered tcp ports (no-response)</span><br><span class="line">PORT     STATE SERVICE       VERSION</span><br><span class="line">135/tcp  open  msrpc         Microsoft Windows RPC</span><br><span class="line">445/tcp  open  microsoft-ds?</span><br><span class="line">1433/tcp open  ms-sql-s      Microsoft SQL Server 2019 15.00.2000.00; RTM</span><br><span class="line">| ms-sql-info:</span><br><span class="line">|   10.10.185.166:1433:</span><br><span class="line">|     Version:</span><br><span class="line">|       name: Microsoft SQL Server 2019 RTM</span><br><span class="line">|       number: 15.00.2000.00</span><br><span class="line">|       Product: Microsoft SQL Server 2019</span><br><span class="line">|       Service pack level: RTM</span><br><span class="line">|       Post-SP patches applied: false</span><br><span class="line">|_    TCP port: 1433</span><br><span class="line">| ms-sql-ntlm-info:</span><br><span class="line">|   10.10.185.166:1433:</span><br><span class="line">|     Target_Name: REFLECTION</span><br><span class="line">|     NetBIOS_Domain_Name: REFLECTION</span><br><span class="line">|     NetBIOS_Computer_Name: MS01</span><br><span class="line">|     DNS_Domain_Name: reflection.vl</span><br><span class="line">|     DNS_Computer_Name: ms01.reflection.vl</span><br><span class="line">|     DNS_Tree_Name: reflection.vl</span><br><span class="line">|_    Product_Version: 10.0.20348</span><br><span class="line">| ssl-cert: Subject: commonName=SSL_Self_Signed_Fallback</span><br><span class="line">| Not valid before: 2024-08-18T16:39:00</span><br><span class="line">|_Not valid after:  2054-08-18T16:39:00</span><br><span class="line">|_ssl-date: 2024-08-18T16:42:37+00:00; -1s from scanner time.</span><br><span class="line">3389/tcp open  ms-wbt-server Microsoft Terminal Services</span><br><span class="line">| ssl-cert: Subject: commonName=ms01.reflection.vl</span><br></pre></td></tr></table></figure>
+<p>MS01 also has an MSSQL service running on port 1433</p>
+<h2 id="WS01"><a href="#WS01" class="headerlink" title="WS01"></a>WS01</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Nmap scan report for 10.10.185.167</span><br><span class="line">Host is up (0.073s latency).</span><br><span class="line">Not shown: 997 filtered tcp ports (no-response)</span><br><span class="line">PORT     STATE SERVICE       VERSION</span><br><span class="line">135/tcp  open  msrpc         Microsoft Windows RPC</span><br><span class="line">445/tcp  open  microsoft-ds?</span><br><span class="line">3389/tcp open  ms-wbt-server Microsoft Terminal Services</span><br><span class="line">| ssl-cert: Subject: commonName=ws01.reflection.vl</span><br><span class="line">| Not valid before: 2024-08-17T16:41:15</span><br><span class="line">|_Not valid after:  2025-02-16T16:41:15</span><br><span class="line">|_ssl-date: 2024-08-18T16:42:36+00:00; -2s from scanner time.</span><br><span class="line">| rdp-ntlm-info:</span><br><span class="line">|   Target_Name: REFLECTION</span><br><span class="line">|   NetBIOS_Domain_Name: REFLECTION</span><br><span class="line">|   NetBIOS_Computer_Name: WS01</span><br><span class="line">|   DNS_Domain_Name: reflection.vl</span><br><span class="line">|   DNS_Computer_Name: ws01.reflection.vl</span><br><span class="line">|   DNS_Tree_Name: reflection.vl</span><br><span class="line">|   Product_Version: 10.0.19041</span><br><span class="line">|_  System_Time: 2024-08-18T16:41:56+00:00</span><br><span class="line">Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows</span><br></pre></td></tr></table></figure>
+<p>Finally, there’s WS01, which is nearly identical to MS01, except it doesn’t have the MSSQL service running</p>
+<h1 id="Enumeration"><a href="#Enumeration" class="headerlink" title="Enumeration"></a>Enumeration</h1><h2 id="SMB"><a href="#SMB" class="headerlink" title="SMB"></a>SMB</h2><p>I always prefer to start with SMB enumeration. Let’s run Netexec on the three IPs we have<br><img src="/claude/Reflection-Vulnlab/smb-targets.png" alt="NetExec SMB scan of the three hosts"></p>
+<h1 id="MS01-1"><a href="#MS01-1" class="headerlink" title="MS01"></a>MS01</h1><p>It appears that MS01 allows guest authentication. If you’re interested in learning more about guest and null sessions, you can read <a target="_blank" rel="noopener" href="https://sensepost.com/blog/2024/guest-vs-null-session-on-windows/">this article</a><br><img src="/claude/Reflection-Vulnlab/ms01-shares.png" alt="Shares on MS01 listed with guest authentication"><br>There is a non-standard share named <code>staging</code>. We can connect to it using Impacket’s <code>smbclient</code> and list the files within the staging share<br><img src="/claude/Reflection-Vulnlab/smbclient-ms01.png" alt="Listing the staging share with smbclient"><br>Great! We’ve obtained some database credentials<br><img src="/claude/Reflection-Vulnlab/staging.png" alt="Database credentials found in the staging share"></p>
+<h2 id="MSSQL"><a href="#MSSQL" class="headerlink" title="MSSQL"></a>MSSQL</h2><p>We can test these credentials on both DC01 and MS01 (using the <code>--local-auth</code> parameter). Netexec confirms a valid login on MS01<br><img src="/claude/Reflection-Vulnlab/mssql-spray.png" alt="NetExec confirming the MSSQL login on MS01"><br>Let’s connect to MSSQL using Impacket’s <code>mssqlclient</code>.<br><img src="/claude/Reflection-Vulnlab/mssql-web_staging.png" alt="mssqlclient connected to MSSQL on MS01"></p>
+<h3 id="NTLMv2-Hash"><a href="#NTLMv2-Hash" class="headerlink" title="NTLMv2 Hash"></a>NTLMv2 Hash</h3><p>Since we’re authenticated to MSSQL, we can attempt to obtain the hash of the user running the database by using the <code>xp_dirtree</code> command. We’ll point it to our machine with a UNC path and then try to crack the hash<br><img src="/claude/Reflection-Vulnlab/svc_web_staging-hash.png" alt="NTLMv2 hash captured with xp_dirtree"><br>As you can see, that was successful. However, the hash couldn’t be cracked. So, what can we do in this situation?</p>
+<h2 id="NTLM-Relaying"><a href="#NTLM-Relaying" class="headerlink" title="NTLM Relaying"></a>NTLM Relaying</h2><p>Another approach we can try is relaying the NTLM authentication. But first, we need to verify that SMB signing is disabled<br><img src="/claude/Reflection-Vulnlab/gen-relay.png" alt="NetExec showing SMB signing disabled on all three hosts"><br>Indeed, SMB signing is disabled on all three machines, including the DC. In this case, we can even relay the authentication to the DC and access its shares.<br>First, let’s set up a relay server using Impacket’s <code>ntlmrelayx</code><br><img src="/claude/Reflection-Vulnlab/ntlmrelayx.png" alt="Starting ntlmrelayx"><br>Next, use the same <code>xp_dirtree</code> command that we used earlier.<br><img src="/claude/Reflection-Vulnlab/mssql-relay-trigger.png" alt="Running xp_dirtree to trigger the relay"><br>As you can see, we’ve successfully received the authentication, and it’s indicating that the attack is targeting the domain controller<br><img src="/claude/Reflection-Vulnlab/relay-success.png" alt="ntlmrelayx receiving the authentication and relaying it to the DC"><br>Since We used the <code>-socks</code> option with <code>ntlmrelayx</code>, We need to add the following entry to our <code>/etc/proxychains4.conf</code> file<br><img src="/claude/Reflection-Vulnlab/proxychains-files.png" alt="proxychains4.conf entry"><br>Now, using proxychains, we should be able to list the SMB shares on the DC. There’s a share named <code>prod</code><br><img src="/claude/Reflection-Vulnlab/smbclient-listshares-dc01.png" alt="SMB shares on DC01 listed through proxychains"><br>We can use <code>smbclient</code> to connect to the <code>prod</code> share and download the <code>prod_db.conf</code> file, which provides us with additional credentials, this time for the <code>prod</code> database<br><img src="/claude/Reflection-Vulnlab/prod_db-file.png" alt="prod_db.conf with the prod database credentials"><br>Since the <code>prod</code> share was on the DC, we can attempt to authenticate to the MSSQL instance running on the DC<br><img src="/claude/Reflection-Vulnlab/mssql-login-dc01.png" alt="MSSQL login on DC01"><br>We can perform some MSSQL enumeration to list the databases and tables. The <code>prod</code> database has a table called <code>users</code>, which contains what appear to be credentials for some domain users<br><img src="/claude/Reflection-Vulnlab/prod-credentials.png" alt="Credentials in the users table of the prod database"><br>To confirm that these are domain user credentials, we can use Netexec. This confirms that these are indeed valid domain user credentials<br><img src="/claude/Reflection-Vulnlab/valid-dc01-users.png" alt="NetExec confirming the domain user credentials"><br>With valid credentials in hand, we can run Bloodhound to gain a better understanding of the network and the permissions our users have<br><img src="/claude/Reflection-Vulnlab/bloodhound-command.png" alt="Running the BloodHound collector"></p>
+<h2 id="GenericAll-1"><a href="#GenericAll-1" class="headerlink" title="GenericAll - 1"></a>GenericAll - 1</h2><p>The user Abbie.Smith has <code>GenericAll</code> over MS01<br><img src="/claude/Reflection-Vulnlab/bloodhound-genericall.png" alt="BloodHound showing Abbie.Smith has GenericAll over MS01"><br>I’ve already covered how to abuse <code>GenericAll</code> in my blog. One of the first techniques we can use is <a href="https://seriotonctf.github.io/RBCD-Notes/">Resource-Based Constrained Delegation (RBCD)</a>. Unfortunately, <code>MachineAccountQuota</code> is set to 0. However, we can still perform another attack known as <code>SPN-less RBCD</code>, which I also covered in <a href="https://seriotonctf.github.io/RBCD-Notes/">this article</a>. A third option is to <a target="_blank" rel="noopener" href="https://www.thehacker.recipes/a-d/movement/dacl/readlapspassword">read the laps password</a> if laps is enabled on the target, which is the case here.<br>To achieve this, we can use the <code>--laps</code> option in Netexec. As you can see, we retrieved the local administrator password immediately<br><img src="/claude/Reflection-Vulnlab/laps-password.png" alt="LAPS password of MS01 read with NetExec"><br>Now, we can connect to MS01 using evil-winrm and grab our first flag<br><img src="/claude/Reflection-Vulnlab/ms01-flag.png" alt="evil-winrm session on MS01 with the first flag"></p>
+<h2 id="Credential-Dumps"><a href="#Credential-Dumps" class="headerlink" title="Credential Dumps"></a>Credential Dumps</h2><p>Let’s attempt to dump the credentials from MS01 using the <code>--lsa</code> option in Netexec. However, nothing of interest was found<br><img src="/claude/Reflection-Vulnlab/lsa-secrets.png" alt="LSA secrets dump from MS01"><br>Another option we can try is the <code>--dpapi</code> option, which will dump the <a target="_blank" rel="noopener" href="https://www.thehacker.recipes/a-d/movement/credentials/dumping/dpapi-protected-secrets">DPAPI credentials</a>. It appears that there is a scheduled task being executed as the user Georgia.Price, which reveals her credentials<br><img src="/claude/Reflection-Vulnlab/dpapi.png" alt="DPAPI credentials dumped from MS01"></p>
+<h1 id="WS01-1"><a href="#WS01-1" class="headerlink" title="WS01"></a>WS01</h1><h2 id="GenericAll-2"><a href="#GenericAll-2" class="headerlink" title="GenericAll - 2"></a>GenericAll - 2</h2><p>Reviewing the privileges of this new user, we can see that she has <code>GenericAll</code> permissions over WS01<br><img src="/claude/Reflection-Vulnlab/genericl-all-georgia.png" alt="BloodHound showing Georgia.Price has GenericAll over WS01"><br>We can attempt to read the LAPS password again, this time on WS01 as the Georgia.Price user. Unfortunately, LAPS is not configured on WS01. In this situation, we can exploit Resource-Based Constrained Delegation (RBCD) since we already own a machine (MS01), allowing us to use it to carry out our attack<br>To obtain the machine account hash, we can use Impacket’s <code>secretsdump</code> tool<br><img src="/claude/Reflection-Vulnlab/secretsdump-machineaccount-hash.png" alt="secretsdump output with the machine account hash"><br>Another way to retrieve the hash is by using Mimikatz. First, let’s disable Windows Defender and upload Mimikatz<br><img src="/claude/Reflection-Vulnlab/disable-defender-upload-mimikatz.png" alt="Disabling Windows Defender and uploading Mimikatz"><br>Now, we can run Mimikatz with the following command to dump the machine account hash<br><img src="/claude/Reflection-Vulnlab/running-mimikatz.png" alt="Running Mimikatz"><br><img src="/claude/Reflection-Vulnlab/ms01-hash.png" alt="Mimikatz output with the machine account hash"></p>
+<h2 id="Resource-Based-Constrained-Delegation-RBCD"><a href="#Resource-Based-Constrained-Delegation-RBCD" class="headerlink" title="Resource-Based Constrained Delegation (RBCD)"></a>Resource-Based Constrained Delegation (RBCD)</h2><p>I’ve already covered this attack in a <a href="https://seriotonctf.github.io/RBCD-Notes/">previous article</a>, or you can check out this <a target="_blank" rel="noopener" href="https://www.thehacker.recipes/a-d/movement/kerberos/delegations/rbcd">excellent article</a><br>We can read the <code>msDs-AllowedToActOnBehalfOfOtherIdentity</code> attribute, but it’s currently empty.<br><img src="/claude/Reflection-Vulnlab/read-attribute.png" alt="Empty msDS-AllowedToActOnBehalfOfOtherIdentity attribute"><br>Now, We want to write this attribute using Impacket’s <code>rbcd</code> tool.<br><img src="/claude/Reflection-Vulnlab/rbcd.png" alt="Writing the attribute with Impacket&#39;s rbcd"><br>Next, we need to request a service ticket while impersonating the Administrator user<br><img src="/claude/Reflection-Vulnlab/getST.png" alt="Requesting a service ticket as Administrator with getST"><br>Finally, We can use this ticket to authenticate to WS01. which, as you can see, is successful<br><img src="/claude/Reflection-Vulnlab/smb-pwned-ws01.png" alt="NetExec showing admin access on WS01"></p>
+<h2 id="Credential-Dumps-1"><a href="#Credential-Dumps-1" class="headerlink" title="Credential Dumps"></a>Credential Dumps</h2><p>Just like with MS01, we can dump the LSA secrets from WS01, which reveals the credentials for a new domain user named <code>Rhys.Garner</code><br><img src="/claude/Reflection-Vulnlab/lsa-WS01.png" alt="LSA secrets dump from WS01 with Rhys.Garner&#39;s credentials"><br>With this new password, we can perform a credential spraying attack to check for any password reuse. First, let’s dump all the domain users<br><img src="/claude/Reflection-Vulnlab/dc01-users.png" alt="Dumping the domain users"><br>We do a little bit of cleaning<br><img src="/claude/Reflection-Vulnlab/users-clean.png" alt="Cleaned list of usernames"></p>
+<h1 id="DC01-1"><a href="#DC01-1" class="headerlink" title="DC01"></a>DC01</h1><p>Next, we perform the password spraying. Fortunately, the Rhys.Garner user has reused his password with another account named <code>dom_rgarner</code><br><img src="/claude/Reflection-Vulnlab/another-user-creds.png" alt="Password spray showing dom_rgarner reuses the password"><br>The latter is a domain admin. We can login via winrm or directly read the flag using Netexec<br><img src="/claude/Reflection-Vulnlab/dc0-flag.png" alt="Reading the flag on DC01 with NetExec"><br>That concludes this chain. I hope you learned something new! 🐱</p>
+
+    </div>
+  </div>
+
+  <footer class="post-foot">
+    
+    <div class="tool">
+      <p class="call"><b>Search</b>(related: "Reflection-Vulnlab.md")</p>
+      <p class="result">Found 3 posts</p>
+      <ul class="list">
+        
+        <li><time datetime="2025-10-20T16:30:27.000Z">2025-10-20</time><a href="/claude/AKTIVKATALOG-2-Hack-lu-CTF-2025/">AKTIVKATALOG 2 - Hack.lu CTF 2025</a></li>
+        
+        <li><time datetime="2024-11-24T16:47:11.000Z">2024-11-24</time><a href="/claude/Redelegate-Vulnlab/">Redelegate - Vulnlab</a></li>
+        
+        <li><time datetime="2024-07-14T10:32:45.000Z">2024-07-14</time><a href="/claude/Phantom-Vulnlab/">Phantom - Vulnlab</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <nav class="neighbors" aria-label="more posts">
+      <a class="older" href="/claude/Windows-Privesc/" rel="next"><small>← older</small>Windows Privilege Escalation</a>
+      <a class="newer" href="/claude/Retro2-Vulnlab/" rel="prev"><small>newer →</small>Retro2 - Vulnlab</a>
+    </nav>
+    
+  </footer>
+</article>
+
+</main>
+<footer class="site-footer wrap">
+  
+  <p><span class="spark" aria-hidden="true">✻</span> © 2023–2026 serioton · <a href="/claude/atom.xml">rss</a></p>
+</footer>
+
+
+<div class="bar" data-index="/claude/search.xml">
+  <div class="wrap">
+    <div class="ask">
+      <div class="panel" hidden>
+        <div class="panel-head"></div>
+        <ol class="panel-list" role="listbox" aria-label="results"></ol>
+        <p class="panel-note" aria-live="polite"></p>
+      </div>
+      <label class="input">
+        <span aria-hidden="true">&gt;</span>
+        <input type="text" placeholder='Try "kerberos" or /help' autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="search posts or type a command">
+      </label>
+    </div>
+    <div class="status">
+      <button type="button" class="mode" data-mode-cycle title="shift+tab to cycle modes"><span data-mode-label>? for shortcuts</span></button>
+      <span class="status-right">
+        <button type="button" data-run="model" title="/model"><span data-model>Mythos 5.2</span></button>
+        <button type="button" data-run="effort" title="/effort"><span data-effort>high</span><span class="ctx-word"> effort</span></button>
+        <button type="button" class="ctx" data-run="context" title="/context"><span class="meter" aria-hidden="true"><i></i></span><span data-ctx>0%</span><span class="ctx-word"> context</span></button>
+      </span>
+    </div>
+  </div>
+  <script type="application/json" class="commands">[{"name":"/home","hint":"list all posts","url":"/claude/"},{"name":"/archives","hint":"open archives","url":"/claude/archives/"},{"name":"/categories","hint":"open categories","url":"/claude/categories/"},{"name":"/tags","hint":"open tags","url":"/claude/tags/"},{"name":"/about","hint":"open about","url":"/claude/about/"},{"name":"/rss","hint":"subscribe to the feed","url":"/claude/atom.xml"},{"name":"/resume","hint":"go back to a post you were reading","run":"resume"},{"name":"/random","hint":"read a random post","run":"random"},{"name":"/context","hint":"how much of the context window this page takes","run":"context"},{"name":"/compact","hint":"hide command output in code blocks, or bring it back","run":"compact"},{"name":"/model","hint":"pick the model shown in the status line","run":"model"},{"name":"/effort","hint":"set how hard the model thinks","run":"effort"},{"name":"/permissions","hint":"sites you allowed links to open without asking","run":"permissions"},{"name":"/status","hint":"current model, mode and setup","run":"status"},{"name":"/theme","hint":"switch between light and dark","run":"theme"},{"name":"/butterfly","hint":"switch the blog to the Butterfly theme","url":"/?theme=butterfly"},{"name":"/loaf","hint":"switch the blog to the Loaf theme","url":"/loaf/?theme=loaf"},{"name":"/export","hint":"print this page or save it as a PDF","run":"export"},{"name":"/clear","hint":"reset the mode, filters and prompt","run":"clear"},{"name":"/top","hint":"scroll to the top","run":"top"},{"name":"/help","hint":"list commands and shortcuts","run":"help"}]</script><script>(function(){var s=document.currentScript.previousElementSibling,T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},root="/claude/",p=location.pathname,rel=p.indexOf(root)===0?p.slice(root.length):"";try{var c=JSON.parse(s.textContent);c.forEach(function(x){var m=/\?theme=([\w-]+)$/.exec(x.url||"");if(m&&T[m[1]]!==undefined)x.url=T[m[1]]+rel+"?theme="+m[1]});s.textContent=JSON.stringify(c)}catch(e){}})()</script>
+  <script type="application/json" class="session">{"models":[{"name":"Mythos 5.2","id":"claude-mythos-5-2","hint":"most capable"},{"name":"Fable 5.2","id":"claude-fable-5-2","hint":"most capable, with added safeguards"},{"name":"Opus 5.5","id":"claude-opus-5-5","hint":"for complex work"},{"name":"Sonnet 5.5","id":"claude-sonnet-5-5","hint":"best for everyday tasks"},{"name":"Haiku 5.5","id":"claude-haiku-5-5","hint":"fastest"}],"window":200000,"permissions":true,"posts":26}</script>
+</div>
+
+<script src="/claude/js/claude.js" defer></script>
+<script>(function(){var T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},here="claude",root=T[here],p=location.pathname;var rel=p.indexOf(root)===0?p.slice(root.length):"";for(var k in T){if(k!==here&&T[k].length>root.length&&p.indexOf(T[k])===0)rel=""}var links=document.querySelectorAll("a[data-switch]");function place(){if(scrollY<200)return"";var h=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id]"),id="";for(var i=0;i<h.length;i++){if(h[i].getBoundingClientRect().top<160)id=h[i].id;else break}return id?"#"+encodeURIComponent(id):""}function url(a){return T[a.dataset.switch]+rel+"?theme="+a.dataset.switch}function warm(a){if(a.dataset.warm)return;a.dataset.warm=1;var l=document.createElement("link");l.rel="prefetch";l.href=url(a);document.head.appendChild(l)}links.forEach(function(a){a.href=url(a);a.addEventListener("pointerenter",function(){warm(a)});a.addEventListener("focus",function(){warm(a)});a.addEventListener("touchstart",function(){warm(a)},{passive:true});a.addEventListener("click",function(){try{localStorage.setItem("blog-theme",a.dataset.switch)}catch(e){}var st=document.createElement("style");st.textContent="@view-transition{navigation:auto}";document.head.appendChild(st);a.href=url(a)+place()})});document.querySelectorAll("details.tsw").forEach(function(d){d.addEventListener("toggle",function(){if(d.open)links.forEach(warm)});document.addEventListener("click",function(e){if(d.open&&!d.contains(e.target))d.open=false});document.addEventListener("keydown",function(e){if(e.key==="Escape")d.open=false})});})()</script></body>
+</html>
