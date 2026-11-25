@@ -407,20 +407,6 @@
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/bloodyad/</loc>
-    <lastmod>2026-11-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/gmsa/</loc>
-    <lastmod>2026-11-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://seriotonctf.github.io/tags/vulnlab/</loc>
     <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -456,6 +442,20 @@
   </url>
   
   <url>
+    <loc>https://seriotonctf.github.io/tags/bloodyad/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/gmsa/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://seriotonctf.github.io/tags/windows/</loc>
     <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -478,6 +478,34 @@
   
   <url>
     <loc>https://seriotonctf.github.io/tags/uac-bypass/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/kenolab/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/sql-injection/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/as-rep-roasting/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/kerberoasting/</loc>
     <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -512,13 +540,6 @@
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/kerberoasting/</loc>
-    <lastmod>2026-11-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://seriotonctf.github.io/tags/password-spraying/</loc>
     <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -533,21 +554,14 @@
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/kenolab/</loc>
+    <loc>https://seriotonctf.github.io/tags/hackthebox/</loc>
     <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/sql-injection/</loc>
-    <lastmod>2026-11-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/as-rep-roasting/</loc>
+    <loc>https://seriotonctf.github.io/tags/backup-operators/</loc>
     <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -569,20 +583,6 @@
   
   <url>
     <loc>https://seriotonctf.github.io/tags/red-team/</loc>
-    <lastmod>2026-11-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/hackthebox/</loc>
-    <lastmod>2026-11-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/backup-operators/</loc>
     <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -694,14 +694,14 @@
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/constrained-delegation/</loc>
+    <loc>https://seriotonctf.github.io/tags/laps/</loc>
     <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/laps/</loc>
+    <loc>https://seriotonctf.github.io/tags/constrained-delegation/</loc>
     <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -729,20 +729,6 @@
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/cross-session-relay/</loc>
-    <lastmod>2026-11-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/remotepotato0/</loc>
-    <lastmod>2026-11-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://seriotonctf.github.io/tags/nfs/</loc>
     <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -751,6 +737,27 @@
   
   <url>
     <loc>https://seriotonctf.github.io/tags/postgresql/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/privilege-escalation/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/sebackupprivilege/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://seriotonctf.github.io/tags/dnsadmins/</loc>
     <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -785,21 +792,14 @@
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/privilege-escalation/</loc>
+    <loc>https://seriotonctf.github.io/tags/cross-session-relay/</loc>
     <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://seriotonctf.github.io/tags/sebackupprivilege/</loc>
-    <lastmod>2026-11-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://seriotonctf.github.io/tags/dnsadmins/</loc>
+    <loc>https://seriotonctf.github.io/tags/remotepotato0/</loc>
     <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
